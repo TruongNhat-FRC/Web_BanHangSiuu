@@ -1,0 +1,71 @@
+﻿@model Web_Bán_Hàng.Models.UserModel
+
+@{
+	ViewData["Đăng Ký"] = "Đăng Ký";
+}
+<section id="form">
+	<!--form-->
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-4 col-sm-offset-1">
+				<div class="login-form">
+					<!--login form-->
+					<h2>Login to your account</h2>
+					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+					<form asp-action="DangNhap", asp-controller="Account" >
+
+						<div class="form-group">
+							<label>UserName</label>
+							<input asp-for="UserName" class="form-control" id="UserName" />
+							<span asp-validation-for="UserName" class="text-danger"></span>
+						</div>
+
+						
+						<div class="form-group">
+							<label>Password</label>
+							<input asp-for="Password" class="form-control" id="Password" />
+							<span asp-validation-for="Password" class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<button class="btn btn-sm btn-primary">Đăng Nhập</button>
+						</div>
+
+					</form>
+				</div><!--/login form-->
+			</div>
+			<div class="col-sm-1">
+				<h2 class="or">OR</h2>
+			</div>
+			<div class="col-sm-4">
+				<div class="signup-form">
+					<!--sign up form-->
+					<h2>New User Signup!</h2>
+					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+					<form asp-action="DangKy" , asp-controller="Account">
+
+						<div class="form-group">
+							<label>UserName</label>
+							<input asp-for="UserName" class="form-control" id="UserName" />
+							<span asp-validation-for="UserName" class="text-danger"></span>
+						</div>
+
+						<div class="form-group">
+							<label>Email</label>
+							<input asp-for="Email" class="form-control" id="Email" />
+							<span asp-validation-for="Email" class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label>Password</label>
+							<input asp-for="Password" class="form-control" id="Password" />
+							<span asp-validation-for="Password" class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<button class="btn btn-sm btn-primary">Đăng Ký</button>
+						</div>
+
+					</form>
+				</div><!--/sign up form-->
+			</div>
+		</div>
+	</div>
+</section><!--/form-->

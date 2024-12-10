@@ -1,0 +1,71 @@
+﻿@model IEnumerable<DonHangModel>
+@{
+    ViewData["Title"] = "Danh Sách Đơn Hàng";
+}
+
+<h1 class="text-center my-4">Danh Sách Đơn Hàng</h1>
+<!-- Bảng Đơn Hàng -->
+<div class="container">
+    <table class="table table-bordered table-hover text-center">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Mã Đơn Hàng</th>
+                <th scope="col">Mã Người Dùng</th>
+                <th scope="col">Ngày Đặt</th>
+                <th scope="col">Tổng Tiền</th>
+                <th scope="col">Trạng Thái</th>
+                <th scope="col">Hành Động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.ID</td>
+                        <td>@item.MaDonHang</td>
+                        <td>@item.MaNguoiDung</td>
+                        <td>@item.NgayDat</td>
+                        <td>@item.TongTienCuoi.ToString("#,0")VND</td>
+                        <td>
+                            @if (@item.TrangThai == 0)
+                            {
+                                <span class="text text-success">Đơn Hàng Mới</span>
+                            }
+                            else
+                            {
+                                <span class="text text-danger">Đã Xử Lý</span>
+                            }
+                        </td>
+                        <td style="width: 250px;">
+                            <div class="btn-group" role="group">
+                                <a asp-action="Details" class="btn btn-sm btn-success me-1" asp-controller="DonHang" asp-route-madonhang="@item.MaDonHang">
+                                    <i class="fas fa-eye"></i> Chi Tiết
+                                </a>
+                                <a asp-action="Delete" asp-area="Admin" class="btn btn-sm btn-danger me-1 confirmDeletion" asp-controller="DonHang" asp-route-madonhang="@item.MaDonHang">
+                                    <i class="fas fa-trash"></i> Xóa
+                                </a>
+                                <a asp-action="Edit" asp-area="Admin" class="btn btn-sm btn-warning confirmDeletion" asp-controller="DonHang" asp-route-madonhang="@item.MaDonHang">
+                                    <i class="fas fa-edit"></i> Sửa
+                                </a>
+                            </div>
+                        </td>
+
+                       
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="7">Không có đơn hàng nào.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Thêm Font Awesome cho biểu tượng -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">

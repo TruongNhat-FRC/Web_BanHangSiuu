@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Web_Bán_Hàng.Models.AppUserModel>
+@{
+    ViewData["Title"] = "Danh Sách Người Dùng Bị Vô Hiệu Hóa";
+}
+<div class="container mt-5">
+    <h2 class="text-center text-primary">@ViewData["Title"]</h2>
+    <table class="table table-bordered table-striped mt-4">
+        <thead class="table-dark text-center">
+            <tr>
+                <th>Mã người dùng</th>
+                <th>Tên người dùng</th>
+                <th>Email</th>
+                <th>Số điện thoại</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td colspan="3" class="text-center text-muted">
+                        Không có người dùng nào bị vô hiệu hóa.
+                    </td>
+                </tr>
+            }
+            else
+            {
+                @foreach (var user in Model)
+                {
+                    <tr class="text-center">
+                        <td>@user.Id</td>
+                        <td>@user.UserName</td>
+                        <td>@user.Email</td>
+                        <td>@user.PhoneNumber</td>
+                        <td>
+                            <form asp-action="PhucHoiNguoiDung" asp-route-id="@user.Id" method="post" class="d-inline">
+                                <button type="submit" class="btn btn-success btn-sm">
+                                    <i class="fas fa-undo"></i> Phục hồi
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

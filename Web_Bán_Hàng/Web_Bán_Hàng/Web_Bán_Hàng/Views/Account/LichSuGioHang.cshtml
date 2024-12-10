@@ -1,0 +1,66 @@
+﻿@model List<Web_Bán_Hàng.Models.CartHistoryModel>
+
+<h2>Lịch sử giỏ hàng</h2>
+
+@if (Model != null && Model.Any())
+{
+    <table border="1" style="width: 100%; border-collapse: collapse;">
+        <thead>
+            <tr>
+                <th>Hình ảnh</th>
+                <th>Tên sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Giá</th>
+                <th>Tổng</th>
+                <th>Ngày thêm</th>
+                <th>Trạng thái thanh toán</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <!-- Hiển thị hình ảnh sản phẩm -->
+                    <td>
+                        <img src="~/image/@item.Image" alt="@item.ProductName" style="width: 50px;" />
+                    </td>
+
+                    <!-- Hiển thị tên sản phẩm -->
+                    <td>@item.ProductName</td>
+
+                    <!-- Hiển thị số lượng sản phẩm -->
+                    <td>@item.Quantity</td>
+
+                    <!-- Hiển thị giá sản phẩm -->
+                    <td>@item.Price.ToString("C")</td>
+
+                    <!-- Hiển thị tổng tiền -->
+                    <td>@item.Total.ToString("C")</td>
+
+                    <!-- Hiển thị ngày thêm vào giỏ hàng -->
+                    <td>@item.AddedDate.ToString("dd/MM/yyyy")</td>
+
+                    <!-- Hiển thị trạng thái thanh toán -->
+                    <td>@(item.IsCheckedOut ? "Đã thanh toán" : "Chưa thanh toán")</td>
+
+                    <!-- Chỉ cho phép thêm lại vào giỏ hàng nếu chưa thanh toán -->
+                    <td>
+                        @if (!item.IsCheckedOut)
+                        {
+                            <form asp-action="AddAndRemoveFromHistory" asp-controller="Account" method="post">
+                                <input type="hidden" name="id" value="@item.ProductId" />
+                                <input type="hidden" name="quantity" value="@item.Quantity" />
+                                <button type="submit">Thêm lại vào giỏ hàng</button>
+                            </form>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Không có sản phẩm trong lịch sử giỏ hàng.</p>
+}

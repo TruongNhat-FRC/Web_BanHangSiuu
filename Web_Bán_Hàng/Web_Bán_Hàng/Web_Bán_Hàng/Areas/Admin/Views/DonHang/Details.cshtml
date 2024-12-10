@@ -1,0 +1,76 @@
+﻿@model Web_Bán_Hàng.Models.DonHangModel
+
+<div class="container mt-5">
+    <h2 class="text-center">Chi Tiết Đơn Hàng</h2>
+
+    <!-- Thông tin đơn hàng -->
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Thông tin đơn hàng</h4>
+        </div>
+        <div class="card-body">
+            <p><strong>Mã đơn hàng:</strong> @Model.MaDonHang</p>
+            <p><strong>Ngày đặt:</strong> @Model.NgayDat.ToString("dd/MM/yyyy")</p>
+            <p>
+                <strong>Trạng thái:</strong>
+                @if (Model.TrangThai == 1)
+                {
+                    <span class="badge bg-success">Đã thanh toán</span>
+                }
+                else
+                {
+                    <span class="badge bg-warning">Chờ thanh toán</span>
+                }
+            </p>
+        </div>
+    </div>
+
+    <!-- Chi tiết đơn hàng -->
+    <div class="card mb-4">
+        <div class="card-header bg-info text-white">
+            <h4 class="mb-0">Chi Tiết Đơn Hàng</h4>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Sản phẩm</th>
+                        <th>Số lượng</th>
+                        <th>Giá 1 món</th>
+                        <th>Thành tiền</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.ChiTietDonHangs != null && Model.ChiTietDonHangs.Any())
+                    {
+                        @foreach (var chiTiet in Model.ChiTietDonHangs)
+                        {
+                            <tr>
+                                <td>@chiTiet.Product?.Name</td>
+                                <td>@chiTiet.Soluong</td>
+                                <td>@chiTiet.Gia1mon.ToString("#,0") VND</td>
+                                <td>@chiTiet.ThanhTien.ToString("#,0")VND</td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="4" class="text-center text-muted">Không có chi tiết sản phẩm nào.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Tổng tiền -->
+    <div class="card">
+        <div class="card-header bg-warning text-white">
+            <h4 class="mb-0">Tổng Tiền</h4>
+        </div>
+        <div class="card-body">
+            <h5 class="text-right text-success">@Model.TongTienCuoi.ToString("#,0")VND</h5>
+        </div>
+    </div>
+</div>

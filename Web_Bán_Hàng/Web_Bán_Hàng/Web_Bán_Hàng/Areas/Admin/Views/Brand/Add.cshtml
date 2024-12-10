@@ -1,0 +1,56 @@
+﻿@model Web_Bán_Hàng.Models.BrandModel
+@{
+    ViewData["Title"] = "Thêm Thương Hiệu";
+}
+<h4>Thêm DanhThương Hiệu</h4>
+<div>
+    <form asp-action="Add" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+
+
+        <div class="form-group"> Tên Thương Hiệu</label>
+            <input asp-for="Name" class="form-control" id="Name" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+
+
+        <div class="form-group">
+            <label for="Description">Description</label>
+            <textarea asp-for="Description" class="form-control" id="Description"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="status">Trạng Thái</label>
+            <select asp-for="status" class="form-control" id="status">
+                <option value="0"> Ẩn</option>
+                <option value="1"> Hiển thị</option>
+
+            </select>
+            <span asp-validation-for="status" class="text-danger"></span>
+        </div>
+
+
+
+
+
+        <div class="form-group">
+            <button class="btn btn-sm btn-primary">Add</button>
+        </div>
+    </form>
+    <a class="btn btn-sm btn-outline-primary" asp-action="Index" asp-controller="Product">Quay về trang chủ</a>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+
+
+}
+
+
+

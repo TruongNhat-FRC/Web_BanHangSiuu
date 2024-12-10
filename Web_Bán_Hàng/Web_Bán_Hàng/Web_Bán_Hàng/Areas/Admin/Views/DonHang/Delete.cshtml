@@ -1,0 +1,15 @@
+﻿@model Web_Bán_Hàng.Models.DonHangModel
+
+@{
+    ViewData["Title"] = "Xóa đơn hàng";
+}
+
+<h2>Xóa đơn hàng</h2>
+
+<p>Bạn có chắc chắn muốn xóa đơn hàng <strong>@Model.MaDonHang</strong>?</p>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" name="madonhang" value="@Model.MaDonHang" />
+    <button type="submit" class="btn btn-danger">Xóa</button>
+    <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+</form>

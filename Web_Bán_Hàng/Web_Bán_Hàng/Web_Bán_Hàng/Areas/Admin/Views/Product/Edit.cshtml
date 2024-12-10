@@ -1,0 +1,84 @@
+﻿@model Web_Bán_Hàng.Models.ProductModel
+@{
+    ViewData["Title"] = "Chỉnh Sửa  Sản Phầm";
+}
+<h4>Thêm Sản Phầm Mới</h4>
+<div>
+    <form asp-action="Edit" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+        <div class="form-group">
+            <label for="Id">Mã Sản Phẩm</label>
+            <input asp-for="Id" class="form-control" id="Id" />
+            <span asp-validation-for="Id" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="Name">Name</label>
+            <input asp-for="Name" class="form-control" id="Name" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="Price">Price</label>
+            <input asp-for="Price" class="form-control" id="Price" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="Quantity">Quantity</label>
+            <input asp-for="Quantity" class="form-control" id="Quantity" />
+            <span asp-validation-for="Quantity" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="Description">Description</label>
+            <textarea asp-for="Description" class="form-control" id="Description"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="CategoryId">Loại Sản Phầm </label>
+            <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.Categories" id="CategoryId">
+                <option>
+                    --Chọn Loại Sản Phẩm
+                </option>
+            </select>
+            <span asp-validation-for="CategoryId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="BrandId">Loại Sản Phầm </label>
+            <select asp-for="BrandId" class="form-control" asp-items="ViewBag.Brands" id="BrandId">
+                <option>
+                    --Chọn Loại Thương Hiệu
+                </option>
+            </select>
+            <span asp-validation-for="BrandId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="ImageUpLoad">Hình Ảnh</label>
+            <input asp-for="ImageUpLoad" class="form-control" id="Image" />
+            <span asp-validation-for="ImageUpLoad" class="text-danger"></span>
+            <td><img src="~/image/@Model.Image" width="100" /></td>
+
+        </div>
+
+
+        <div class="form-group">
+            <button class="btn btn-sm btn-primary">Add</button>
+        </div>
+    </form>
+    <a class="btn btn-sm btn-outline-primary" asp-action="Index" asp-controller="Product">Quay về trang chủ</a>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+
+
+}
+
+
+

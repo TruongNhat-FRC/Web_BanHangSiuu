@@ -1,0 +1,164 @@
+﻿@model Web_Bán_Hàng.Models.ViewModel.DangNhapViewModel
+
+@{
+    ViewData["Đăng Nhập"] = "Đăng Nhập";
+}
+
+<section id="form" class="py-5">
+    <div class="container justify-content-center align-items-center">
+        <div class="row">
+            <!-- Căn giữa form với col-xs-12 col-sm-8 col-sm-offset-2 -->
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+                <div class="signup-form">
+                    <h2 class="text-center">Đăng Nhập</h2> <!-- Căn giữa tiêu đề -->
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                    <form asp-action="DangNhap" asp-controller="Account">
+                        <div class="form-group">
+                            <label for="UserName">Tên đăng nhập</label>
+                            <input asp-for="UserName" class="form-control" id="UserName" placeholder="Nhập tên đăng nhập" />
+                            <span asp-validation-for="UserName" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Password">Mật khẩu</label>
+                            <input asp-for="Password" class="form-control" id="Password" type="password" placeholder="Nhập mật khẩu" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-lg btn-primary">Đăng Nhập</button>
+                        </div>
+
+                        <div class="text-center">
+                            <p>Bạn chưa có tài khoản? <a asp-action="DangKy" asp-controller="Account">Đăng Ký</a></p>
+                        </div>
+                    </form>
+                </div><!--/sign up form-->
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@* @model Web_Bán_Hàng.Models.ViewModel.DangNhapViewModel
+
+@{
+    ViewData["Đăng Nhập"] = "Đăng Nhập";
+  
+}
+<section id="form" class="py-5 justify-content-center align-items-center" style="height: 100vh;">
+    <div class="container d-flex justify-content-center align-items-center" style="height: 100%;">
+        <div class="row justify-content-center w-100">
+            <div class="col-md-8 col-lg-6">
+                <div class="card shadow-lg border-0 rounded-lg">
+                    <div class="card-header text-center">
+                        <h3 class="font-weight-light my-4">Đăng Nhập</h3>
+                    </div>
+                    <div class="card-body">
+                        <form asp-action="DangNhap" asp-controller="Account">
+                            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                            <div class="form-group">
+                                <label for="UserName" class="font-weight-bold">Tên đăng nhập</label>
+                                <input asp-for="UserName" class="form-control form-control-lg" id="UserName" placeholder="Nhập tên đăng nhập" />
+                                <span asp-validation-for="UserName" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Password" class="font-weight-bold">Mật khẩu</label>
+                                <input asp-for="Password" class="form-control form-control-lg" id="Password" type="password" placeholder="Nhập mật khẩu" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group text-center">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg">Đăng Nhập</button>
+                            </div>
+
+                            <div class="text-center">
+                                <p>Bạn chưa có tài khoản? <a asp-action="DangKy" asp-controller="Account">Đăng Ký</a></p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+} *@
+
+
+@* @model Web_Bán_Hàng.Models.ViewModel.DangNhapViewModel
+
+@{
+	ViewData["Đăng Nhập"] = "Đăng Nhập";
+}
+<section id="form">
+	<!--form-->
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-8 col-sm-offset-1">
+				<div class="login-form">
+					<!--login form-->
+					<h2>Login to your account</h2>
+					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+					<form asp-action="DangNhap" , asp-controller="Account">
+
+						<div class="form-group">
+							<label>UserName</label>
+							<input asp-for="UserName" class="form-control" id="UserName" />
+							<span asp-validation-for="UserName" class="text-danger"></span>
+						</div>
+
+
+						<div class="form-group">
+							<label>Password</label>
+							<input asp-for="Password" class="form-control" id="Password" />
+							<span asp-validation-for="Password" class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<button class="btn btn-sm btn-primary">Đăng Nhập</button>
+						</div>
+						<p>Bạn chưa có tài khoản ?</p>
+						<a asp-action="DangKy" asp-controller="Account">Đăng Ký</a>
+					</form>
+				</div><!--/login form-->
+			</div>
+			
+		
+		</div>
+	</div>
+</section><!--/form-->
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+
+
+
+} *@

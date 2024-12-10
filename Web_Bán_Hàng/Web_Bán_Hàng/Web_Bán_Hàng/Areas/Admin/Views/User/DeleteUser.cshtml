@@ -1,0 +1,23 @@
+﻿@model Web_Bán_Hàng.Models.AppUserModel
+
+@{
+    ViewData["Title"] = "Xác nhận xóa người dùng";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="alert alert-warning">
+    <strong>Cảnh báo!</strong> Bạn chắc chắn muốn xóa người dùng này không?
+</div>
+
+<div class="mb-3">
+    <p><strong>Tên người dùng:</strong> @Model.UserName</p>
+    <p><strong>Email:</strong> @Model.Email</p>
+    <p><strong>Ngày đăng ký:</strong> @Model.PhoneNumber</p>
+    <!-- You can display more user details if needed -->
+</div>
+
+<form method="post" asp-action="Delete" asp-route-id="@Model.Id">
+    <button type="submit" class="btn btn-danger">Đánh dấu người dùng là đã xóa</button>
+    <a href="@Url.Action("Index")" class="btn btn-secondary">Hủy bỏ</a>
+</form>

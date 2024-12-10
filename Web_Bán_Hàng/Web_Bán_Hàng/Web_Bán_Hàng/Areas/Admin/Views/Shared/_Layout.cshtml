@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css" rel="stylesheet">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>@ViewData["Title"] - Trang Quản Lý</title>
+    <link href="~/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/css/prettyPhoto.css" rel="stylesheet">
+    <link href="~/css/price-range.css" rel="stylesheet">
+    <link href="~/css/animate.css" rel="stylesheet">
+    <link href="~/css/main.css" rel="stylesheet">
+    <link href="~/css/responsive.css" rel="stylesheet">
+    <link rel="shortcut icon" href="images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-12">
+                    <div class="navbar navbar-inverse" role="navigation">
+                        <div class="navbar-header">
+                            <a asp-action="Index" asp-controller="Home">
+                                <img src="~/anhfe/FRCshop.jpeg" alt="Logo" class="img-fluid justify-content-center align-items-center" style="max-height: 100px;">
+                            </a>
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <!-- Menu -->
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a asp-action="Index" asp-controller="Home" asp-area="" class="active">Home</a></li>
+                                <li><a asp-action="Index" asp-controller="Product" asp-area="Admin" class="active">Sản Phẩm</a></li>
+                                <li><a asp-action="Index" asp-controller="Category" asp-area="Admin" class="active">Loại Sản Phẩm</a></li>
+                                <li><a asp-action="Index" asp-controller="Brand" asp-area="Admin" class="active">Thương Hiệu</a></li>
+                                <li><a asp-action="Index" asp-controller="DonHang" asp-area="Admin" class="active">Đơn Hàng</a></li>
+                                <li><a asp-action="Index" asp-controller="UserRole" asp-area="Admin" class="active">Quyền</a></li>
+                                <li><a asp-action="Index" asp-controller="User" asp-area="Admin" class="active">Người Dùng</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-9 col-sm-12 main-content">
+                    <!-- Nội dung chính của trang -->
+                    @Html.Partial("NotificationPartial")
+                    @RenderBody();
+                </div>
+            </div>
+        </div>
+    </header><!--/header-->
+
+    <script src="~/js/jquery.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/jquery.scrollUp.min.js"></script>
+    <script src="~/js/price-range.js"></script>
+    <script src="~/js/jquery.prettyPhoto.js"></script>
+    <script src="~/js/main.js"></script>
+    <script src="~/be/js/site.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.all.min.js"></script>
+    <script>
+        $(function () {
+            var message =  '@TempData["success"]';
+            if (message != '')
+                Swal.fire(message);
+        });
+    </script>
+    @await RenderSectionAsync("Scripts", required: false);
+</body>
+</html>
+
+<style>
+    /* Đảm bảo menu bên trái có chiều rộng cố định và vuông vắn */
+    .navbar-inverse {
+        width: 250px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        z-index: 1000;
+        background-color: #222; /* Đặt màu nền cho sidebar */
+    }
+
+    /* Thiết lập nội dung bên phải có đủ khoảng trống */
+    .main-content {
+        margin-left: 100px; /* Điều chỉnh lại giá trị của margin-left cho phù hợp với chiều rộng của menu bên trái */
+        padding: 20px; /* Thêm khoảng cách bên trong cho nội dung */
+        background-color: none; /* Đặt màu nền cho nội dung */
+        min-height: 100vh; /* Đảm bảo nội dung luôn chiếm toàn bộ chiều cao màn hình */
+    }
+
+    /* Điều chỉnh hiển thị các liên kết trong navbar */
+    .navbar-inverse .navbar-nav li {
+        margin-bottom: 10px; /* Thêm khoảng cách giữa các mục */
+        width: 100%; /* Mỗi mục sẽ chiếm toàn bộ chiều rộng */
+        text-align: left; /* Căn trái các mục */
+    }
+
+    .navbar-inverse .navbar-nav li a {
+            display: block; /* Đảm bảo các mục có chiều cao đầy đủ và nằm trên một hàng */
+            padding: 10px 15px;
+            font-size: 16px;
+            color: #fff; /* Đặt màu chữ cho liên kết */
+            text-decoration: none; /* Xóa bỏ gạch chân */
+            transition: background-color 0.3s ease, color 0.3s ease; /* Thêm hiệu ứng chuyển đổi */
+     }
+
+     .navbar-inverse .navbar-nav li a:hover {
+                background-color: #444;
+                color: #fff;
+      }
+
+
+    /* Đảm bảo navbar bên trái có chiều cao đầy đủ */
+    .navbar-collapse {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    media (max-width: 767px) {
+        .navbar-inverse {
+            position: relative;
+            width: 100%;
+        }
+
+        .main-content {
+            margin-left: 0;
+            padding-top: 20px;
+        }
+    }
+</style>
+
+

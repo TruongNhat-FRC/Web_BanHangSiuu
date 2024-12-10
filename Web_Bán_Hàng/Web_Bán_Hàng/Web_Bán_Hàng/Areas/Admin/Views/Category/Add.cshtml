@@ -1,0 +1,57 @@
+﻿@model Web_Bán_Hàng.Models.CategoryModel
+@{
+    ViewData["Title"] = "Thêm Danh Mục Mới";
+}
+<h4>Thêm Danh Mục Mới</h4>
+<div>
+    <form asp-action="Add" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+      
+
+        <div class="form-group">
+            <label for="Name">Tên Danh Mục</label>
+            <input asp-for="Name" class="form-control" id="Name" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        
+
+        <div class="form-group">
+            <label for="Description">Description</label>
+            <textarea asp-for="Description" class="form-control" id="Description"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+       
+        <div class="form-group">
+            <label for="Status">Trạng Thái</label>
+            <select asp-for="Status" class="form-control" id="Status">
+                <option value="0"> Ẩn</option>
+                <option value="1"> Hiển thị</option>
+
+            </select>
+            <span asp-validation-for="Status" class="text-danger"></span>
+        </div>
+
+       
+        
+
+
+        <div class="form-group">
+            <button class="btn btn-sm btn-primary">Add</button>
+        </div>
+    </form>
+    <a class="btn btn-sm btn-outline-primary" asp-action="Index" asp-controller="Product">Quay về trang chủ</a>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+
+
+}
+
+
+

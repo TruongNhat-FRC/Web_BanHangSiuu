@@ -1,0 +1,104 @@
+﻿@{
+    Layout = "";
+}
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liên Hệ</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+            header h1 {
+                margin: 0;
+            }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-info {
+            margin-bottom: 20px;
+        }
+
+            .contact-info h3 {
+                font-size: 1.5rem;
+                margin-bottom: 10px;
+                color: #007bff;
+            }
+
+            .contact-info p {
+                font-size: 1rem;
+                line-height: 1.5;
+            }
+
+            .contact-info i {
+                margin-right: 10px;
+            }
+
+        .social-links a {
+            margin-right: 15px;
+            color: #007bff;
+            text-decoration: none;
+            font-size: 1.5rem;
+        }
+
+            .social-links a:hover {
+                text-decoration: underline;
+            }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Liên Hệ</h1>
+    </header>
+
+    <div class="container">
+        <section class="contact-info">
+            <h3>Thông Tin Liên Hệ</h3>
+            <p><i class="fas fa-user"></i><strong>Chủ sở hữu website:</strong> Phạm Nhật Trường</p>
+            <p><i class="fas fa-envelope"></i><strong>Email:</strong> <a href="mailto:truong.pn.64cntt@ntu.edu.vn">truong.pn.64cntt@ntu.edu.vn</a></p>
+            <p><i class="fas fa-phone-alt"></i><strong>Số điện thoại:</strong> +84 0377875295</p>
+        </section>
+
+        <section class="social-links">
+            <h3>Theo dõi chúng tôi trên mạng xã hội</h3>
+            <a href="https://www.facebook.com/tr.nguyen.543" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+            <a href="https://www.instagram.com/nhatruong28124/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+        </section>
+        <section><a asp-action="Index" asp-controller="Home" class="btn btn-info">Trở về trang chủ</a></section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Phạm Nhật Trường. Tất cả quyền được bảo vệ.</p>
+    </footer>
+
+</body>
+

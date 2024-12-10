@@ -1,0 +1,64 @@
+﻿@{
+    Layout = "";
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Không Tìm Thấy Trang</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f4f4f4;
+        }
+        h3 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .avocado {
+            width: 150px;
+            margin: 20px auto;
+            animation: bounce 2s infinite;
+        }
+        keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+        .btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Trang Không Tồn Tại</h1>
+    <img src="~/image/404.jpg" alt="Quả bơ" width="600"  class="avocado">
+    <div>
+        <a asp-action="Index" asp-controller="Home" asp-area="" class="btn">Trở về Trang Chủ</a>
+    </div>
+</body>
+</html>

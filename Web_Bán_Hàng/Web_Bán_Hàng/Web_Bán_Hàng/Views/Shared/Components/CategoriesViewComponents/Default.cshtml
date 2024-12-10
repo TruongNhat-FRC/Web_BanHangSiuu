@@ -1,0 +1,36 @@
+﻿@* @model IEnumerable<CategoryModel>
+@foreach (var item in Model)
+{
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4 class="panel-title"><a asp-action="Index" asp-controller="Category" asp-route-Slug="@item.Slug">@item.Name</a></h4>
+		</div>
+	</div>
+}
+ *@
+ @model IEnumerable<CategoryModel>
+@foreach (var item in Model)
+{
+	<div class="category-item panel panel-default">
+		<div class="panel-heading">
+			<h4 class="panel-title">
+				<a asp-action="Index" asp-controller="Category" asp-route-Slug="@item.Slug">@item.Name</a>
+			</h4>
+		</div>
+	</div>
+}
+<style>
+	.category-item {
+		transition: transform 0.3s ease, box-shadow 0.3s ease;
+	}
+
+	.category-item:hover {
+			transform: scale(1.05); /* Phóng to phần tử khi hover */
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Thêm bóng đổ cho phần tử */
+			background-color: #4CAF50; /* Màu xanh khi hover (green) */
+			color: white; /* Chữ trắng khi hover */
+	}
+
+	
+
+</style>
