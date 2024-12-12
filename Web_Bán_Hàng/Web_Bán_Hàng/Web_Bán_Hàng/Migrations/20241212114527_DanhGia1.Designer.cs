@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Web_Bán_Hàng.Database;
 
@@ -11,9 +12,11 @@ using Web_Bán_Hàng.Database;
 namespace Web_Bán_Hàng.Migrations
 {
     [DbContext(typeof(Datacontext))]
-    partial class DatacontextModelSnapshot : ModelSnapshot
+    [Migration("20241212114527_DanhGia1")]
+    partial class DanhGia1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -371,11 +374,8 @@ namespace Web_Bán_Hàng.Migrations
                     b.Property<string>("BinhLuan")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Diem")
-                        .HasColumnType("int");
+                    b.Property<string>("Diem")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
@@ -594,7 +594,7 @@ namespace Web_Bán_Hàng.Migrations
             modelBuilder.Entity("Web_Bán_Hàng.Models.DanhGia", b =>
                 {
                     b.HasOne("Web_Bán_Hàng.Models.ProductModel", "Product")
-                        .WithMany("DanhGias")
+                        .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -624,11 +624,6 @@ namespace Web_Bán_Hàng.Migrations
             modelBuilder.Entity("Web_Bán_Hàng.Models.DonHangModel", b =>
                 {
                     b.Navigation("ChiTietDonHangs");
-                });
-
-            modelBuilder.Entity("Web_Bán_Hàng.Models.ProductModel", b =>
-                {
-                    b.Navigation("DanhGias");
                 });
 #pragma warning restore 612, 618
         }

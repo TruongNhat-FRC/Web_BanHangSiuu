@@ -19,7 +19,7 @@ namespace Web_Bán_Hàng.Controllers
 			{
 				return RedirectToAction("Index");
 			}
-			var productByCategory = _datacontext.Products.Where(p => p.CategoryId == brand.Id);
+			var productByCategory = _datacontext.Products.Where(p => p.BrandId == brand.Id);
 
 			return View(await productByCategory.OrderByDescending(p => p.Id).ToListAsync());
 		}

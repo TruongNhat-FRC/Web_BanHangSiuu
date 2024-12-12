@@ -790,3 +790,4 @@ D:\Đồ Án Cuối Kỳ Web\Web_Bán_Hàng\Web_Bán_Hàng\Web_Bán_Hàng\Web_B�
 D:\Đồ Án Cuối Kỳ Web\Web_Bán_Hàng\Web_Bán_Hàng\Web_Bán_Hàng\Web_Bán_Hàng\obj\Debug\net8.0\Web_Bán_Hàng.pdb
 D:\Đồ Án Cuối Kỳ Web\Web_Bán_Hàng\Web_Bán_Hàng\Web_Bán_Hàng\Web_Bán_Hàng\obj\Debug\net8.0\Web_Bán_Hàng.genruntimeconfig.cache
 D:\Đồ Án Cuối Kỳ Web\Web_Bán_Hàng\Web_Bán_Hàng\Web_Bán_Hàng\Web_Bán_Hàng\obj\Debug\net8.0\ref\Web_Bán_Hàng.dll
+D:\Đồ Án Cuối Kỳ Web\Web_Bán_Hàng\Web_Bán_Hàng\Web_Bán_Hàng\Web_Bán_Hàng\obj\Debug\net8.0\Web_Bán_Hàng.sourcelink.json

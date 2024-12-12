@@ -1,0 +1,32 @@
+﻿@model Web_Bán_Hàng.Models.ViewModel.ProductDanhGiaModel
+
+<div class="product-details">
+    <h2>@Model.ProductDetail.Name</h2> <!-- Hiển thị tên sản phẩm -->
+    <div class="reviews">
+        <h3>Bình luận</h3>
+        @foreach (var danhGia in Model.DanhGias)
+        {
+            <div class="review">
+                <div class="review-header">
+                    <strong>@danhGia.NameUser</strong> <!-- Tên người dùng -->
+                    <span><i class="fa fa-clock-o"></i> @danhGia.CreatedAt.ToString("hh:mm tt")</span>
+                    <span><i class="fa fa-calendar-o"></i> @danhGia.CreatedAt.ToString("dd MMM yyyy")</span>
+                </div>
+                <p>@danhGia.BinhLuan</p>
+                <div class="rating">
+                    @for (int i = 0; i < danhGia.Diem; i++)
+                    {
+                        <i class="fa fa-star"></i>
+                    }
+                </div>
+                <hr />
+            </div>
+        }
+    </div>
+</div>
+
+<!-- Nếu không có bình luận nào -->
+@if (Model.DanhGias.Count == 0)
+{
+    <p>Chưa có bình luận nào cho sản phẩm này.</p>
+}

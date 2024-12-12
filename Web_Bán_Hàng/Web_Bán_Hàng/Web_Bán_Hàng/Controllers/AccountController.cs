@@ -188,6 +188,7 @@ namespace Web_Bán_Hàng.Controllers
 
             // Đăng xuất người dùng
             await _signInManager.SignOutAsync();
+            TempData["success"] = "Đã lưu những sản phẩm chưa thanh toán vào giỏ hàng";
 
             return RedirectToAction("Index", "Home"); // Chuyển hướng về trang chủ hoặc trang đăng nhập
         }

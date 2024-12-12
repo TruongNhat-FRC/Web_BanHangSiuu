@@ -2,11 +2,11 @@
 @{
     ViewData["Title"] = "Danh Sách Đơn Hàng";
 }
-
+<html>
 <h1 class="text-center my-4">Danh Sách Đơn Hàng</h1>
 <!-- Bảng Đơn Hàng -->
 <div class="container">
-    <table class="table table-bordered table-hover text-center">
+    <table class="table table-bordered table-hover text-center" id="my_donhang">
         <thead class="table-dark">
             <tr>
                 <th scope="col">ID</th>
@@ -67,5 +67,11 @@
     </table>
 </div>
 
+</html>
+@section Scripts {
+    <script>
+        let table = new DataTable('#my_donhang');
+    </script>
+}
 <!-- Thêm Font Awesome cho biểu tượng -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">

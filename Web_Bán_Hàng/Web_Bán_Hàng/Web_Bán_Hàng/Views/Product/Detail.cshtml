@@ -1,4 +1,41 @@
-﻿
+﻿@model Web_Bán_Hàng.Models.ViewModel.ProductDanhGiaModel
+@{
+	ViewData["Title"] =ViewBag.Name;
+	Layout = "_Layout";
+
+}
+<head>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+	<style>
+		/* Ẩn các radio button */
+		input[type="radio"] {
+			display: none;
+		}
+
+		/* Định dạng sao */
+		.stars {
+			display: flex;
+			flex-direction: row-reverse;
+		}
+
+			.stars label {
+				font-size: 30px;
+				cursor: pointer;
+				padding: 5px;
+				color: #ccc;
+			}
+
+		/* Khi sao được chọn */
+		input[type="radio"]:checked ~ .stars label {
+			color: gold;
+		}
+
+		/* Đảm bảo sao chọn trước vẫn được tô vàng */
+		input[type="radio"]:checked + label {
+			color: gold;
+		}
+	</style>
+</head>
 
 <div class="row">
 	<div class="col-sm-3">
@@ -14,7 +51,7 @@
 			<!--product-details-->
 			<div class="col-sm-5">
 				<div class="view-product">
-					<img src="~/image/@Model.Image" alt="" />
+					<img src="~/image/@Model.ProductDetail.Image" alt="" />
 					<h3>ZOOM</h3>
 				</div>
 				<div id="similar-product" class="carousel slide" data-ride="carousel">
@@ -52,16 +89,16 @@
 			<div class="col-sm-7">
 				<div class="product-information">
 					<!--/product-information-->
-					<h2>@Model.Name</h2>
+					<h2>@Model.ProductDetail.Name</h2>
 					<span>
-						<span>Giá  @Model.Price.ToString("#,0") VND</span>
+						<span>Giá  @Model.ProductDetail.Price.ToString("#,0") VND</span>
 					</span>
-					<p><b>Số lượng: @Model.Quantity</b></p>
-					<p><b>Thương Hiệu:</b>@Model.Brand.Name</b></p>
-					<p><b>Danh Mục:</b>@Model.Category.Name</b></p>
-					<a class="btn btn-default add-to-cart" asp-action="Add" asp-controller="Cart" asp-route-id="@Model.Id"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+					<p><b>Số lượng: @Model.ProductDetail.Quantity</b></p>
+					<p><b>Thương Hiệu:</b>@Model.ProductDetail.Brand.Name</b></p>
+					<p><b>Danh Mục:</b>@Model.ProductDetail.Category.Name</b></p>
+					<a class="btn btn-default add-to-cart" asp-action="Add" asp-controller="Cart" asp-route-id="@Model.ProductDetail.Id"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 					<br />
-					<p><b>Mô Tả:</b>@Model.Description</b></p>
+					<p><b>Mô Tả:</b>@Model.ProductDetail.Description</b></p>
 
 
 
@@ -74,15 +111,15 @@
 			<!--category-tab-->
 			<div class="col-sm-12">
 				<ul class="nav nav-tabs">
-					<li class="active" ><a href="#details" data-toggle="tab">Details</a></li>
+					<li><a href="#details" data-toggle="tab">Details</a></li>
 					<li><a href="#companyprofile" data-toggle="tab">Company Profile</a></li>
 					<li><a href="#tag" data-toggle="tab">Tag</a></li>
-					<li ><a href="#reviews" data-toggle="tab">Reviews (5)</a></li>
+					<li class="active"><a href="#reviews" data-toggle="tab">Đánh Giá</a></li>
 				</ul>
 			</div>
 			<div class="tab-content">
-				<div class="tab-pane fade active in" id="details">
-					@Model.Description
+				<div class="tab-pane fade " id="details">
+					@Model.ProductDetail.Description
 				</div>
 
 				<div class="tab-pane fade" id="companyprofile">
@@ -187,144 +224,240 @@
 					</div>
 				</div>
 
-				<div class="tab-pane fade " id="reviews">
+				<div class="tab-pane fade active in" id="reviews">
 					<div class="col-sm-12">
-						<ul>
-							<li><a href=""><i class="fa fa-user"></i>EUGEN</a></li>
-							<li><a href=""><i class="fa fa-clock-o"></i>12:41 PM</a></li>
-							<li><a href=""><i class="fa fa-calendar-o"></i>31 DEC 2014</a></li>
-						</ul>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-						<p><b>Write Your Review</b></p>
+						<!-- Hiển thị danh sách bình luận -->
+						<div class="row">
+							
+								@if (Model.DanhGias != null && Model.DanhGias.Count > 0)
+								{
+									<ul>
+										@foreach (var danhGia in Model.DanhGias.Take(5))
+										{
+											<li class="col-sm-12">
+													<!-- Mỗi bình luận sẽ chiếm toàn bộ chiều rộng của một cột -->
+													<div class="review ">
+														<!-- Phần tiêu đề bình luận -->
+														<div class="review-header">
+															<strong>@danhGia.NameUser</strong> <!-- Tên người dùng -->
+															<span><i class="fa fa-clock-o"></i> @danhGia.CreatedAt.ToString("hh:mm tt")</span> <!-- Thời gian bình luận -->
+															<span><i class="fa fa-calendar-o"></i> @danhGia.CreatedAt.ToString("dd MMM yyyy")</span> <!-- Ngày bình luận -->
+														</div>
+														<!-- Nội dung bình luận -->
+														<p>@danhGia.BinhLuan</p>
+														<!-- Hiển thị số sao -->
+														<div class="rating">
+															@for (int i = 0; i < danhGia.Diem; i++)
+															{
+																<i class="fa fa-star"></i>
+															}
+														</div>
+														<hr />
+													</div>
+											</li>
+										 }
+									@if (Model.DanhGias.Count > 5)
+									{
+										<a href="@Url.Action("Showfull", new { Id = Model.ProductDetail.Id })" class="btn btn-primary">Xem tất cả bình luận</a>
 
-						<form action="#">
-							<span>
-								<input type="text" placeholder="Your Name" />
-								<input type="email" placeholder="Email Address" />
-							</span>
-							<textarea name=""></textarea>
-							<b>Rating: </b> <img src="images/product-details/rating.png" alt="" />
-							<button type="button" class="btn btn-default pull-right">
-								Submit
-							</button>
+									}
+									</ul>
+								}
+								else
+								{
+									<p>Chưa có đánh giá nào cho sản phẩm này.</p>
+								}
+							
+						</div>
+
+						<!-- Form để gửi đánh giá mới -->
+						<hr />
+						<p><b>Hãy Nêu Lên Đánh Giá Của Bạn Về Sản Phẩm</b></p>
+						<form autocomplete="off" asp-action="DanhGia" asp-controller="Product" method="post">
+							<input type="hidden" asp-for="ProductDetail.Id" name="ProductId" />
+							<!-- Hiển thị các sao để người dùng chọn -->
+							<label>Chọn điểm đánh giá:</label>
+							<div class="stars">
+								<input type="radio" id="star5" name="Diem" value="5" />
+								<label for="star5" class="fa fa-star"></label>
+								<input type="radio" id="star4" name="Diem" value="4" />
+								<label for="star4" class="fa fa-star"></label>
+								<input type="radio" id="star3" name="Diem" value="3" />
+								<label for="star3" class="fa fa-star"></label>
+								<input type="radio" id="star2" name="Diem" value="2" />
+								<label for="star2" class="fa fa-star"></label>
+
+								<input type="radio" id="star1" name="Diem" value="1" />
+								<label for="star1" class="fa fa-star"></label>
+
+								
+								
+
+							
+
+								
+							</div>
+							<textarea asp-for="BinhLuan" placeholder="Nhập bình luận của bạn"></textarea>
+							<span asp-validation-for="BinhLuan" class="text-danger"></span>
+							<button type="submit" class="btn btn-default pull-right">Submit</button>
 						</form>
 					</div>
 				</div>
 
+
+
 			</div>
 		</div><!--/category-tab-->
-
-		<div class="recommended_items">
+		@* <div class="recommended_items">
 			<!--recommended_items-->
-			<h2 class="title text-center">recommended items</h2>
+			<h2 class="title text-center" style="color: #80C943">Sản Phẩm Tương Tự</h2>
 
-			<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
-				<div class="carousel-inner">
-					<div class="item active">
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/recommend1.jpg" alt="" />
-										<h2>$56</h2>
-										<p>Easy Polo Black Edition</p>
-										<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+			<!-- Kiểm tra nếu có sản phẩm liên quan -->
+			@{
+				var sanPhamLienQuan = ViewBag.SanPhamLienquan as IEnumerable<Web_Bán_Hàng.Models.ProductModel>;
+			}
+
+			@if (sanPhamLienQuan != null && sanPhamLienQuan.Any())
+			{
+				<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+					<div class="carousel-inner">
+						<div class="item active">
+							<div class="row">
+								@foreach (var sanphamlq in sanPhamLienQuan)
+								{
+									<div class="col-sm-3" style="margin-left: 20px; margin-right: 20px;">
+										<div class="product-image-wrapper">
+											<div class="single-products">
+												<a asp-action="Detail" asp-controller="Product" asp-route-Id="@sanphamlq.Id">
+													<div class="productinfo text-center">
+														<img src="~/image/@sanphamlq.Image" alt="@sanphamlq.Name" class="img-fluid mb-3" style="max-height: 300px; object-fit: cover;" />
+														<h4 class="prices">@sanphamlq.Price.ToString("#,0") VND</h4>
+														<p class="product-name">@sanphamlq.Name</p>
+													</div>
+												</a>
+											</div>
+										</div>
 									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/recommend2.jpg" alt="" />
-										<h2>$56</h2>
-										<p>Easy Polo Black Edition</p>
-										<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/recommend3.jpg" alt="" />
-										<h2>$56</h2>
-										<p>Easy Polo Black Edition</p>
-										<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-									</div>
-								</div>
+
+
+								}
 							</div>
 						</div>
 					</div>
-					<div class="item">
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/recommend1.jpg" alt="" />
-										<h2>$56</h2>
-										<p>Easy Polo Black Edition</p>
-										<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/recommend2.jpg" alt="" />
-										<h2>$56</h2>
-										<p>Easy Polo Black Edition</p>
-										<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/recommend3.jpg" alt="" />
-										<h2>$56</h2>
-										<p>Easy Polo Black Edition</p>
-										<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+
+					<a class="left recommended-item-control pull-left ml-3" href="#recommended-item-carousel" data-slide="prev">
+						<i class="fa fa-angle-left"></i>
+					</a>
+					<a class="right recommended-item-control pull-right mr-3" href="#recommended-item-carousel" data-slide="next">
+						<i class="fa fa-angle-right"></i>
+					</a>
 				</div>
-				<a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
-					<i class="fa fa-angle-left"></i>
-				</a>
-				<a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
-					<i class="fa fa-angle-right"></i>
-				</a>
-			</div>
-		</div><!--/recommended_items-->
+			}
+			else
+			{
+				<!-- Nếu không có sản phẩm liên quan, hiển thị thông báo -->
+				<p class="text-center">Đang trống, không có sản phẩm tương tự.</p>
+			}
+		</div><!--/recommended_items--> *@
+		<div class="recommended_items">
+			<h2 class="title text-center" style="color: #80C943">Sản Phẩm Tương Tự</h2>
+
+			@{
+				var sanPhamLienQuan = ViewBag.SanPhamLienquan as IEnumerable<Web_Bán_Hàng.Models.ProductModel>;
+				int itemsPerSlide = 4; // Mỗi slide sẽ chứa tối đa 5 sản phẩm
+			}
+
+			@if (sanPhamLienQuan != null && sanPhamLienQuan.Any())
+			{
+				<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+					<div class="carousel-inner">
+						@for (int i = 0; i < sanPhamLienQuan.Count(); i += itemsPerSlide)
+						{
+							<div class="item @(i == 0 ? "active" : "")">
+								<div class="item active">
+									<div class="row">
+										@foreach (var sanphamlq in sanPhamLienQuan.Skip(i).Take(itemsPerSlide))
+										{
+											<div class="col-sm-2" style="margin-left: 30px; margin-right: 30px;">
+												<div class="product-image-wrapper">
+													<div class="single-products">
+														<a asp-action="Detail" asp-controller="Product" asp-route-Id="@sanphamlq.Id">
+															<div class="productinfo text-center">
+																<img src="~/image/@sanphamlq.Image" alt="@sanphamlq.Name" class="img-fluid mb-3" style="max-height: 300px; object-fit: cover;" />
+																<h4 class="prices">@sanphamlq.Price.ToString("#,0") VND</h4>
+																<p class="product-name">@sanphamlq.Name</p>
+															</div>
+														</a>
+													</div>
+												</div>
+											</div>
+										}
+									</div>
+								</div>
+							</div>
+						}
+					</div>
+
+					<!-- Điều khiển carousel -->
+					<a class="left recommended-item-control pull-left ml-3" href="#recommended-item-carousel" data-slide="prev">
+						<i class="fa fa-angle-left"></i>
+					</a>
+					<a class="right recommended-item-control pull-right mr-3" href="#recommended-item-carousel" data-slide="next">
+						<i class="fa fa-angle-right"></i>
+					</a>
+				</div>
+			}
+			else
+			{
+				<p class="text-center">Đang trống, không có sản phẩm tương tự.</p>
+			}
+		</div>
+
+		
+
+		
+
+
+
+		
+
+
+
 
 	</div>
 </div>
-@* <style>
+
+@section Scripts {
+	<script>
+		// JavaScript xử lý để làm cho tất cả sao trước đó sáng lên khi chọn
+		document.addEventListener("DOMContentLoaded", function () {
+			const stars = document.querySelectorAll('input[type="radio"]');
+
+			stars.forEach(star => {
+				star.addEventListener('change', function () {
+					// Lặp qua tất cả các sao và kiểm tra nếu sao nào đã được chọn
+					stars.forEach(s => {
+						const label = document.querySelector(`label[for="${s.id}"]`);
+						if (parseInt(s.value) <= parseInt(star.value)) {
+							label.style.color = 'gold';  // Áp dụng màu vàng cho các sao đã chọn
+						} else {
+							label.style.color = '#ccc';  // Áp dụng màu xám cho các sao chưa chọn
+						}
+					});
+				});
+			});
+		});
+	</script>
+}
 
 
 
-	.add-to-cart {
-		background-color: #28a745; /* Màu nền xanh lá */
-		color: white; /* Màu chữ trắng */
-		font-size: 14px;
-		padding: 10px 20px;
-		border-radius: 5px; /* Bo góc nhẹ */
-		text-decoration: none; /* Loại bỏ gạch dưới */
-		display: inline-block;
-	}
 
-	.add-to-cart:hover {
-			background-color: #218838; /* Màu nền khi hover (xanh lá đậm) */
-			color: white; /* Màu chữ trắng khi hover */
-	}
 
-</style> *@
+
+
+
+
+
+
+

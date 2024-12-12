@@ -66,7 +66,7 @@ namespace Web_Bán_Hàng.Controllers
 			}
 
 			HttpContext.Session.SetJson("Cart", cart);
-			TempData["success"] = "Thêm vào giỏ hàng thành công";
+			TempData["success"] = "Đã Thêm Sãn Sàng Thanh Toán";
 			return Redirect(Request.Headers["Referer"].ToString());
 		}
 

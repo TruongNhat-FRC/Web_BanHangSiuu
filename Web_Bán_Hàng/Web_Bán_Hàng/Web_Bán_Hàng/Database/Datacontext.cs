@@ -17,6 +17,7 @@ namespace Web_Bán_Hàng.Database
         public DbSet<ChiTietDonHang> ChiTietDonHangs { get; set; }
         public DbSet<GioHangSave> GioHang { get; set; }
         public DbSet<CartHistoryModel> LichSuGioHang { get; set; }
+        public DbSet<DanhGia> DanhGias { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -28,10 +28,10 @@ namespace Web_Bán_Hàng.Models
 		[NotMapped]
 		[CheckFile]
 		public IFormFile? ImageUpLoad { get; set; }
-		public int Quantity { get; set; } = 0; // Giá trị mặc định là 0
-                                               // Trường trạng thái hiển thị
+		public int Quantity { get; set; } = 0; 
         [Required]
-        public bool IsVisible { get; set; } = true; // Mặc định hiển thị
+        public bool IsVisible { get; set; } = true;
+		public List<DanhGia> DanhGias { get; set; } // Sửa để chứa danh sách đánh giá
 
-    }
+	}
 }
