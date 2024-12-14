@@ -1,0 +1,77 @@
+﻿@{
+	int i = 0;
+}
+<style>
+	.carousel inner {
+		width: 90%; /* Chiều rộng toàn phần */
+		max-height: 500px !important; /* Tăng chiều cao tối đa */
+		overflow: hidden; /* Đảm bảo hình ảnh không bị vượt ra ngoài */
+		
+		display: flex; /* Dùng Flexbox */
+	
+	}
+
+
+.carousel-inner img {
+	width: 90%; /* Hình ảnh chiếm toàn bộ chiều rộng slider */
+	height: auto; /* Chiều cao tự động để đảm bảo tỷ lệ */
+	object-fit: cover; /* Cắt ảnh vừa khung mà không bị méo */
+}
+
+/* Media query cho màn hình nhỏ */
+.media (max-width: 768px) {
+
+	.carousel-inner{
+		max-height: 300px; /* Giảm chiều cao tối đa cho màn hình nhỏ */
+	}
+	.carousel-inner img {
+		height: 300px; /* Điều chỉnh chiều cao ảnh */
+		object-fit: contain; /* Đảm bảo ảnh không bị cắt quá mức */
+	}
+}
+
+	.control-carousel {
+		
+		margin: 0; /* Loại bỏ margin */
+	}
+</style>
+
+
+
+<section id="slider">
+	<!--slider-->
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-sm-12">
+				<div id="slider-carousel" class="carousel slide" data-ride="carousel">
+					<ol class="carousel-indicators">
+						<li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
+						<li data-target="#slider-carousel" data-slide-to="1"></li>
+						<li data-target="#slider-carousel" data-slide-to="2"></li>
+					</ol>
+
+					<div class="carousel-inner  ">
+						@foreach (var slider in ViewBag.Slide)
+						{
+							<div class="item @(i == 0 ? "active" : "")">
+								
+									<img src="~/slide/@slider.Image" class="girl img-responsive" alt="Slider Image" />
+								
+							</div>
+							i++;
+						}
+
+					</div>
+
+					<a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+						<i class="fa fa-angle-left"></i>
+					</a>
+					<a href="#slider-carousel" class="right control-carousel hidden-xs " data-slide="next">
+						<i class="fa fa-angle-right"></i>
+					</a>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</section><!--/slider-->

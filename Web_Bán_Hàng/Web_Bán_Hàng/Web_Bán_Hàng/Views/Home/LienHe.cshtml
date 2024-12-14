@@ -1,0 +1,30 @@
+﻿@model Web_Bán_Hàng.Models.LienHeModel
+
+
+<style>
+    .custom-margin-top {
+        margin-top: 150px; /* Tùy chỉnh giá trị theo ý muốn */
+    }
+</style>
+
+<div class="row custom-margin-top">
+    <div class="col-sm-5 col-md-5">
+        @Html.Raw(Model.BanDo)
+    </div>
+
+    <div class="col-sm-7">
+        <div class="address">
+            @Html.Raw(Model.Mota)
+            <h5>Name : <b>@Model.Name</b></h5>
+            <h5>Email : <b>@Model.Email</b></h5>
+            <h5>Phone : <b>@Model.SDT</b></h5>
+            <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D100079937081563&tabs=message&width=500&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=false&appId" width="500" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

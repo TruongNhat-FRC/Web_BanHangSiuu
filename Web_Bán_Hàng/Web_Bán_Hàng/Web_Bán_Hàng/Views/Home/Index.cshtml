@@ -11,7 +11,7 @@
 	}
 }
 
-
+<partial name="SlidePartial"/>
 <div class="col-sm-3">
 	@Html.Partial("_Sidebar");
 </div>
@@ -43,10 +43,25 @@
 								</a>
 							</div>
 							<div class="choose mt-3">
-								<ul class="nav nav-pills nav-justified">
-									<li><a href="#"><i class="fa fa-plus-square"></i> Add to wishlist</a></li>
-									<li><a href="#"><i class="fa fa-plus-square"></i> Add to compare</a></li>
-								</ul>
+								@if (User.Identity?.IsAuthenticated ?? false)
+								{
+									<ul class="nav nav-pills nav-justified">
+										<li>
+											<a class="btn btn-outline-danger add-btn-yeuthich" data-product_id="@item.Id">
+												<i class="fa fa-plus-square"></i> Thêm vào yêu thích
+											</a>
+										</li>
+
+										
+										<li>
+											<a class="btn btn-outline-success add-btn-sosanh" data-product_id="@item.Id">
+												<i class="fa fa-plus-square"></i> Thêm vào so sánh
+											</a>
+										</li>
+
+									</ul>
+								}
+								
 							</div>
 						</div>
 					</div>
@@ -447,31 +462,70 @@
 	</div><!--/recommended_items-->
 
 </div>
+@section Scripts{
+	<script>
+		$(document).ready(function () {
+			// Lắng nghe sự kiện click vào nút 'add-btn-yeuthich'
+			$('.add-btn-yeuthich').click(function () {
+				var productId = $(this).data("product_id"); // Lấy id sản phẩm từ thuộc tính data-product_id
 
-@* <style>
+				// Gọi AJAX để gửi yêu cầu đến server
+				$.ajax({
+					type: "POST",
+					url: "@Url.Action("ThemYeuThich", "Home")", // URL để xử lý yêu cầu
+					data: { Id: productId }, // Gửi dữ liệu sản phẩm
+					success: function (result) {
+						// Kiểm tra phản hồi từ server
+						if (result.success) {
+							Swal.fire(result.message); // Hiển thị thông báo thành công
+						} else {
+							Swal.fire(result.message); // Hiển thị thông báo lỗi
+						}
+					},
+					error: function (xhr) {
+						
+						if (xhr.status === 400) {
+							Swal.fire("Sản phẩm đã tồn tại trong danh sách yêu thích.");
+						} else {
+							Swal.fire("Có lỗi xảy ra. Vui lòng thử lại.");
+						}
+					}
+				});
+			});
+		});
+
+		///So sánh
+		$(document).ready(function () {
+			// Lắng nghe sự kiện click vào nút 'add-btn-wishlist'
+			$('.add-btn-sosanh').click(function () {
+				var productId = $(this).data("product_id"); // Lấy id sản phẩm từ thuộc tính data-product_id
+
+				// Gọi AJAX để gửi yêu cầu đến server
+				$.ajax({
+					type: "POST",
+					url: "@Url.Action("ThemSoSanh", "Home")", // URL để xử lý yêu cầu
+					data: { Id: productId }, // Gửi dữ liệu sản phẩm
+					success: function (result) {
+						// Kiểm tra phản hồi từ server
+						if (result.success) {
+							Swal.fire(result.message); // Hiển thị thông báo thành công
+						} else {
+							Swal.fire(result.message); // Hiển thị thông báo lỗi
+						}
 
 
-
-	.add-to-cart {
-		background-color: #28a745; /* Màu nền xanh lá */
-		color: white; /* Màu chữ trắng */
-		font-size: 14px;
-		padding: 10px 20px;
-		border-radius: 5px; /* Bo góc nhẹ */
-		text-decoration: none; /* Loại bỏ gạch dưới */
-		display: inline-block;
-	}
-
-	.add-to-cart:hover {
-			background-color: #218838; /* Màu nền khi hover (xanh lá đậm) */
-			color: white; /* Màu chữ trắng khi hover */
-	}
-
-	.prices {
-		color: #000000; /* Màu chữ đen cho giá */
-		font-size: 16px; /* Kích thước chữ cho giá */
-		font-weight: bold; /* Làm đậm giá */
-	}
+					},
+					error: function (xhr) {
+						if (xhr.status === 400) {
+							Swal.fire("Sản phẩm đã tồn tại trong danh sách yêu thích.");
+						} else {
+							Swal.fire("Có lỗi xảy ra. Vui lòng thử lại.");
+						}
+					}
+				});
+			});
+		});
 
 
-</style> *@
+	</script>
+}

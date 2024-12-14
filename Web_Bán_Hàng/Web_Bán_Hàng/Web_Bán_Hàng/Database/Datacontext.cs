@@ -18,6 +18,10 @@ namespace Web_Bán_Hàng.Database
         public DbSet<GioHangSave> GioHang { get; set; }
         public DbSet<CartHistoryModel> LichSuGioHang { get; set; }
         public DbSet<DanhGia> DanhGias { get; set; }
+        public DbSet<SliderModel> Sliders { get; set; }
+        public DbSet<LienHeModel> LienHes { get; set; }
+        public DbSet<YeuThichModel> YeuThichs { get; set; }
+        public DbSet<SoSanhModel> SoSanhs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -1712,6 +1712,118 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\lib\jquery\LICENSE.txt))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\logo\8dcab87c-1b9c-495d-8bc1-9d42f91c28c7_FRCshop.jpeg))">
+      <SourceType>Package</SourceType>
+      <SourceId>Web_Bán_Hàng</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Web_Bán_Hàng</BasePath>
+      <RelativePath>logo/8dcab87c-1b9c-495d-8bc1-9d42f91c28c7_FRCshop.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\logo\8dcab87c-1b9c-495d-8bc1-9d42f91c28c7_FRCshop.jpeg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\slide\1c523142-5a46-4729-b0bc-a5d4d96b0d04_akusshuki.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>Web_Bán_Hàng</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Web_Bán_Hàng</BasePath>
+      <RelativePath>slide/1c523142-5a46-4729-b0bc-a5d4d96b0d04_akusshuki.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\slide\1c523142-5a46-4729-b0bc-a5d4d96b0d04_akusshuki.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\slide\4e453a9a-d7a9-4d38-89e9-acd4088c76de_baner222jpg.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>Web_Bán_Hàng</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Web_Bán_Hàng</BasePath>
+      <RelativePath>slide/4e453a9a-d7a9-4d38-89e9-acd4088c76de_baner222jpg.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\slide\4e453a9a-d7a9-4d38-89e9-acd4088c76de_baner222jpg.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\slide\521120aa-79ef-4cfa-9194-4d5da3aaa5fa_back.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>Web_Bán_Hàng</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Web_Bán_Hàng</BasePath>
+      <RelativePath>slide/521120aa-79ef-4cfa-9194-4d5da3aaa5fa_back.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\slide\521120aa-79ef-4cfa-9194-4d5da3aaa5fa_back.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\slide\b5436117-983d-443d-a7b7-20578c000bb5_banner.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>Web_Bán_Hàng</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Web_Bán_Hàng</BasePath>
+      <RelativePath>slide/b5436117-983d-443d-a7b7-20578c000bb5_banner.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\slide\b5436117-983d-443d-a7b7-20578c000bb5_banner.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\slide\e565d7b2-09d5-4e52-94a2-086da6e2c2d9_ekhuyenmai.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>Web_Bán_Hàng</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Web_Bán_Hàng</BasePath>
+      <RelativePath>slide/e565d7b2-09d5-4e52-94a2-086da6e2c2d9_ekhuyenmai.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\slide\e565d7b2-09d5-4e52-94a2-086da6e2c2d9_ekhuyenmai.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\slide\e9f4660e-8825-413f-80ba-404f7b25661f_duck.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>Web_Bán_Hàng</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Web_Bán_Hàng</BasePath>
+      <RelativePath>slide/e9f4660e-8825-413f-80ba-404f7b25661f_duck.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\slide\e9f4660e-8825-413f-80ba-404f7b25661f_duck.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Web_Bán_Hàng.bundle.scp.css))">
       <SourceType>Package</SourceType>
       <SourceId>Web_Bán_Hàng</SourceId>

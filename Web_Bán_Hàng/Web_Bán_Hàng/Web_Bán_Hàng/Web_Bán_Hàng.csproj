@@ -27,6 +27,8 @@
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="wwwroot\anhtemp\sanpham\" />
     <Folder Include="wwwroot\anhfe\" />
+    <Folder Include="wwwroot\logo\" />
+    <Folder Include="wwwroot\slide\" />
   </ItemGroup>
 
 </Project>

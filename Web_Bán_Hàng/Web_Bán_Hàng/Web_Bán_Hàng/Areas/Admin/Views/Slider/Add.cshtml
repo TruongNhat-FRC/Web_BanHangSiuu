@@ -1,0 +1,62 @@
+﻿@model Web_Bán_Hàng.Models.SliderModel
+@{
+    ViewData["Title"] = "Thêm Slide Mới";
+}
+<h4>Thêm Sản Slide</h4>
+<div>
+    <form asp-action="Add"  enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+        <div class="form-group">
+            <label for="Name">Name</label>
+            <input asp-for="Name" class="form-control" id="Name" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+       
+
+        <div class="form-group">
+            <label for="Mota">Description</label>
+            <textarea asp-for="@Model.Mota" class="form-control" id="Mota"></textarea>
+            <span asp-validation-for="@Model.Mota" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="Status">Trạng Thái</label>
+            <select asp-for="Status" class="form-control" id="Status">
+                <option value="0"> Ẩn</option>
+                <option value="1"> Hiển thị</option>
+
+            </select>
+            <span asp-validation-for="Status" class="text-danger"></span>
+        </div>
+
+        
+
+        <div class="form-group">
+            <label for="ImageUpLoad">Hình Ảnh</label>
+            <input asp-for="ImageUpLoad" class="form-control" id="ImageUpLoad" />
+            <span asp-validation-for="ImageUpLoad" class="text-danger"></span>
+            <img id="imgpreview" class="pt-2" />
+        </div>
+
+
+        <div class="form-group">
+            <button class="btn btn-sm btn-primary">Add</button>
+        </div>
+    </form>
+    <a class="btn btn-sm btn-outline-primary" asp-action="Index" asp-controller="Product">Quay về </a>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        $("#ImageUpLoad").change(function () {
+            readURL(this);
+        });
+    </script>
+}
+
+
+

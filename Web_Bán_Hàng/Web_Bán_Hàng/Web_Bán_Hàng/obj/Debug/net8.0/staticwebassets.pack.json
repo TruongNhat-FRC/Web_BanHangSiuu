@@ -433,6 +433,34 @@
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
+      "Id": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\logo\\8dcab87c-1b9c-495d-8bc1-9d42f91c28c7_FRCshop.jpeg",
+      "PackagePath": "staticwebassets\\logo\\8dcab87c-1b9c-495d-8bc1-9d42f91c28c7_FRCshop.jpeg"
+    },
+    {
+      "Id": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\slide\\1c523142-5a46-4729-b0bc-a5d4d96b0d04_akusshuki.jpg",
+      "PackagePath": "staticwebassets\\slide\\1c523142-5a46-4729-b0bc-a5d4d96b0d04_akusshuki.jpg"
+    },
+    {
+      "Id": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\slide\\4e453a9a-d7a9-4d38-89e9-acd4088c76de_baner222jpg.jpg",
+      "PackagePath": "staticwebassets\\slide\\4e453a9a-d7a9-4d38-89e9-acd4088c76de_baner222jpg.jpg"
+    },
+    {
+      "Id": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\slide\\521120aa-79ef-4cfa-9194-4d5da3aaa5fa_back.jpg",
+      "PackagePath": "staticwebassets\\slide\\521120aa-79ef-4cfa-9194-4d5da3aaa5fa_back.jpg"
+    },
+    {
+      "Id": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\slide\\b5436117-983d-443d-a7b7-20578c000bb5_banner.jpg",
+      "PackagePath": "staticwebassets\\slide\\b5436117-983d-443d-a7b7-20578c000bb5_banner.jpg"
+    },
+    {
+      "Id": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\slide\\e565d7b2-09d5-4e52-94a2-086da6e2c2d9_ekhuyenmai.jpg",
+      "PackagePath": "staticwebassets\\slide\\e565d7b2-09d5-4e52-94a2-086da6e2c2d9_ekhuyenmai.jpg"
+    },
+    {
+      "Id": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\slide\\e9f4660e-8825-413f-80ba-404f7b25661f_duck.jpg",
+      "PackagePath": "staticwebassets\\slide\\e9f4660e-8825-413f-80ba-404f7b25661f_duck.jpg"
+    },
+    {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Web_Bán_Hàng.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

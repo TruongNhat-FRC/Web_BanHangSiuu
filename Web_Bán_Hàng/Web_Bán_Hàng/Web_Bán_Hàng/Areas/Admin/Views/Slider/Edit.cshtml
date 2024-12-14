@@ -1,0 +1,65 @@
+﻿@model Web_Bán_Hàng.Models.SliderModel
+@{
+    ViewData["Title"] = "Sửa Slide";
+}
+<h4>Chỉnh Sửa Slide</h4>
+<div>
+    <form asp-action="Edit" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+        <div class="form-group">
+            <label for="Name">Name</label>
+            <input asp-for="Name" class="form-control" id="Name" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="Mota">Description</label>
+            <textarea asp-for="@Model.Mota" class="form-control" id="Mota"></textarea>
+            <span asp-validation-for="@Model.Mota" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="Status">Trạng Thái</label>
+            <select asp-for="Status" class="form-control" id="Status">
+                @if(Model.Status == 1)
+                {
+                    <option value="0" > Ẩn</option>
+                    <option selected value="1"> Hiển thị</option>
+                }
+                else
+                {
+                    <option value="0" selected > Ẩn</option>
+                    <option  value="1"> Hiển thị</option>
+                }
+
+
+            </select>
+            <span asp-validation-for="Status" class="text-danger"></span>
+        </div>
+
+
+
+        <div class="form-group">
+            <label for="ImageUpLoad">Hình Ảnh</label>
+            <input asp-for="ImageUpLoad" class="form-control" id="ImageUpLoad" />
+            <span asp-validation-for="ImageUpLoad" class="text-danger"></span>
+            <td><img src="~/slide/@Model.Image" width="400" height="200" /></td>
+            <img id="imgpreview" class="pt-2" />
+        </div>
+
+
+        <div class="form-group">
+            <button class="btn btn-sm btn-primary">Edit</button>
+        </div>
+    </form>
+    <a class="btn btn-sm btn-outline-primary" asp-action="Index" asp-controller="Product">Quay về </a>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+   
+}
+
+
+

@@ -1,0 +1,22 @@
+﻿@model Web_Bán_Hàng.Models.LienHeModel
+<div class="row">
+	<div class="col-sm-3">
+		<div class="companyinfo">
+			<p><img src="~/logo/@Model.Logo" width="150px" height="100px" /></p>
+			<p>@Html.Raw(Model.Mota)</p>
+		</div>
+	</div>
+	<div class="col-sm-5">
+		<div>
+			<p >@Html.Raw(Model.BanDo)</p>
+		</div>
+	</div>
+	<div class="col-sm-4">
+		<div class="ma" style="margin-top: 20px;">
+			<p><b>Tên Nhà Sách :</b> @Model.Name</p>
+			<p><b>Email Liên Hệ :</b> @Model.Email</p>
+			<p><b>Số Điện Thoại Đường Dây Nóng :</b> @Model.SDT</p>
+		</div>
+	</div>
+
+</div>

@@ -1,0 +1,68 @@
+﻿@model IEnumerable<LienHeModel>
+
+@{
+    ViewData["Title"] = "Thông tin liên hệ";
+
+}
+
+<h1 class="text-center my-4">Thông tin liên hệ</h1>
+
+
+<!-- Bảng sản phẩm -->
+<div class="container">
+    <table class="table  table-hover text-center justify-content-center align-items-center" id="my_liehe">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Mã</th>
+                <th scope="col">Tên liên hệ</th>
+                <th scope="col">Bản đồ</th>
+                <th scope="col">Email</th>
+                <th scope="col">Số điện thoại</th>
+                <th scope="col">Mô tả</th>
+                <th scope="col">Hình ảnh</th>
+                <th scope="col">Hành động</th>
+              
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                  
+                    
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.Name</td>
+                            <td style="width: 200px; height:200px;">@Html.Raw(item.BanDo)</td>
+                            <td>@item.Email</td>
+                            <td>@item.SDT</td>
+                            <td>@item.Mota</td>
+                            <td><img src="~/logo/@item.Logo" width="100" height="100" /></td>                           
+                            <td style="width: 100px;">
+                                <a asp-action="Edit" class="btn btn-sm btn-success me-1" asp-controller="LienHe" asp-route-id="@item.Id">  <i class="fas fa-edit"></i>Edit</a>
+                            </td>
+                        </tr>
+
+                    
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="10">Không có thông tin nào.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+
+</div>
+<!-- Thêm Font Awesome cho biểu tượng -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+@section Scripts {
+    <script>
+        let table = new DataTable('#my_liehe');
+    </script>
+}

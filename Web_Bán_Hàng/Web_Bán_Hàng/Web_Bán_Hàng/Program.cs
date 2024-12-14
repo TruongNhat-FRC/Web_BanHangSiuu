@@ -55,7 +55,7 @@ builder.Services.AddAuthentication(IdentityConstants.ApplicationScheme)
 
 var app = builder.Build();
 
-app.UseStatusCodePagesWithRedirects("/Home/Error?statuscode=404");
+/*app.UseStatusCodePagesWithRedirects("/Home/Error?statuscode=404");*/
 app.UseSession();
 
 

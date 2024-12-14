@@ -463,6 +463,42 @@ namespace Web_Bán_Hàng.Migrations
                     b.ToTable("GioHang");
                 });
 
+            modelBuilder.Entity("Web_Bán_Hàng.Models.LienHeModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("BanDo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Logo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Mota")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SDT")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LienHes");
+                });
+
             modelBuilder.Entity("Web_Bán_Hàng.Models.ProductModel", b =>
                 {
                     b.Property<string>("Id")
@@ -504,6 +540,73 @@ namespace Web_Bán_Hàng.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("Web_Bán_Hàng.Models.SliderModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Mota")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Sliders");
+                });
+
+            modelBuilder.Entity("Web_Bán_Hàng.Models.SoSanhModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ProductId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("SoSanhs");
+                });
+
+            modelBuilder.Entity("Web_Bán_Hàng.Models.YeuThichModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ProductId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("YeuThichs");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -619,6 +722,24 @@ namespace Web_Bán_Hàng.Migrations
                     b.Navigation("Brand");
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("Web_Bán_Hàng.Models.SoSanhModel", b =>
+                {
+                    b.HasOne("Web_Bán_Hàng.Models.ProductModel", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("Web_Bán_Hàng.Models.YeuThichModel", b =>
+                {
+                    b.HasOne("Web_Bán_Hàng.Models.ProductModel", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("Web_Bán_Hàng.Models.DonHangModel", b =>

@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Web_Bán_Hàng.Models.ViewModel.SoSanhViewModel>
+
+@{
+    ViewData["Title"] = "Danh sách sản phẩm";
+
+
+}
+
+<h1 class="text-center my-4">Danh sách sản phẩm so sánh của bạn</h1>
+
+<!-- Bảng sản phẩm -->
+<div class="container">
+    <table class="table " id="my_product">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Mã sản phẩm</th>
+                <th scope="col">Tên sản phẩm</th>
+                <th scope="col">Mô tả</th>
+                <th scope="col">Giá</th>
+                <th scope="col">Hình ảnh</th>
+                <th scope="col">Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    if (item.TrangThai) // Kiểm tra trạng thái hiển thị
+                    {
+                        <tr>
+                            <td>@item.ProductId</td>
+                            <td>@item.ProductName</td>
+                            <td>@item.Description</td>
+                            <td>@item.Price.ToString("#,0") VND</td>
+                            <td><img src="~/image/@item.Image" width="100" /></td>
+                            <td style="width: 100px;">
+                                <a asp-action="DeleteSoSanh" class="btn btn-sm btn-danger confirmDeletion" asp-controller="Home" asp-route-id="@item.ProductId"> <i class="fas fa-trash"></i>Delete</a>
+                            </td>
+                        </tr>
+
+                    }
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="10">Không có sản phẩm nào.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <!-- Partial view phân trang -->
+    <!-- Partial view phân trang -->
+
+
+
+</div>
+<!-- Thêm Font Awesome cho biểu tượng -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+@section Scripts {
+    <script>
+        let table = new DataTable('#my_product');
+    </script>
+}

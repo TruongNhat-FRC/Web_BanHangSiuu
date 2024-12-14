@@ -158,7 +158,7 @@ namespace Web_Bán_Hàng.Controllers
 
 
 
-        public async Task<IActionResult> DangXuat()
+        /*public async Task<IActionResult> DangXuat()
         {
             var userId = _userManager.GetUserId(User); // Lấy UserId của người dùng đang đăng nhập
 
@@ -191,7 +191,49 @@ namespace Web_Bán_Hàng.Controllers
             TempData["success"] = "Đã lưu những sản phẩm chưa thanh toán vào giỏ hàng";
 
             return RedirectToAction("Index", "Home"); // Chuyển hướng về trang chủ hoặc trang đăng nhập
+        }*/
+        public async Task<IActionResult> DangXuat()
+        {
+            var userId = _userManager.GetUserId(User); // Lấy UserId của người dùng đang đăng nhập
+
+            // Lấy giỏ hàng của người dùng
+            var cartItems = GetCartItemsFromSession();
+
+            // Kiểm tra xem giỏ hàng có sản phẩm hay không
+            if (cartItems.Any())
+            {
+                // Lưu giỏ hàng vào lịch sử giỏ hàng
+                foreach (var item in cartItems)
+                {
+                    var cartHistoryItem = new CartHistoryModel
+                    {
+                        UserId = userId,
+                        ProductId = item.ProductId,
+                        ProductName = item.ProductName,
+                        Quantity = item.Quantity,
+                        Price = item.Price,
+                        Image = item.Image,
+                        AddedDate = DateTime.Now,
+                        IsCheckedOut = false // Chưa thanh toán
+                    };
+
+                    _datacontext.LichSuGioHang.Add(cartHistoryItem);
+                }
+
+                await _datacontext.SaveChangesAsync();
+
+                // Hiển thị thông báo nếu giỏ hàng có sản phẩm
+                TempData["success"] = "Đã lưu những sản phẩm chưa thanh toán vào giỏ hàng";
+            }
+           
+
+            // Đăng xuất người dùng
+            await _signInManager.SignOutAsync();
+
+            // Chuyển hướng về trang chủ hoặc trang đăng nhập
+            return RedirectToAction("Index", "Home");
         }
+
 
 
 

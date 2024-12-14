@@ -1,0 +1,73 @@
+﻿@model IEnumerable<SliderModel>
+@{
+
+    ViewData["Title"] = "Danh sách Slider";
+
+    // PhanTrang trang = new PhanTrang();
+    // int pageo = 0;
+    // if (ViewBag.Trang != null)
+    // {
+    //     trang = ViewBag.Trang;
+    //     pageo = trang.TrangHienTai;
+    // }
+
+}
+
+
+
+<h1 class="text-center my-4">Danh sách slider</h1>
+<a asp-action="Add" class="btn btn-sm btn-primary" asp-controller="Slider">Thêm slide </a>
+<!-- Bảng sản phẩm -->
+<div class="container">
+    <table class="table table-bordered table-hover text-center">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Mã slider</th>
+                <th scope="col">Tên slider</th>
+                <th scope="col">Mô tả</th>
+                <th scope="col">Hình ảnh</th>
+                <th scope="col">Trạng Thái</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Name</td>
+                        <td>@item.Mota</td>
+                        <td><img src="~/slide/@item.Image" width="400" height="200" /></td>
+
+                        <td>
+                            @if (@item.Status == 1)
+                            {
+                                <span class="text text-success">Hiển thị</span>
+                            }
+                            else
+                            {
+                                <span class="text text-danger">Ẩn</span>
+                            }
+                        </td>
+                        <td style="width: 150px;">
+                            <a asp-action="Edit" class="btn btn-sm btn-success me-1" asp-controller="Slider" asp-route-id="@item.Id">  <i class="fas fa-edit"></i>Edit</a>
+                            <a asp-action="Delete" class="btn btn-sm btn-danger confirmDeletion" asp-controller="Slider" asp-route-id="@item.Id"> <i class="fas fa-trash"></i>Delete</a>
+                        </td>
+
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="8">Không có dữ liệu.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@*  <partial name="_phantrang" model="@trang"></partial>
+ *@<!-- Thêm Font Awesome cho biểu tượng -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
