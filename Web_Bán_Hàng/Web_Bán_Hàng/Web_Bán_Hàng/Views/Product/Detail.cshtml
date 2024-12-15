@@ -96,7 +96,17 @@
 					<p><b>Số lượng: @Model.ProductDetail.Quantity</b></p>
 					<p><b>Thương Hiệu:</b>@Model.ProductDetail.Brand.Name</b></p>
 					<p><b>Danh Mục:</b>@Model.ProductDetail.Category.Name</b></p>
-					<a class="btn btn-default add-to-cart" asp-action="Add" asp-controller="Cart" asp-route-id="@Model.ProductDetail.Id"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+					@if(Model.ProductDetail.Quantity > 0)
+					{
+						<a class="btn btn-default add-to-cart" asp-action="Add" asp-controller="Cart" asp-route-id="@Model.ProductDetail.Id"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+					}
+					else
+					{
+						<a class="btn btn-danger add-to-cart ">
+							<i class="fa fa-box-open" style="color: grey;"></i> Hết Hàng
+						</a>
+					}
+
 					<br />
 					<p><b>Mô Tả:</b>@Model.ProductDetail.Description</b></p>
 

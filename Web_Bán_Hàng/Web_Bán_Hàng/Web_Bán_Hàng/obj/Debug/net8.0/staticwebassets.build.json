@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "DRzuyX7dDDNzEPnLRFXYuc44m+EQk7OoL227QaVZY4o=",
+  "Hash": "gSTQBO7WFkwNGBC+k3n9P8iVWzP+5BjkiXWu1RBxDkQ=",
   "Source": "Web_Bán_Hàng",
   "BasePath": "_content/Web_Bán_Hàng",
   "Mode": "Default",
@@ -378,6 +378,25 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
+      "Identity": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\image\\0450344d-928a-412f-a249-04edf3b73bc4_sotaynhathoimien2.jpg",
+      "SourceId": "Web_Bán_Hàng",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\",
+      "BasePath": "_content/Web_Bán_Hàng",
+      "RelativePath": "image/0450344d-928a-412f-a249-04edf3b73bc4_sotaynhathoimien2.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image\\0450344d-928a-412f-a249-04edf3b73bc4_sotaynhathoimien2.jpg"
+    },
+    {
       "Identity": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\image\\198a9143-12a8-44ec-9faa-888c6d4b2d13_kebatnat.jpg",
       "SourceId": "Web_Bán_Hàng",
       "SourceType": "Discovered",
@@ -414,6 +433,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\image\\294e406e-6a5e-423e-9d0c-328f754690c2_cover052.png"
+    },
+    {
+      "Identity": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\image\\2bb26983-0401-4805-9566-b2d707ae4dd9_truyenngungon.jpg",
+      "SourceId": "Web_Bán_Hàng",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\",
+      "BasePath": "_content/Web_Bán_Hàng",
+      "RelativePath": "image/2bb26983-0401-4805-9566-b2d707ae4dd9_truyenngungon.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image\\2bb26983-0401-4805-9566-b2d707ae4dd9_truyenngungon.jpg"
     },
     {
       "Identity": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\image\\2e7c2dfb-093d-4be0-b1ec-f2a87fd3fcb3_cover053png.png",
@@ -471,6 +509,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\image\\4958c20e-3edb-4396-a933-b5942c095555_doreamon.jpg"
+    },
+    {
+      "Identity": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\image\\549c0e0e-9f14-4069-baca-d518283d17d0_giaotrinhhannguquyen6.jpg",
+      "SourceId": "Web_Bán_Hàng",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\",
+      "BasePath": "_content/Web_Bán_Hàng",
+      "RelativePath": "image/549c0e0e-9f14-4069-baca-d518283d17d0_giaotrinhhannguquyen6.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image\\549c0e0e-9f14-4069-baca-d518283d17d0_giaotrinhhannguquyen6.jpg"
     },
     {
       "Identity": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\image\\83670eb2-6ed7-465b-a6a9-25eea669ae99_cover051.png",
@@ -566,6 +623,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\image\\9eb43268-b3bb-4ed5-a2e2-df995162df06_cautrucdulieu.jpg"
+    },
+    {
+      "Identity": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\image\\a7875c12-5113-4b16-bced-11be86a4d164_sotaynhathoimien.jpg",
+      "SourceId": "Web_Bán_Hàng",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\",
+      "BasePath": "_content/Web_Bán_Hàng",
+      "RelativePath": "image/a7875c12-5113-4b16-bced-11be86a4d164_sotaynhathoimien.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image\\a7875c12-5113-4b16-bced-11be86a4d164_sotaynhathoimien.jpg"
     },
     {
       "Identity": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\image\\a81fc3fe-cca6-4577-a5fb-51777ccc49d8_cover051.png",

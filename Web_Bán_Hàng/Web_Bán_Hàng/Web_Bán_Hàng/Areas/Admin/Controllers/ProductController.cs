@@ -61,6 +61,12 @@ namespace Web_Bán_Hàng.Areas.Admin.Controllers
             ViewBag.Brands = new SelectList(_datacontext.Brands, "Id", "Name", product.BrandId);
 			if (ModelState.IsValid)
 			{
+                var sanphamtontai = await _datacontext.Products.FirstOrDefaultAsync(p => p.Id == product.Id);
+                if (sanphamtontai != null)
+                {
+                    ModelState.AddModelError("Id", "Mã sản phẩm đã tồn tại.");
+                    return View(product);
+                }
                 // Kiểm tra và gán Slug nếu chưa có giá trị
                 if (string.IsNullOrEmpty(product.Slug))
                 {

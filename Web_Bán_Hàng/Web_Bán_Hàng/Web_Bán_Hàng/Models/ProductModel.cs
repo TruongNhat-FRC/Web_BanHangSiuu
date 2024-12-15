@@ -28,7 +28,8 @@ namespace Web_Bán_Hàng.Models
 		[NotMapped]
 		[CheckFile]
 		public IFormFile? ImageUpLoad { get; set; }
-		public int Quantity { get; set; } = 0; 
+        [Range(0, 100, ErrorMessage = "Số lượng phải nằm trong khoảng từ 0 đến 100.")]
+        public int Quantity { get; set; } = 0; 
         [Required]
         public bool IsVisible { get; set; } = true;
 		public List<DanhGia> DanhGias { get; set; } // Sửa để chứa danh sách đánh giá

@@ -73,12 +73,20 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\image\\0450344d-928a-412f-a249-04edf3b73bc4_sotaynhathoimien2.jpg",
+      "PackagePath": "staticwebassets\\image\\0450344d-928a-412f-a249-04edf3b73bc4_sotaynhathoimien2.jpg"
+    },
+    {
       "Id": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\image\\198a9143-12a8-44ec-9faa-888c6d4b2d13_kebatnat.jpg",
       "PackagePath": "staticwebassets\\image\\198a9143-12a8-44ec-9faa-888c6d4b2d13_kebatnat.jpg"
     },
     {
       "Id": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\image\\294e406e-6a5e-423e-9d0c-328f754690c2_cover052.png",
       "PackagePath": "staticwebassets\\image\\294e406e-6a5e-423e-9d0c-328f754690c2_cover052.png"
+    },
+    {
+      "Id": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\image\\2bb26983-0401-4805-9566-b2d707ae4dd9_truyenngungon.jpg",
+      "PackagePath": "staticwebassets\\image\\2bb26983-0401-4805-9566-b2d707ae4dd9_truyenngungon.jpg"
     },
     {
       "Id": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\image\\2e7c2dfb-093d-4be0-b1ec-f2a87fd3fcb3_cover053png.png",
@@ -91,6 +99,10 @@
     {
       "Id": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\image\\4958c20e-3edb-4396-a933-b5942c095555_doreamon.jpg",
       "PackagePath": "staticwebassets\\image\\4958c20e-3edb-4396-a933-b5942c095555_doreamon.jpg"
+    },
+    {
+      "Id": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\image\\549c0e0e-9f14-4069-baca-d518283d17d0_giaotrinhhannguquyen6.jpg",
+      "PackagePath": "staticwebassets\\image\\549c0e0e-9f14-4069-baca-d518283d17d0_giaotrinhhannguquyen6.jpg"
     },
     {
       "Id": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\image\\83670eb2-6ed7-465b-a6a9-25eea669ae99_cover051.png",
@@ -111,6 +123,10 @@
     {
       "Id": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\image\\9eb43268-b3bb-4ed5-a2e2-df995162df06_cautrucdulieu.jpg",
       "PackagePath": "staticwebassets\\image\\9eb43268-b3bb-4ed5-a2e2-df995162df06_cautrucdulieu.jpg"
+    },
+    {
+      "Id": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\image\\a7875c12-5113-4b16-bced-11be86a4d164_sotaynhathoimien.jpg",
+      "PackagePath": "staticwebassets\\image\\a7875c12-5113-4b16-bced-11be86a4d164_sotaynhathoimien.jpg"
     },
     {
       "Id": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\image\\a81fc3fe-cca6-4577-a5fb-51777ccc49d8_cover051.png",

@@ -36,9 +36,19 @@
 										<p class="product-name">@item.Name</p>
 										<p class="category">Loại Sản Phẩm: <strong>@item.Category.Name</strong></p>
 										<p class="brand">Thương Hiệu: <strong>@item.Brand.Name</strong></p>
-										<a class="btn btn-warning add-to-cart" asp-action="Add" asp-controller="Cart" asp-route-id="@item.Id">
-											<i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng
-										</a>
+										@if (item.Quantity > 0)
+										{
+											<a class="btn btn-warning add-to-cart" asp-action="Add" asp-controller="Cart" asp-route-id="@item.Id">
+												<i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng
+											</a>
+										}
+										else
+										{
+											<a class="btn btn-danger add-to-cart ">
+												<i class="fa fa-box-open" style="color: grey;"></i> Hết Hàng
+											</a>
+										}
+
 									</div>
 								</a>
 							</div>
