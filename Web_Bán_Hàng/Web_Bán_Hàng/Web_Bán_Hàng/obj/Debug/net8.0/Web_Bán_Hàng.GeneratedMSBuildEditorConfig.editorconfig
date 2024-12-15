@@ -142,6 +142,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlclxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Đồ Án Cuối Kỳ Web/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Areas/Admin/Views/VanChuyen/Add.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVmFuQ2h1eWVuXEFkZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Đồ Án Cuối Kỳ Web/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Areas/Admin/Views/VanChuyen/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVmFuQ2h1eWVuXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Đồ Án Cuối Kỳ Web/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Areas/Admin/Views/VanChuyen/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVmFuQ2h1eWVuXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

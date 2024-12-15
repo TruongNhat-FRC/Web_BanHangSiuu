@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System.Security.Claims;
 using Web_Bán_Hàng.Database;
 using Web_Bán_Hàng.Models;
@@ -37,9 +38,18 @@ namespace Web_Bán_Hàng.Controllers
             }
             else
             {
+                var PhiShipCookie = Request.Cookies["Phiship"];
+                decimal Phishiphtml = 0;
+
+                if (PhiShipCookie != null)
+                {
+                    var shippingPriceJson = PhiShipCookie;
+                    Phishiphtml = JsonConvert.DeserializeObject<decimal>(shippingPriceJson);
+                }
                 var madonhang = Guid.NewGuid().ToString();
                 var orderItem = new DonHangModel();
                 orderItem.MaDonHang = madonhang;
+                orderItem.PhiShip = Phishiphtml;
                 orderItem.MaNguoiDung = usermail;
                 orderItem.TrangThai = 1; // Trạng thái là "Đã thanh toán"
                 orderItem.NgayDat = DateTime.Now;
@@ -82,8 +92,9 @@ namespace Web_Bán_Hàng.Controllers
 
                 // Xóa giỏ hàng sau khi thanh toán
                 HttpContext.Session.Remove("Cart");
-				//Send mail order when success
-				var receiver = usermail;
+                Response.Cookies.Delete("Phiship");
+                //Send mail order when success
+                var receiver = usermail;
 				var subject = "Trạng thái đặt hàng hàng .";
 				var message = $"Xin chào {fullName1} <br>Đơn hàng của bạn đã được tạo thành công. Cảm ơn bạn đã mua sắm tại chúng tôi.<br>{orderDetailsHtml}";
 				try

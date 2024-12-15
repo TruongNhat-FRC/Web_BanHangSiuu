@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using Web_Bán_Hàng.Database;
 using Web_Bán_Hàng.Models;
 using Web_Bán_Hàng.Models.ViewModel;
@@ -15,10 +17,21 @@ namespace Web_Bán_Hàng.Controllers
 		public IActionResult Index()
 		{
 			List<CartItemModel> cartItem = HttpContext.Session.GetJson<List<CartItemModel>>("Cart") ?? new List<CartItemModel>();
-			CartItemViewModel cart = new()
+            var PhiShipCookie = Request.Cookies["Phiship"];
+            decimal Phishiphtml = 0;
+
+            if (PhiShipCookie != null)
+            {
+                var shippingPriceJson = PhiShipCookie;
+                Phishiphtml = JsonConvert.DeserializeObject<decimal>(shippingPriceJson);
+            }
+
+
+            CartItemViewModel cart = new()
 			{
 				CartItem = cartItem,
-				GrandTotal = cartItem.Sum(p => p.Quantity * p.Price)
+				GrandTotal = cartItem.Sum(p => p.Quantity * p.Price),
+                Phiship = Phishiphtml
 
 			};
 
@@ -158,8 +171,56 @@ namespace Web_Bán_Hàng.Controllers
 
 		}
 
+		[HttpPost]
+        public async Task<IActionResult> TinhPhiShip(VanChuyenModel vanchuyen, string quan,string tinh, string phuong)
+        {
+            var Diachicotontai = await _datacontext.VanChuyens.FirstOrDefaultAsync(x => x.thanhpho == tinh && x.Quan == quan && x.Phuong_xa == phuong);
 
 
-	}
+            decimal phiship = 0; // Set mặc định giá tiền
+
+            if (Diachicotontai != null)
+            {
+                phiship = Diachicotontai.Gia;
+            }
+            else
+            {
+                // Set mặc định giá tiền nếu không tìm thấy
+                phiship = 30000;
+            }
+
+            var shippingPriceJson = JsonConvert.SerializeObject(phiship);
+
+            try
+            {
+                var cookieOptions = new CookieOptions
+                {
+                    HttpOnly = true,
+                    Expires = DateTimeOffset.UtcNow.AddMinutes(30),
+                    Secure = true // using HTTPS
+                };
+
+                // Thêm giá trị vào cookie
+                Response.Cookies.Append("Phiship", shippingPriceJson, cookieOptions);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error adding shipping price cookie: {ex.Message}");
+            }
+
+            return Json(new { phiship });
+        }
+        [HttpPost]
+        public IActionResult DeletePhiShip()
+        {
+            Response.Cookies.Delete("Phiship");
+            return RedirectToAction("Index", "Cart");
+        }
+
+
+
+
+
+    }
 
 }

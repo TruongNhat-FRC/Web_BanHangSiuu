@@ -1,1 +1,213 @@
-﻿
+﻿@model Web_Bán_Hàng.Models.VanChuyenModel
+@{
+    ViewData["Title"] = "Thêm Địa Chỉ Vận Chuyển";
+}
+<style type="text/css">
+    .css_select_div{ text-align: center;}
+    .css_select{ display: inline-table; width: 25%; padding: 5px; margin: 5px 2%; border: solid 1px #686868; border-radius: 5px;}
+</style>
+<h4>Thêm Danh Địa Chỉ</h4>
+<div>
+    <form asp-action="Add" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+
+
+        <div class="form-group">
+            <label>Tỉnh Thành Phố</label>
+            <select class="css_select" id="tinh" name="tinh" title="Chọn Tỉnh Thành">
+                <option value="0">Tỉnh Thành</option>
+            </select>
+        </div>
+
+
+
+        <div class="form-group">
+            <label>Quận Huyện</label>
+            <select class="css_select" id="quan" name="quan" title="Chọn Quận Huyện">
+                <option value="0">Quận Huyện</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Phường Xã</label>
+            <select class="css_select" id="phuong" name="phuong" title="Chọn Phường Xã">
+                <option value="0">Phường Xã</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Phí Vận Chuyển</label>
+            <input asp-for="Gia" class="form-control" id="Gia" />
+            <span asp-validation-for="Gia" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <button type="button" class="btn btn-sm btn-primary btn-add-vanchuyen">Add</button>
+        </div>
+
+
+
+    </form>
+
+    <div class="container">
+        <table class="table " id="my_diachi">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Thành Phố</th>
+                    <th scope="col">Quận Huyện</th>
+                    <th scope="col">Xã Phường</th>
+                    <th scope="col">Giá</th>
+                    <th scope="col">Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (ViewBag.List != null)
+                {
+                    foreach (var item in ViewBag.List)
+                    {
+                        <tr>
+                            <td>@item.Id</td> <!-- Kiểm tra lại iID trong model -->
+                            <td>@item.thanhpho</td> <!-- Thay thế với thuộc tính Thành Phố -->
+                            <td>@item.Quan</td> <!-- Thay thế với thuộc tính Quận Huyện -->
+                            <td>@item.Phuong_xa</td> <!-- Thay thế với thuộc tính Xã Phường -->
+                            <td>@item.Gia.ToString("#,0") VND</td> <!-- Đảm bảo Gia là kiểu decimal -->
+                            <td>
+                                <a asp-action="Delete" class="btn btn-sm btn-danger confirmDeletion" asp-controller="VanChuyen" asp-route-id="@item.Id">
+                                    <i class="fas fa-trash"></i> Delete
+                                </a>
+                                <a asp-action="Edit" class="btn btn-sm btn-success me-1" asp-controller="VanChuyen" asp-route-id="@item.Id">  <i class="fas fa-edit"></i>Edit</a>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="6">Không có địa chỉ vận chuyển nào</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        $(".btn-add-vanchuyen").click(function () {
+            var tinh = $("#tinh").find('option:selected').text();
+            var quan = $("#quan").find('option:selected').text();
+            var phuong = $("#phuong").find('option:selected').text();
+            var price = $("#Gia").val();
+           
+            console.log("Tỉnh: ", tinh);
+            console.log("Quận: ", quan);
+            console.log("Phường: ", phuong);
+            console.log("Giá: ", price);
+
+
+
+            // Kiểm tra nếu có trường nào bị bỏ trống
+            if (!tinh || !quan || !phuong || !price) {
+                Swal.fire("Vui lòng điền đầy đủ thông tin");
+            } else {
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("Add", "VanChuyen")",
+                    data: {
+                        tinh: tinh,
+                        quan: quan,
+                        phuong: phuong,
+                        gia: price
+                    },
+                    success: function (result) {
+                        // Kiểm tra phản hồi JSON từ server
+                        if (result.success) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Thành công',
+                                text: result.message
+                            });
+                            localtion.reload();
+                        } else if (result.duplicate) {
+                            Swal.fire({
+                                icon: 'warning',
+                                title: 'Cảnh báo',
+                                text: result.message
+                            });
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Lỗi',
+                                text: "Đã xảy ra lỗi, vui lòng thử lại."
+                            });
+                        }
+                    },
+                    error: function () {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Lỗi kết nối',
+                            text: "Không thể thêm địa chỉ vận chuyển. Vui lòng kiểm tra lại kết nối."
+                        });
+                    }
+
+                });
+            }
+        });
+
+
+        /////
+        $(document).ready(function() {
+            //Lấy tỉnh thành
+            $.getJSON('https://esgoo.net/api-tinhthanh/1/0.htm',function(data_tinh){
+                if(data_tinh.error==0){
+                   $.each(data_tinh.data, function (key_tinh,val_tinh) {
+                      $("#tinh").append('<option value="'+val_tinh.id+'">'+val_tinh.full_name+'</option>');
+                   });
+                   $("#tinh").change(function(e){
+                        var idtinh=$(this).val();
+                        //Lấy quận huyện
+                        $.getJSON('https://esgoo.net/api-tinhthanh/2/'+idtinh+'.htm',function(data_quan){
+                            if(data_quan.error==0){
+                               $("#quan").html('<option value="0">Quận Huyện</option>');
+                               $("#phuong").html('<option value="0">Phường Xã</option>');
+                               $.each(data_quan.data, function (key_quan,val_quan) {
+                                  $("#quan").append('<option value="'+val_quan.id+'">'+val_quan.full_name+'</option>');
+                               });
+                               //Lấy phường xã
+                               $("#quan").change(function(e){
+                                    var idquan=$(this).val();
+                                    $.getJSON('https://esgoo.net/api-tinhthanh/3/'+idquan+'.htm',function(data_phuong){
+                                        if(data_phuong.error==0){
+                                           $("#phuong").html('<option value="0">Phường Xã</option>');
+                                           $.each(data_phuong.data, function (key_phuong,val_phuong) {
+                                              $("#phuong").append('<option value="'+val_phuong.id+'">'+val_phuong.full_name+'</option>');
+                                           });
+                                        }
+                                    });
+                               });
+
+                            }
+                        });
+                   });
+
+                }
+            });
+         });
+        let table = new DataTable('#my_diachi');
+    </script>
+   
+       
+    
+
+
+
+}
+
+
+
+
