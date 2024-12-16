@@ -1,0 +1,51 @@
+﻿@model Web_Bán_Hàng.Models.AppUserModel
+
+@{
+    ViewData["Title"] = "Tạo mật khẩu mới";
+}
+
+<section id="form" class="py-5">
+    <div class="container justify-content-center align-items-center">
+        <div class="row">
+            <!-- Căn giữa form với col-xs-12 col-sm-8 col-sm-offset-2 -->
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+                <div class="signup-form">
+                    <h2 class="text-center">Cập nhật mật khẩu mới </h2> <!-- Căn giữa tiêu đề -->
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                    <form asp-action="CapNhatMatKhauMoi" asp-controller="Account">
+                        <input type="hidden" name="token" value="@ViewBag.Token"/>
+                        <div class="form-group">
+                            <label for="Email">Email</label>
+                            <input asp-for="Email" readonly value="@ViewBag.Email" class="form-control" id="Email"  />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>New Password</label>
+                            <input asp-for="PasswordHash" class="form-control" />
+                            <span asp-validation-for="PasswordHash" class="text-danger"></span>
+                        </div>
+
+
+
+
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-lg btn-primary"
+                            onclick="return confirm('Bạn có chắc chắn muốn cập nhật mật khẩu mới không?');">
+                            Cập Nhật Mật Khẩu Mới</button>
+                        </div>
+
+                        <div class="text-center">
+                            <p>Bạn chưa có tài khoản? <a asp-action="DangKy" asp-controller="Account">Đăng Ký</a></p>
+                        </div>
+                    </form>
+                </div><!--/sign up form-->
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

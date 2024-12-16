@@ -194,8 +194,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMaWNoU3VNdWFIYW5nLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Đồ Án Cuối Kỳ Web/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Views/Account/MatKhauMoi.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxNYXRLaGF1TW9pLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Đồ Án Cuối Kỳ Web/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Views/Account/Not_Quyen.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxOb3RfUXV5ZW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Đồ Án Cuối Kỳ Web/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Views/Account/QuenMatKhau.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxRdWVuTWF0S2hhdS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Đồ Án Cuối Kỳ Web/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Views/Brand/Index.cshtml]

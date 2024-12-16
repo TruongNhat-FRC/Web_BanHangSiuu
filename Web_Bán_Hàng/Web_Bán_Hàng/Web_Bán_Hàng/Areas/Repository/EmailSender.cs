@@ -13,7 +13,7 @@ namespace Web_Bán_Hàng.Areas.Repository
 		{
 			var client = new SmtpClient("smtp.gmail.com", 587)
 			{
-				EnableSsl = true, // Bật bảo mật SSL
+				EnableSsl = true, 
 				UseDefaultCredentials = false,
 				Credentials = new NetworkCredential("truong.pn.64cntt@ntu.edu.vn", "qlbnglxsmymbvwrl")
 			};
@@ -23,7 +23,7 @@ namespace Web_Bán_Hàng.Areas.Repository
 				From = new MailAddress("truong.pn.64cntt@ntu.edu.vn"),
 				Subject = subject,
 				Body = htmlMessage,
-				IsBodyHtml = true, // Để hỗ trợ nội dung HTML
+				IsBodyHtml = true, 
 			};
 
 			mailMessage.To.Add(email);

@@ -121,7 +121,7 @@
                                     }
                                     else
                                     {
-                                        <a  class="btn btn-success btn-sm" asp-action="ThanhToan" asp-controller="ThanhToan">Checkout</a>
+                                        <a  onclick="return confirm('Bạn có chắc chắn muốn đặt hàng không?');" class="btn btn-success btn-sm"  asp-action="ThanhToan" asp-controller="ThanhToan">Đặt Hàng</a>
 
                                     }
                                 }

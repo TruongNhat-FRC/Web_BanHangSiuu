@@ -13,6 +13,7 @@ namespace Web_Bán_Hàng.Models
         // Thêm trường Full Name
         public string FullName { get; set; }
         public List<string> Roles { get; set; } = new List<string>();
+        public string Token {  get; set; }
 
     }
 }

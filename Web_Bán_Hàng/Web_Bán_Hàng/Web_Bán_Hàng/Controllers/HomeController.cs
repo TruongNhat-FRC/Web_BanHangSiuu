@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using System.Security.Claims;
 using Web_Bán_Hàng.Database;
 using Web_Bán_Hàng.Models;
 using Web_Bán_Hàng.Models.ViewModel;
@@ -143,9 +144,14 @@ namespace Web_Bán_Hàng.Controllers
 
         public async Task<IActionResult> ListYeuThich()
         {
+            // Lấy Id người dùng hiện tại
+            var userId = _userManager.GetUserId(User);
+
+            // Truy vấn danh sách yêu thích của người dùng hiện tại
             var List_yeuthich = await (from y in _datacontext.YeuThichs
                                        join p in _datacontext.Products on y.ProductId equals p.Id
                                        join u in _datacontext.Users on y.UserId equals u.Id
+                                       where y.UserId == userId // Lọc theo UserId hiện tại
                                        select new YeuThichViewModel
                                        {
                                            Id = y.Id,
@@ -161,26 +167,35 @@ namespace Web_Bán_Hàng.Controllers
 
             return View(List_yeuthich);
         }
+
+
+
         public async Task<IActionResult> ListSoSanh()
         {
+            // Lấy Id người dùng hiện tại
+            var userId = _userManager.GetUserId(User);
+
+            // Lấy danh sách sản phẩm so sánh của người dùng hiện tại
             var List_sosanh = await (from s in _datacontext.SoSanhs
-                                       join p in _datacontext.Products on s.ProductId equals p.Id
-                                       join u in _datacontext.Users on s.UserId equals u.Id
-                                       select new SoSanhViewModel
-                                       {
-                                           Id =  s.Id,
-                                           ProductId = p.Id,
-                                           ProductName = p.Name,
-                                           Description = p.Description,
-                                           Price = p.Price,
-                                           Image = p.Image,
-                                           UserName = u.UserName,
-                                           UserId = u.Id,
-                                           TrangThai = p.IsVisible
-                                       }).ToListAsync();
+                                     join p in _datacontext.Products on s.ProductId equals p.Id
+                                     join u in _datacontext.Users on s.UserId equals u.Id
+                                     where s.UserId == userId // Lọc theo UserId hiện tại
+                                     select new SoSanhViewModel
+                                     {
+                                         Id = s.Id,
+                                         ProductId = p.Id,
+                                         ProductName = p.Name,
+                                         Description = p.Description,
+                                         Price = p.Price,
+                                         Image = p.Image,
+                                         UserName = u.UserName,
+                                         UserId = u.Id,
+                                         TrangThai = p.IsVisible
+                                     }).ToListAsync();
 
             return View(List_sosanh);
         }
+
         public async Task<IActionResult> DeleteYeuThich(int Id)
         {
             // Tìm đối tượng yêu thích theo Id
@@ -195,7 +210,7 @@ namespace Web_Bán_Hàng.Controllers
                 await _datacontext.SaveChangesAsync();
 
                 // Thông báo thành công
-                TempData["success"] = "So sánh đã được xóa thành công";
+                TempData["success"] = "Yêu Thích đã được xóa thành công";
             }
             else
             {

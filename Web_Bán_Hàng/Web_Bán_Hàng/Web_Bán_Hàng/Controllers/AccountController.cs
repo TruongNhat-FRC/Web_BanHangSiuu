@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
@@ -13,11 +14,13 @@ namespace Web_Bán_Hàng.Controllers
 		private UserManager<AppUserModel> _userManager;
         private SignInManager<AppUserModel> _signInManager;
         private readonly Datacontext _datacontext;
-        public AccountController( UserManager<AppUserModel> userManager, SignInManager<AppUserModel> signInManager, Datacontext datacontext)
+        private readonly IEmailSender _emailSender;
+        public AccountController( UserManager<AppUserModel> userManager, SignInManager<AppUserModel> signInManager, Datacontext datacontext, IEmailSender emailSender)
 		{
 			_signInManager = signInManager;
 			_userManager = userManager;
             _datacontext = datacontext;
+            _emailSender = emailSender;
 		}
 		public IActionResult Index()
 		{
@@ -34,6 +37,102 @@ namespace Web_Bán_Hàng.Controllers
 		{
 			return View(new DangNhapViewModel { ReturnUrl = returnURL });
 		}
+        [HttpPost]
+        public async Task<IActionResult> GuiMailXacNhanMatKhau(AppUserModel user)
+        {
+            // Kiểm tra email có tồn tại trong hệ thống hay không
+            var checkMail = await _userManager.Users.FirstOrDefaultAsync(u => u.Email == user.Email);
+
+            if (checkMail == null)
+            {
+                TempData["error"] = "Email not found";
+                return RedirectToAction("QuenMatKhau", "Account");
+            }
+            else
+            {
+                // Tạo mã token mới
+                string token = Guid.NewGuid().ToString();
+
+                // Cập nhật token vào tài khoản người dùng
+                checkMail.Token = token;
+                _datacontext.Update(checkMail);
+                await _datacontext.SaveChangesAsync();
+
+                // Gửi email reset mật khẩu
+                var receiver = checkMail.Email;
+                var subject = $"Change password for user {checkMail.Email}";
+                var message = "Click on the link to change your password: " + $"<a href=\"{Request.Scheme}://{Request.Host}/Account/MatKhauMoi?email={checkMail.Email}&token={token}\">Cập Nhật PassWord</a>";
+
+
+                await _emailSender.SendEmailAsync(receiver, subject, message);
+
+                TempData["success"] = "Một email đã được gửi đến địa chỉ email đã đăng ký của bạn kèm theo hướng dẫn đặt lại mật khẩu.";
+                return RedirectToAction("QuenMatKhau", "Account");
+            }
+        }
+
+
+
+
+        public async Task<IActionResult> CapNhatMatKhauMoi(AppUserModel user, string token)
+        {
+            var checkUser = await _userManager.Users
+                .Where(u => u.Email == user.Email)
+                .Where(u => u.Token == token)
+                .FirstOrDefaultAsync();
+
+            if (checkUser != null)
+            {
+                // Update user with new password and token
+                string newToken = Guid.NewGuid().ToString();
+
+                // Hash the new password
+                var passwordHasher = new PasswordHasher<AppUserModel>();
+                var passwordHash = passwordHasher.HashPassword(checkUser, user.PasswordHash);
+
+                checkUser.PasswordHash = passwordHash;
+                checkUser.Token = newToken;
+
+                await _userManager.UpdateAsync(checkUser);
+
+                TempData["success"] = "Cập Nhật Mật Khẩu Thành Công.";
+                return RedirectToAction("DangNhap", "Account");
+            }
+            else
+            {
+                TempData["error"] = "Không tìm thấy emil.";
+                return RedirectToAction("QuenMatKhau", "Account");
+            }
+
+            return View();
+        }
+
+
+        public async Task<IActionResult> QuenMatKhau(string returnURL)
+        {
+            return View();
+        }
+        public async Task<IActionResult> MatKhauMoi(AppUserModel user, string token)
+        {
+            var checkUser = await _userManager.Users
+                .Where(u => u.Email == user.Email)
+                .Where(u => u.Token == token)
+                .FirstOrDefaultAsync();
+
+            if (checkUser != null)
+            {
+                ViewBag.Email = checkUser.Email;
+                ViewBag.Token = token;
+            }
+            else
+            {
+                TempData["error"] = "Email tìm không thấy hoặc không đúng";
+                return RedirectToAction("QuenMatKhau", "Account");
+            }
+
+            return View();
+        }
+
         [HttpPost]
         public async Task<IActionResult> DangNhap(DangNhapViewModel dangnhap)
         {

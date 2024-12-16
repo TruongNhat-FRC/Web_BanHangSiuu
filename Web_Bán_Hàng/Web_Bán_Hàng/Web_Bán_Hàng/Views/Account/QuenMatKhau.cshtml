@@ -1,0 +1,42 @@
+﻿@model Web_Bán_Hàng.Models.AppUserModel
+
+@{
+    ViewData["Title"] = "Quên Mật Khẩu";
+}
+
+<section id="form" class="py-5">
+    <div class="container justify-content-center align-items-center">
+        <div class="row">
+            <!-- Căn giữa form với col-xs-12 col-sm-8 col-sm-offset-2 -->
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+                <div class="signup-form">
+                    <h2 class="text-center">Đăng Nhập</h2> <!-- Căn giữa tiêu đề -->
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                    <form asp-action="GuiMailXacNhanMatKhau" asp-controller="Account">
+                        <div class="form-group">
+                            <label for="Email">Email</label>
+                            <input asp-for="Email" class="form-control" id="Email" placeholder="Nhập Email" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        
+
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-lg btn-primary">Gửi Mail</button>
+                        </div>
+
+                        <div class="text-center">
+                            <p>Bạn chưa có tài khoản? <a asp-action="DangKy" asp-controller="Account">Đăng Ký</a></p>
+                        </div>
+                    </form>
+                </div><!--/sign up form-->
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
