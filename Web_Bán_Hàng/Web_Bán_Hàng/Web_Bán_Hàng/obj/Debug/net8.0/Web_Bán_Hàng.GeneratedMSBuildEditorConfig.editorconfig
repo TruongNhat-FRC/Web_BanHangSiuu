@@ -66,6 +66,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRG9uSGFuZ1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Đồ Án Cuối Kỳ Web/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Areas/Admin/Views/KhuyenMai/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcS2h1eWVuTWFpXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Đồ Án Cuối Kỳ Web/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Areas/Admin/Views/LienHe/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTGllbkhlXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -174,12 +178,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxEYW5nTmhhcC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Đồ Án Cuối Kỳ Web/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Views/Account/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Đồ Án Cuối Kỳ Web/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Views/Account/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Đồ Án Cuối Kỳ Web/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Views/Account/LichSuGioHang.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMaWNoU3VHaW9IYW5nLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Đồ Án Cuối Kỳ Web/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Views/Account/LichSuMuaHang.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMaWNoU3VNdWFIYW5nLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Đồ Án Cuối Kỳ Web/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Views/Account/Not_Quyen.cshtml]
@@ -276,6 +288,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Đồ Án Cuối Kỳ Web/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Views/Shared/SlidePartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFNsaWRlUGFydGlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Đồ Án Cuối Kỳ Web/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Views/Shared/_FilterPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9GaWx0ZXJQYXJ0aWFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Đồ Án Cuối Kỳ Web/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Views/Shared/_phantrang.cshtml]

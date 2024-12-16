@@ -46,13 +46,21 @@ namespace Web_Bán_Hàng.Controllers
                     var shippingPriceJson = PhiShipCookie;
                     Phishiphtml = JsonConvert.DeserializeObject<decimal>(shippingPriceJson);
                 }
+                var PhanTramGiamCookie = Request.Cookies["CouponGia"];
+                decimal PhanTramhtml = 0;
+
+                if (!string.IsNullOrEmpty(PhanTramGiamCookie))
+                {
+                    PhanTramhtml = decimal.Parse(PhanTramGiamCookie);
+                }
                 var madonhang = Guid.NewGuid().ToString();
                 var orderItem = new DonHangModel();
                 orderItem.MaDonHang = madonhang;
                 orderItem.PhiShip = Phishiphtml;
                 orderItem.MaNguoiDung = usermail;
-                orderItem.TrangThai = 1; // Trạng thái là "Đã thanh toán"
+                orderItem.TrangThai = 0; // Trạng thái là "chưa xuwo lý , dang xu lý "
                 orderItem.NgayDat = DateTime.Now;
+                orderItem.PhanTramGiaGia = PhanTramhtml ;
 
                 // Tính tổng tiền cho đơn hàng
                 List<CartItemModel> cartItem = HttpContext.Session.GetJson<List<CartItemModel>>("Cart") ?? new List<CartItemModel>();
@@ -85,6 +93,16 @@ namespace Web_Bán_Hàng.Controllers
 
 				// Cập nhật tổng tiền cho đơn hàng
 				orderItem.TongTienCuoi = totalAmount;
+                // Tính toán tổng tiền sau khi giảm giá
+                if (PhanTramhtml > 0 && PhanTramhtml <= 100) // Đảm bảo phần trăm giảm giá hợp lệ
+                {
+                    decimal discountAmount = (totalAmount * PhanTramhtml) / 100; // Số tiền giảm giá
+                    orderItem.TienSaiKhiGiam = totalAmount - discountAmount; // Tổng tiền sau khi giảm
+                }
+                else
+                {
+                    orderItem.TienSaiKhiGiam = totalAmount; // Không giảm giá
+                }
 
                 // Lưu đơn hàng và chi tiết đơn hàng
                 _datacontext.Add(orderItem);
@@ -93,6 +111,7 @@ namespace Web_Bán_Hàng.Controllers
                 // Xóa giỏ hàng sau khi thanh toán
                 HttpContext.Session.Remove("Cart");
                 Response.Cookies.Delete("Phiship");
+                Response.Cookies.Delete("CouponGia");
                 //Send mail order when success
                 var receiver = usermail;
 				var subject = "Trạng thái đặt hàng hàng .";

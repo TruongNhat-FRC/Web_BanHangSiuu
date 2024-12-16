@@ -17,9 +17,19 @@ namespace Web_Bán_Hàng.Controllers
 		public IActionResult Index()
 		{
 			List<CartItemModel> cartItem = HttpContext.Session.GetJson<List<CartItemModel>>("Cart") ?? new List<CartItemModel>();
+
+            var PhanTramGiamCookie = Request.Cookies["CouponGia"];
+            decimal PhanTramhtml = 0;
+
+            if (!string.IsNullOrEmpty(PhanTramGiamCookie))
+            {
+                PhanTramhtml = decimal.Parse(PhanTramGiamCookie); 
+            }
+
+
+
             var PhiShipCookie = Request.Cookies["Phiship"];
             decimal Phishiphtml = 0;
-
             if (PhiShipCookie != null)
             {
                 var shippingPriceJson = PhiShipCookie;
@@ -31,7 +41,9 @@ namespace Web_Bán_Hàng.Controllers
 			{
 				CartItem = cartItem,
 				GrandTotal = cartItem.Sum(p => p.Quantity * p.Price),
-                Phiship = Phishiphtml
+                Phiship = Phishiphtml,
+                PhanTramGiam = PhanTramhtml
+                
 
 			};
 
@@ -216,6 +228,43 @@ namespace Web_Bán_Hàng.Controllers
             Response.Cookies.Delete("Phiship");
             return RedirectToAction("Index", "Cart");
         }
+        [HttpPost]
+        public async Task<IActionResult> GetCoupon(string coupon_value)
+        {
+            // Tìm coupon hợp lệ trong bảng KhuyenMais
+            var validCoupon = await _datacontext.KhuyenMais
+                .FirstOrDefaultAsync(x => x.Name == coupon_value && x.SoLuong > 0 && x.trangthai == 1); // Kiểm tra trạng thái coupon (trangthai == 1 là còn hiệu lực)
+
+            if (validCoupon != null)
+            {
+                // Nếu coupon hợp lệ, lấy giá trị Gia
+                decimal couponGia = validCoupon.Gia;
+
+                // Thiết lập cookie với giá trị giảm giá
+                var cookieOptions = new CookieOptions
+                {
+                    HttpOnly = true,
+                    Expires = DateTimeOffset.UtcNow.AddMinutes(30), // Cookie hết hạn sau 30 phút
+                    Secure = true,
+                    SameSite = SameSiteMode.Strict
+                };
+
+                // Lưu giá trị Gia vào cookie dưới dạng string
+                Response.Cookies.Append("CouponGia", couponGia.ToString(), cookieOptions);
+
+                // Trả về kết quả thành công
+                return Json(new { success = true, message = "Mã giảm giá đã được áp dụng thành công", CouponGia = couponGia });
+            }
+            else
+            {
+                // Nếu không tìm thấy coupon hoặc không hợp lệ
+                return Json(new { success = false, message = "Mã giảm giá không tồn tại hoặc đã hết hạn" });
+            }
+        }
+
+
+
+
 
 
 

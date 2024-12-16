@@ -22,7 +22,8 @@ namespace Web_Bán_Hàng.Database
         public DbSet<LienHeModel> LienHes { get; set; }
         public DbSet<YeuThichModel> YeuThichs { get; set; }
         public DbSet<SoSanhModel> SoSanhs { get; set; }
-        public DbSet<VanChuyenModel> VanChuyens { get; set; }   
+        public DbSet<VanChuyenModel> VanChuyens { get; set; } 
+        public DbSet<KhuyenMaiModel> KhuyenMais { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

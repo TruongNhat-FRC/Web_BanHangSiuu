@@ -1,9 +1,8 @@
-﻿@model IEnumerable<DonHangModel>
+﻿@model List<DonHangModel>
 @{
     ViewData["Title"] = "Danh Sách Đơn Hàng";
 }
-<html>
-<h1 class="text-center my-4">Danh Sách Đơn Hàng</h1>
+<h1 class="text-center my-4">Lịch Sử Mua Hàng Của Bạn</h1>
 <!-- Bảng Đơn Hàng -->
 <div class="container">
     <table class="table table-bordered table-hover text-center" id="my_donhang">
@@ -36,33 +35,33 @@
                         <td>
                             @if (@item.TrangThai == 0)
                             {
-                                <span class="text text-primary">Đơn Hàng Mới</span>
+                                <span class="text text-primary">Đang Xử Lý</span>
                             }
                             else if(item.TrangThai == 1)
                             {
                                 <span class="text text-success">Đã Xử Lý</span>
                             }
-                            else{
-                                    <span class="text text-danger">Đã Bị Hủy</span>
+                            else
+                            {
+                                <span class="text text-danger">Đã Hủy</span>
                             }
                         </td>
                         <td style="width: 250px;">
                             <div class="btn-group" role="group">
-                                <a asp-action="Details" class="btn btn-sm btn-success me-1" asp-controller="DonHang" asp-route-madonhang="@item.MaDonHang">
+                                <a asp-action="Details" class="btn btn-sm btn-success me-1" asp-controller="Account"  asp-route-madonhang="@item.MaDonHang">
                                     <i class="fas fa-eye"></i> Chi Tiết
                                 </a>
-                                <a asp-action="Delete" asp-area="Admin" class="btn btn-sm btn-danger me-1 confirmDeletion" asp-controller="DonHang" asp-route-madonhang="@item.MaDonHang">
-                                    <i class="fas fa-trash"></i> Xóa
-                                </a>
-                                
-                                <a asp-action="Edit" asp-area="Admin" class="btn btn-sm btn-warning confirmDeletion" asp-controller="DonHang" asp-route-madonhang="@item.MaDonHang">
-                                    <i class="fas fa-edit"></i> Sửa
-                                </a>
-                               
+                                @if(item.TrangThai != 3 && item.TrangThai != 1)
+                                {
+                                    <a asp-action="HuyDonHang" class="btn btn-sm btn-danger me-1" asp-controller="Account" asp-route-madonhang="@item.MaDonHang">
+                                        <i class="fas fa-eye"></i> Hủy Đơn
+                                    </a>
+                                }
+
                             </div>
                         </td>
 
-                       
+
                     </tr>
                 }
             }

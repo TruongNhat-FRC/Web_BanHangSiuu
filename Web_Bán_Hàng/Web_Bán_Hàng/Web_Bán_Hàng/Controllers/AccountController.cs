@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 using Web_Bán_Hàng.Database;
 using Web_Bán_Hàng.Models;
 using Web_Bán_Hàng.Models.ViewModel;
@@ -434,6 +435,67 @@ namespace Web_Bán_Hàng.Controllers
             TempData["success"] = "Thêm vào giỏ hàng thành công";
             return Redirect(Request.Headers["Referer"].ToString());
         }
+
+
+        public async Task<IActionResult> LichSuMuaHang()
+        {
+            if ((bool)!User.Identity?.IsAuthenticated)
+            {
+                return RedirectToAction("DangNhap", "Account");
+            }
+            var userId = User.FindFirstValue(ClaimTypes.Name);
+            var userEmail = User.FindFirstValue(ClaimTypes.Email);
+            var donhang = await _datacontext.DonHangs.Where(d => d.MaNguoiDung == userEmail).OrderByDescending(w => w.ID).ToListAsync();
+
+            return View(donhang);
+        }
+        public async Task<IActionResult> Details(string madonhang)
+        {
+            var donHang = await _datacontext.DonHangs
+                .Include(d => d.ChiTietDonHangs) // Bao gồm các chi tiết đơn hàng
+                .ThenInclude(ct => ct.Product) // Bao gồm thông tin sản phẩm (nếu có)
+                .FirstOrDefaultAsync(d => d.MaDonHang == madonhang);
+
+            if (donHang == null)
+            {
+                return NotFound();
+            }
+
+            return View(donHang);
+        }
+        public async Task<IActionResult> HuyDonHang(string madonhang)
+        {
+            // Kiểm tra nếu người dùng chưa đăng nhập
+            if (!(User.Identity?.IsAuthenticated ?? false))
+            {
+                // Người dùng chưa đăng nhập, chuyển hướng tới trang đăng nhập
+                return RedirectToAction("DangNhap", "Account");
+            }
+
+            try
+            {
+                // Tìm đơn hàng dựa trên mã đơn hàng
+                var order = await _datacontext.DonHangs
+                    .Where(o => o.MaDonHang == madonhang)
+                    .FirstAsync();
+
+                // Cập nhật trạng thái của đơn hàng
+                order.TrangThai = 3; // 3: trạng thái đã hủy
+                _datacontext.Update(order);
+
+                // Lưu thay đổi vào cơ sở dữ liệu
+                await _datacontext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                // Xử lý lỗi và trả về phản hồi lỗi
+                return BadRequest("Lỗi");
+            }
+
+            // Chuyển hướng về trang lịch sử đơn hàng
+            return RedirectToAction("LichSuMuaHang", "Account");
+        }
+
 
 
 

@@ -5,5 +5,6 @@
 		public List<CartItemModel> CartItem { get; set; }
 		public decimal GrandTotal {  get; set; }
 		public decimal Phiship {  get; set; }	
+		public decimal PhanTramGiam { get; set; }
 	}
 }

@@ -1,7 +1,7 @@
 ﻿@model Web_Bán_Hàng.Models.DonHangModel
 
 <div class="container mt-5">
-    <h2 class="text-center mb-4">Chi Tiết Đơn Hàng</h2>
+    <h2 class="text-center mb-4">Chi Tiết Đơn Hàng Của Bạn</h2>
 
     <!-- Thông tin đơn hàng -->
     <div class="card shadow-lg mb-4">
@@ -19,16 +19,17 @@
                         <strong>Trạng thái:</strong>
                         @if (Model.TrangThai == 1)
                         {
-                            <span class="badge text-success">Đã Xử Lý</span>
+                            <span class="badge bg-success">Đã xử lý</span>
                         }
                         else if(Model.TrangThai == 0)
                         {
-                            <span class="badge text-warning">Đang Xử Lý</span>
+                            <span class="badge bg-warning">Đang Xử Lý</span>
                         }
-                        else
+                        else 
                         {
-                            <span class="badge text-danger">Đã Hủy</span>
+                            <span class="badge bg-danger">Đã Hủy</span>
                         }
+
                     </p>
                 </div>
             </div>
@@ -82,7 +83,7 @@
             <h4 class="mb-0">Tổng Tiền Sau Khi Giảm Giá: <span class="text-danger">@Model.TienSaiKhiGiam.ToString("#,0") VND</span></h4>
             <h4 class="mb-0">Phí Ship: <span class="text-info">@Model.PhiShip.ToString("#,0") VND</span></h4>
         </div>
-        
-        
+
+
     </div>
 </div>

@@ -91,10 +91,9 @@ namespace Web_Bán_Hàng.Areas.Admin.Controllers
 
 				if (donHang != null)
 				{
-					donHang.MaNguoiDung = donHangModel.MaNguoiDung;
-					donHang.NgayDat = donHangModel.NgayDat;
+					
 					donHang.TrangThai = donHangModel.TrangThai;
-					donHang.TongTienCuoi = donHangModel.TongTienCuoi;
+					
 
 					_datacontext.Update(donHang);
 					await _datacontext.SaveChangesAsync();

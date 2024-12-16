@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Web_Bán_Hàng.Database;
 
@@ -11,9 +12,11 @@ using Web_Bán_Hàng.Database;
 namespace Web_Bán_Hàng.Migrations
 {
     [DbContext(typeof(Datacontext))]
-    partial class DatacontextModelSnapshot : ModelSnapshot
+    [Migration("20241216024502_Update_KhuyeMai")]
+    partial class Update_KhuyeMai
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -412,13 +415,7 @@ namespace Web_Bán_Hàng.Migrations
                     b.Property<DateTime>("NgayDat")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("PhanTramGiaGia")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<decimal>("PhiShip")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("TienSaiKhiGiam")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("TongTienCuoi")

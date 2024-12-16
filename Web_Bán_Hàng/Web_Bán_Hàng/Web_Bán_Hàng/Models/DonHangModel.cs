@@ -13,6 +13,8 @@ namespace Web_Bán_Hàng.Models
         public int TrangThai { get; set; }
         public decimal PhiShip { get; set; }
         public decimal TongTienCuoi { get; set; }
+        public decimal PhanTramGiaGia { get; set; }
+        public decimal TienSaiKhiGiam { get; set; }
         // Liên kết với bảng ChiTietDonHang
         public virtual ICollection<ChiTietDonHang> ChiTietDonHangs { get; set; }
     }

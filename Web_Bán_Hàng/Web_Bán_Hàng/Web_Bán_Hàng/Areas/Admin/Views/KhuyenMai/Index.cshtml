@@ -1,0 +1,157 @@
+﻿@model Web_Bán_Hàng.Models.KhuyenMaiModel
+@{
+    ViewData["Title"] = "Thêm Mã Khuyễn Mãi";
+}
+<h4>Thêm Mã Khuyến Mãi</h4>
+<div>
+    <form asp-action="Add" asp-controller="KhuyenMai" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+
+
+        <div class="form-group">
+            <label> Tên Mã Khuyễn Mãi</label>
+            <input asp-for="Name" class="form-control" id="Name" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+
+        <div class="form-group">
+            <label for="Mota">Mô Tả</label>
+            <textarea asp-for="Mota" class="form-control" id="Mota"></textarea>
+            <span asp-validation-for="Mota" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="Gia">Phần trăm giảm</label>
+            <p>Chỉ cần nhập số phần trăm giảm(Ví dụ 50% = 50)</p>
+            <textarea asp-for="Gia" class="form-control" id="Gia"></textarea>
+            <span asp-validation-for="Gia" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label> Ngày Bắt Đầu</label>
+            <input asp-for="NgayBatDau" class="form-control" id="NgayBatDau" />
+            <span asp-validation-for="NgayBatDau" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label> Ngày Kết Thúc</label>
+            <input asp-for="NgayKetThuc" class="form-control" id="NgayKetThuc" />
+            <span asp-validation-for="NgayKetThuc" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="SoLuong">Số Lượng Mã Khuyễn Mãi</label>
+            <input asp-for="SoLuong" class="form-control" id="SoLuong" min="0" max="100" />
+            <span asp-validation-for="SoLuong" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="trangthai">Trạng Thái</label>
+            <select asp-for="trangthai" class="form-control" id="trangthai">
+                <option value="0"> Ẩn</option>
+                <option value="1"> Hiển thị</option>
+
+            </select>
+            <span asp-validation-for="trangthai" class="text-danger"></span>
+        </div>
+
+
+
+
+
+        <div class="form-group">
+            <button class="btn btn-sm btn-primary">Add</button>
+        </div>
+    </form>
+
+    <div class="container">
+        <table class="table" id="my_khuyenmai">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Tên Mã Khuyến Mãi</th>
+                    <th scope="col">Mô tả</th>
+                    <th scope="col">Ngày Bắt Đầu</th>
+                    <th scope="col">Ngày Kết Thúc</th>
+                    <th scope="col">Số lượng</th>
+                    <th scope="col">Trạng Thái</th>
+                    <th scope="col">Giá</th>
+                    <th scope="col">Khả Dụng</th>
+                    <th scope="col">Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (ViewBag.KhuyenMai != null )
+                {
+                    foreach (var item in ViewBag.KhuyenMai)
+                    {
+                        @if (item.trangthai == 1)
+                        {
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>@item.Name</td>
+                                <td>@item.Mota</td>
+                                <td>@item.NgayBatDau.ToString("dd/MM/yyyy")</td>
+                                <td>@item.NgayKetThuc.ToString("dd/MM/yyyy")</td>
+                                <td>@item.SoLuong</td>
+                                <td>
+                                    @(item.trangthai == 1 ? "Hoạt động" : "Không hoạt động")
+                                </td>
+                                <td>@item.Gia.ToString("#,0") %</td>
+                                <td>
+                                    <a asp-action="Edit" class="btn btn-sm btn-success me-1" asp-controller="KhuyenMai" asp-route-id="@item.Id">
+                                        <i class="fas fa-edit"></i> Sửa
+                                    </a>
+                                    <a asp-action="Delete" class="btn btn-sm btn-danger confirmDeletion" asp-controller="KhuyenMai" asp-route-id="@item.Id">
+                                        <i class="fas fa-trash"></i> Xóa
+                                    </a>
+                                </td>
+                                <td>
+                                    @if (item.NgayKetThuc < DateTime.Now)
+                                    {
+                                        <span class="text text-danger">Hết Hạn</span>
+                                    }
+                                    else
+                                    {
+                                        TimeSpan remainingTime = item.NgayKetThuc - DateTime.Now;
+                                        int daysRemaining = remainingTime.Days;
+                                        @if (daysRemaining == 0)
+                                        {
+                                            <span class="text text-danger">Hôm nay</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="text text-success">@daysRemaining ngày nữa</span>
+                                        }
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="9" class="text-center">Không có khuyến mãi nào</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+   <script>
+        let table = new DataTable('#my_diachi');
+   </script>
+
+
+}
+
+
+
