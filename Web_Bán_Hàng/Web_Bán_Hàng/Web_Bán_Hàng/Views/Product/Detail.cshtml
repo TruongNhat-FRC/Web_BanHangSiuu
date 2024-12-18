@@ -96,6 +96,8 @@
 					<p><b>Số lượng: @Model.ProductDetail.Quantity</b></p>
 					<p><b>Thương Hiệu:</b>@Model.ProductDetail.Brand.Name</b></p>
 					<p><b>Danh Mục:</b>@Model.ProductDetail.Category.Name</b></p>
+					<p class="product-name">Lượt mua : @Model.ProductDetail.PurchaseCount</p>
+
 					@if(Model.ProductDetail.Quantity > 0)
 					{
 						<a class="btn btn-default add-to-cart" asp-action="Add" asp-controller="Cart" asp-route-id="@Model.ProductDetail.Id"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
@@ -396,6 +398,8 @@
 																<img src="~/image/@sanphamlq.Image" alt="@sanphamlq.Name" class="img-fluid mb-3" style="max-height: 300px; object-fit: cover;" />
 																<h4 class="prices">@sanphamlq.Price.ToString("#,0") VND</h4>
 																<p class="product-name">@sanphamlq.Name</p>
+																
+
 															</div>
 														</a>
 													</div>

@@ -23,7 +23,9 @@ namespace Web_Bán_Hàng.Areas.Admin.Controllers
         public  async Task<IActionResult> Index(int pg = 1) // Thay vì tr = 1
         {
             List<CategoryModel> danhmuc = _datacontext.Categories.ToList();
-            const int KichThuoc = 10;
+            
+		
+			const int KichThuoc = 10;
             if (pg < 1)
             {
                 pg = 1;

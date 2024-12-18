@@ -15,6 +15,7 @@ namespace Web_Bán_Hàng.Controllers
 		public async Task<IActionResult> Index(string Slug = "")
 		{
 			BrandModel brand = _datacontext.Brands.Where(c => c.Slug == Slug).FirstOrDefault();
+			ViewBag.Name = brand.Name;
 			if (brand == null)
 			{
 				return RedirectToAction("Index");

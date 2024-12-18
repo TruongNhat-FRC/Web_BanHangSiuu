@@ -118,6 +118,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2xpZGVyXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Đồ Án Cuối Kỳ Web/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Areas/Admin/Views/ThongKe/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVGhvbmdLZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Đồ Án Cuối Kỳ Web/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Areas/Admin/Views/UserRole/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlclJvbGVcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -304,6 +308,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Đồ Án Cuối Kỳ Web/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Views/Shared/_phantrang.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9waGFudHJhbmcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Đồ Án Cuối Kỳ Web/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Views/Shared/_phantrang2partile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9waGFudHJhbmcycGFydGlsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Đồ Án Cuối Kỳ Web/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Views/Shared/_Sidebar.cshtml]

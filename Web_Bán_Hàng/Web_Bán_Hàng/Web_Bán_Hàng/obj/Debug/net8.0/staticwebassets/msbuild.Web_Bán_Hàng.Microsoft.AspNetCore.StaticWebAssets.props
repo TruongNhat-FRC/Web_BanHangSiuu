@@ -480,6 +480,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\image\9eb43268-b3bb-4ed5-a2e2-df995162df06_cautrucdulieu.jpg))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\image\9f981ba8-bb86-45d7-9322-20f92346d0ad_cuocgiaotranhthoichienquoc.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>Web_Bán_Hàng</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Web_Bán_Hàng</BasePath>
+      <RelativePath>image/9f981ba8-bb86-45d7-9322-20f92346d0ad_cuocgiaotranhthoichienquoc.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\image\9f981ba8-bb86-45d7-9322-20f92346d0ad_cuocgiaotranhthoichienquoc.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\image\a7875c12-5113-4b16-bced-11be86a4d164_sotaynhathoimien.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>Web_Bán_Hàng</SourceId>

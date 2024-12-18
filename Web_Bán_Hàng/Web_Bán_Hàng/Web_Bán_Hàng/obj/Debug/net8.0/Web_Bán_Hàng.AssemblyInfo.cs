@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Web_Bán_Hàng")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+30d3c29eae721c52b46331f01d493c2dd5594978")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d16ecbdda999ed0d828fb489f684a0ad1d571489")]
 [assembly: System.Reflection.AssemblyProductAttribute("Web_Bán_Hàng")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Web_Bán_Hàng")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

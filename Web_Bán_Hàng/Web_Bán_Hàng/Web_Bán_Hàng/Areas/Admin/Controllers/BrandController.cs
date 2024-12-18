@@ -26,8 +26,8 @@ namespace Web_Bán_Hàng.Areas.Admin.Controllers
             var brandsQuery = _datacontext.Brands.OrderByDescending(p => p.Id);
             var totalBrands = await brandsQuery.CountAsync();
 
-            // Tính toán phân trang
-            var paging = new PhanTrang(totalBrands, pg, pageSize);
+			// Tính toán phân trang
+			var paging = new PhanTrang(totalBrands, pg, pageSize);
             var skip = (pg - 1) * pageSize;
 
             // Lấy danh sách thương hiệu cho trang hiện tại

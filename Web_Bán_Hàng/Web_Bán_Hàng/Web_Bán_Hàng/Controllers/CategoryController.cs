@@ -23,6 +23,7 @@ namespace Web_Bán_Hàng.Controllers
 				return RedirectToAction("Index");
 			}
 			IQueryable<ProductModel> productByCategory = _datacontext.Products.Where(p => p.CategoryId == category.Id);
+			ViewBag.Name = category.Name;
 			var count = await productByCategory.CountAsync();
 			if(count > 0)
 			{

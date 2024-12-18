@@ -78,23 +78,59 @@
 							<ul class="nav navbar-nav">
 								@if (User.Identity?.IsAuthenticated ?? false)
 								{
-									<li><a asp-action="Index" asp-controller="Cart" class="fs-5"><i class="fa fa-shopping-cart"></i> Thanh Toán</a></li>
-									<li><a asp-action="LichSuGioHang" asp-controller="Account" class="fs-5"><i class="fa fa-shopping-cart"></i>Giỏ Hàng</a></li>
-									<li><a asp-action="LichSuMuaHang" asp-controller="Account" class="fs-5"><i class="fa fa-shopping-cart"></i>Lịch Sử Mua Hàng</a></li>
+									
+									<li class="dropdown">
+										<a style="cursor : pointer" class="fs-5 dropdown-toggle" data-toggle="dropdown">
+											<i class="fa fa-shopping-cart"></i>Mua Sắm
+											<span class="caret"></span>
+
+										</a>
+										<ul class="dropdown-menu">
+											<li><a asp-action="Index" asp-controller="Cart" class="fs-5"><i class="fa fa-cart-arrow-down"></i> Đặt Hàng</a></li>
+											<li><a asp-action="LichSuGioHang" asp-controller="Account" class="fs-5"><i class="fa fa-shopping-basket"></i>Sản Phảm Chưa Được Thanh Toán</a></li>
+											<li><a asp-action="ListYeuThich" asp-controller="Home" class="fs-5"><i class="fa fa-heart"></i> Yêu Thích </a></li>
+										</ul>
+									</li>
+									<li class ="dropdown">
+										<a style="cursor : pointer" class="fs-5 dropdown-toggle" data-toggle="dropdown">
+											<i class="fa fa-user"></i>Tài Khoản
+											<span class="caret"></span>
+											
+										</a>
+										<ul class="dropdown-menu">
+											<li><a asp-action="LichSuMuaHang" asp-controller="Account"><i class="fa fa-history"></i> Lịch Sử Đơn Hàng</a></li>
+											<li><a asp-action="CapNhatThongTinCaNhan" asp-controller="Account"><i class="fa fa-user-circle"></i> Thông Tin Tài Khoản</a></li>
+
+											<li><a href="#">Page 1-3</a></li>
+										</ul>
+									</li>
+									<li class="dropdown">
+										<a style="cursor : pointer" class="fs-5 dropdown-toggle" data-toggle="dropdown">
+											<i class="fa fa-tachometer-alt"></i>
+												Hoạt Động
+											<span class="caret"></span>
+
+										</a>
+										<ul class="dropdown-menu">
+											<li><a asp-action="DangXuat" asp-controller="Account" class="fs-5"><i class="fa fa-lock"></i> Đăng Xuất</a></li>
+											
+										</ul>
+									</li>
+									
 
 
-									<li><a asp-action="DangXuat" asp-controller="Account" class="fs-5"><i class="fa fa-lock"></i> Đăng Xuất</a></li>
-									<li><a class="fs-5" asp-action="CapNhatThongTinCaNhan" asp-controller="Account"><i class="fa fa-user"></i> Chào, @User.Identity.Name</a></li>
+									
+									<li><a class="fs-5"><i class="fa fa-user"></i> Chào, @User.Identity.Name</a></li>
 @* 									<li><a href="#" class="fs-5"><i class="fa fa-user"></i> Account</a></li>
  *@
 									@if (User.IsInRole("Admin"))
 									{
-										<li><a asp-action="Index" asp-controller="Product" asp-area="Admin" class="fs-5"><i class="fa fa-lock"></i> Quản Lý</a></li>
+										<li><a asp-action="Index" asp-controller="Product" asp-area="Admin" class="fs-5"><i class="fa fa-cogs"></i> Quản Lý</a></li>
 									}
 								}
 								else
 								{
-									<li><a asp-action="DangNhap" asp-controller="Account"><i class="fa fa-lock"></i> Đăng Nhập</a></li>
+									<li><a asp-action="DangNhap" asp-controller="Account"><i class="fa fa-sign-in-alt"></i> Đăng Nhập</a></li>
 								}
 							</ul>
 						</div>
@@ -132,7 +168,7 @@
 										<li><a href="blog-single.html">Blog Single</a></li>
 									</ul>
 								</li>
-								<li><a asp-action="ListYeuThich" asp-controller="Home" class="fs-5"><i class="fa fa-star"></i> Yêu Thích </a></li>
+								
 @* 								<li><a asp-action="ListSoSanh" asp-controller="Home"  class="fs-5"><i class="fa fa-star"></i> So Sánh</a></li>
  *@
 								<li><a asp-action="LienHe" asp-controller="Home" >Liên Hệ</a></li>

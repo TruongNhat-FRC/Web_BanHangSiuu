@@ -100,6 +100,14 @@ namespace Web_Bán_Hàng.Controllers
 		public async Task<IActionResult> TimKiem(string searchkey)
 		{
 			var products = await _datacontext.Products.Where(p => p.Name.Contains(searchkey) || p.Description.Contains(searchkey)).ToListAsync();
+			var sanPhamHot = _datacontext.Products
+										  .Where(p => p.IsVisible)
+										  .OrderByDescending(p => p.PurchaseCount)
+										  .Take(10)
+										  .ToList();
+
+
+			ViewBag.SanPhamHot = sanPhamHot;
 			ViewBag.Keyword = searchkey;
 			return View(products);
 		}
@@ -149,29 +157,46 @@ namespace Web_Bán_Hàng.Controllers
 				return RedirectToAction("Detail", new { id = danhGia.ProductId });
 			}
 		}
-		//Show full
-		public async Task<IActionResult> Showfull(string Id)
-		{
-			if (string.IsNullOrEmpty(Id)) return RedirectToAction("Index");
+        //Show full
+        public async Task<IActionResult> Showfull(string Id, int pg = 1)
+        {
+            if (string.IsNullOrEmpty(Id)) return RedirectToAction("Index");
 
-			var productbyId = await _datacontext.Products
-				.Include(p => p.DanhGias)
-				.Where(p => p.Id == Id)
-				.FirstOrDefaultAsync();
+            var productbyId = await _datacontext.Products
+                .Include(p => p.DanhGias)
+                .Where(p => p.Id == Id)
+                .FirstOrDefaultAsync();
 
-			if (productbyId == null) return RedirectToAction("Index");
+            if (productbyId == null) return RedirectToAction("Index");
 
-			// Tạo model để gửi dữ liệu qua view
-			var viewModel = new ProductDanhGiaModel
-			{
-				ProductDetail = productbyId,
-				DanhGias = productbyId.DanhGias.OrderByDescending(d => d.CreatedAt).ToList()  // Sắp xếp theo ngày tạo
-			};
+            const int pageSize = 7; // Số lượng đánh giá mỗi trang
+            var totalDanhGias = productbyId.DanhGias.Count(); // Tổng số đánh giá
 
-			return View(viewModel);
-		}
+            // Tính toán phân trang
+            var paging = new PhanTrang(totalDanhGias, pg, pageSize);
+            var skip = (pg - 1) * pageSize;
+
+            // Lấy danh sách đánh giá cho trang hiện tại
+            var danhGias = productbyId.DanhGias.OrderByDescending(d => d.CreatedAt)
+                                               .Skip(skip)
+                                               .Take(pageSize)
+                                               .ToList();
+
+            // Tạo model để gửi dữ liệu qua view
+            var viewModel = new ProductDanhGiaModel
+            {
+                ProductDetail = productbyId,
+                DanhGias = danhGias
+            };
+
+            // Truyền thông tin phân trang vào View
+            ViewBag.Paging = paging;
+
+            return View(viewModel);
+        }
 
 
 
-	}
+
+    }
 }

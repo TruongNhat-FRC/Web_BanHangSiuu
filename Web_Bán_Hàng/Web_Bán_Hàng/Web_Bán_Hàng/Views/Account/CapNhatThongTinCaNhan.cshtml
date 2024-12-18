@@ -1,4 +1,4 @@
-﻿@model Web_Bán_Hàng.Models.UserModel
+﻿@model Web_Bán_Hàng.Models.AppUserModel
 
 @{
     ViewData["Title"] = "Cập nhật thông tin cá nhân";
@@ -6,29 +6,48 @@
 
 <h2>Cập nhật thông tin cá nhân</h2>
 
-<form asp-action="CapNhatThongTinCaNhan" method="post">
+<form asp-action="CapNhatThongTinCaNhan" asp-controller="Account" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
     <div class="form-group">
-        <label for="UserName">Tên người dùng</label>
-        <input type="text" id="UserName" name="UserName" value="@Model.UserName" class="form-control" readonly />
+        <label>UserName</label>
+        <input asp-for="UserName" required class="form-control" />
         <span asp-validation-for="UserName" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label for="FullName">Họ và tên</label>
-        <input type="text" class="form-control" id="FullName" name="FullName" value="@Model.FullName" />
-        <span asp-validation-for="FullName" class="text-danger"></span>
-    </div>
     </div>
 
     <div class="form-group">
-        <label for="Email">Email</label>
-        <input type="email" id="Email" name="Email" value="@Model.Email" class="form-control" />
+        <label>Email</label>
+        <input asp-for="Email" required class="form-control" />
         <span asp-validation-for="Email" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label for="PhoneNumber">Số điện thoại</label>
-        <input type="text" id="PhoneNumber" name="PhoneNumber" value="@Model.PhoneNumber" class="form-control" />
+        <label>Phone Number</label>
+        <input asp-for="PhoneNumber" required class="form-control" />
         <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Họ và tên</label>
+        <input asp-for="FullName" required class="form-control" />
+        <span asp-validation-for="FullName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Mật Khẩu Cũ</label>
+        <input type="password" name="OldPassword" required class="form-control" />
+    </div>
+
+
+    <div class="form-group">
+        <label>Mật Khẩu Mới</label>
+        <input asp-for="PasswordHash" type="password" required class="form-control" />
+        <span asp-validation-for="PasswordHash" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <span class="text-danger">
+            Sau khi cập nhật thông tin cá nhân, vui lòng cập nhật lại mật khẩu để bảo mật thông tin.
+        </span>
     </div>
 
     <button type="submit" class="btn btn-primary">Lưu thay đổi</button>

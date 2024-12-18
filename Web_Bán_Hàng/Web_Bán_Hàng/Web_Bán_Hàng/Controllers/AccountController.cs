@@ -389,7 +389,7 @@ namespace Web_Bán_Hàng.Controllers
 			return View();
 		}
         // Hiển thị form cập nhật thông tin cá nhân
-        public async Task<IActionResult> CapNhatThongTinCaNhan()
+        /*public async Task<IActionResult> CapNhatThongTinCaNhan()
         {
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
@@ -408,9 +408,9 @@ namespace Web_Bán_Hàng.Controllers
 
             return View(viewModel);
         }
-
+*/
         // Xử lý logic cập nhật thông tin cá nhân
-        [HttpPost]
+        /*[HttpPost]
         public async Task<IActionResult> CapNhatThongTinCaNhan(UserModel model)
         {
             // Lấy thông tin người dùng đang đăng nhập
@@ -449,12 +449,70 @@ namespace Web_Bán_Hàng.Controllers
                 ModelState.AddModelError("", error.Description);
             }
 
-            // Log lỗi nếu cần thiết
-            Console.WriteLine("Cập nhật không thành công: " + string.Join(", ", result.Errors.Select(e => e.Description)));
 
             // Nếu có lỗi, trả lại form cùng với thông báo
             return View(model);
+        }*/
+
+        public async Task<IActionResult> CapNhatThongTinCaNhan()
+        {
+            // Lấy userId từ claim của người dùng hiện tại
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            // Lấy thông tin user từ cơ sở dữ liệu dựa trên userId
+            var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == userId);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return View(user);
         }
+
+        // POST: Account/CapNhatThongTinCaNhan
+        [HttpPost]
+        public async Task<IActionResult> CapNhatThongTinCaNhan(AppUserModel user, string OldPassword)
+        {
+            // Lấy userId từ claim của người dùng hiện tại
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userById = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == userId);
+
+            if (userById == null)
+            {
+                return NotFound();
+            }
+
+            // Kiểm tra mật khẩu cũ
+            var passwordHasher = new PasswordHasher<AppUserModel>();
+            var passwordVerificationResult = passwordHasher.VerifyHashedPassword(userById, userById.PasswordHash, OldPassword);
+
+            if (passwordVerificationResult == PasswordVerificationResult.Failed)
+            {
+                ModelState.AddModelError(string.Empty, "Mật khẩu cũ không chính xác.");
+                return View(user);
+            }
+
+            // Hash mật khẩu mới
+            var passwordHash = passwordHasher.HashPassword(userById, user.PasswordHash);
+            userById.PasswordHash = passwordHash;
+
+            // Cập nhật thông tin user
+            userById.UserName = user.UserName;
+            userById.Email = user.Email;
+            userById.PhoneNumber = user.PhoneNumber;
+            userById.FullName = user.FullName;
+
+            // Cập nhật thông tin user vào cơ sở dữ liệu
+            _datacontext.Update(userById);
+            await _datacontext.SaveChangesAsync();
+
+            TempData["success"] = "Cập nhật thông tin cá nhân thành công";
+            return RedirectToAction("CapNhatThongTinCaNhan", "Account");
+        }
+
+
+
         public async Task<IActionResult> LichSuGioHang()
         {
             var userId = _userManager.GetUserId(User); // Nếu dùng UserManager để lấy UserId
@@ -486,11 +544,28 @@ namespace Web_Bán_Hàng.Controllers
 
             return RedirectToAction("LichSuGioHang"); // Chuyển hướng về trang lịch sử giỏ hàng
         }
+		[HttpPost]
+		public async Task<IActionResult> XoaSanPhamTuLichSuGioHang(string productId)
+		{
+			var userId = _userManager.GetUserId(User); // Lấy UserId của người dùng
+
+			// Lấy sản phẩm từ cơ sở dữ liệu
+			var cartHistoryItem = await _datacontext.LichSuGioHang
+													 .FirstOrDefaultAsync(c => c.UserId == userId && c.ProductId == productId && !c.IsCheckedOut);
+
+			if (cartHistoryItem != null)
+			{
+				_datacontext.LichSuGioHang.Remove(cartHistoryItem); // Xóa sản phẩm khỏi lịch sử giỏ hàng
+				await _datacontext.SaveChangesAsync(); // Lưu thay đổi vào cơ sở dữ liệu
+			}
+
+			return RedirectToAction("LichSuGioHang"); // Chuyển hướng về trang lịch sử giỏ hàng
+		}
 
 
 
-        ///Bonus
-        public async Task<IActionResult> Add(string id)
+		///Bonus
+		public async Task<IActionResult> Add(string id)
         {
             // Kiểm tra nếu người dùng chưa đăng nhập
             if (!User.Identity.IsAuthenticated)

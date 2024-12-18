@@ -32,8 +32,17 @@ namespace Web_Bán_Hàng.Controllers
                                                        .ToList();
             var slide = _datacontext.Sliders.Where(s => s.Status == 1).ToList();
             ViewBag.Slide = slide;
+			
+			var sanPhamHot = _datacontext.Products
+										  .Where(p => p.IsVisible)  
+										  .OrderByDescending(p => p.PurchaseCount) 
+										  .Take(10)  
+										  .ToList();
 
-            const int KichThuoc = 8; // Số sản phẩm mỗi trang
+			
+			ViewBag.SanPhamHot = sanPhamHot;
+
+			const int KichThuoc = 8; // Số sản phẩm mỗi trang
             if (pg < 1)
             {
                 pg = 1;
@@ -246,7 +255,10 @@ namespace Web_Bán_Hàng.Controllers
             // Chuyển hướng về trang Wishlist
             return RedirectToAction("ListSoSanh", "Home");
         }
+		
 
 
-    }
+
+
+	}
 }

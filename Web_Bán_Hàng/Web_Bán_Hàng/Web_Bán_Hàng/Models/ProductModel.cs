@@ -15,9 +15,12 @@ namespace Web_Bán_Hàng.Models
         [Required]
         [MinLength(10, ErrorMessage = "Mô tả sản phẩm phải có ít nhất 10 ký tự.")]
         public string Description { get; set; }
+		[Range(0, int.MaxValue, ErrorMessage = "Lượt mua phải là một số không âm.")]
+		public int PurchaseCount { get; set; } = 0;
 
 
-        [Required]
+
+		[Required]
         [Range(0, double.MaxValue, ErrorMessage = "Yêu cầu giá sản phẩm phải là một số dương.")]
         public decimal Price { get; set; }
 		public int BrandId { get; set; }

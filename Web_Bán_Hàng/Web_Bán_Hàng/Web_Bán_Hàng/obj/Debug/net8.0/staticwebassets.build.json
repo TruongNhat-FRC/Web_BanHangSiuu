@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "gSTQBO7WFkwNGBC+k3n9P8iVWzP+5BjkiXWu1RBxDkQ=",
+  "Hash": "ktpUXhqVTbeydDZIWeAGKsiNrjvTc41GAP2yriYeOj4=",
   "Source": "Web_Bán_Hàng",
   "BasePath": "_content/Web_Bán_Hàng",
   "Mode": "Default",
@@ -623,6 +623,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\image\\9eb43268-b3bb-4ed5-a2e2-df995162df06_cautrucdulieu.jpg"
+    },
+    {
+      "Identity": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\image\\9f981ba8-bb86-45d7-9322-20f92346d0ad_cuocgiaotranhthoichienquoc.jpg",
+      "SourceId": "Web_Bán_Hàng",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\",
+      "BasePath": "_content/Web_Bán_Hàng",
+      "RelativePath": "image/9f981ba8-bb86-45d7-9322-20f92346d0ad_cuocgiaotranhthoichienquoc.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image\\9f981ba8-bb86-45d7-9322-20f92346d0ad_cuocgiaotranhthoichienquoc.jpg"
     },
     {
       "Identity": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\image\\a7875c12-5113-4b16-bced-11be86a4d164_sotaynhathoimien.jpg",

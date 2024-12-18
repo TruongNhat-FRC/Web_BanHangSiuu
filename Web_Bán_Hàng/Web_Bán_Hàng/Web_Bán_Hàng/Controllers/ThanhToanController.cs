@@ -85,7 +85,8 @@ namespace Web_Bán_Hàng.Controllers
                     if (product != null)
                     {
                         product.Quantity -= item.Quantity; // Giảm số lượng sản phẩm đi
-                        _datacontext.Update(product); // Cập nhật sản phẩm
+						product.PurchaseCount += item.Quantity; // Tăng lượt mua sản phẩm
+						_datacontext.Update(product); // Cập nhật sản phẩm
                     }
 					orderDetailsHtml += $"<tr><td>{item.ProductName}</td><td>{item.Quantity}</td><td>{item.Price.ToString("#,0")} VND</td><td>{(item.Price * item.Quantity).ToString("#,0")} VND</td></tr>";
 				}

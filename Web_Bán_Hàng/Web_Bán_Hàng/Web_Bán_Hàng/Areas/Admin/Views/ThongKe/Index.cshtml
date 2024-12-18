@@ -1,0 +1,180 @@
+﻿@model Web_Ban_Hang.Models.ThongKeViewModel
+
+@{
+    ViewData["Title"] = "Thống Kê ";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Tổng doanh thu</div>
+                <div class="panel-body">
+                    @Model.TongDoanhThu.ToString("#,0") VND
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-success">
+                <div class="panel-heading">Tổng số đơn hàng</div>
+                <div class="panel-body">
+                    @Model.TongDonHang
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-warning">
+                <div class="panel-heading">Tổng số sản phẩm bán ra</div>
+                <div class="panel-body">
+                    @Model.TongSanPhamBanRa
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-danger">
+                <div class="panel-heading">Sản phẩm bán chạy nhất</div>
+                <div class="panel-body">
+                    @Model.SanPhamBanChayNhat
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-info">
+                <div class="panel-heading">Tổng số sản phẩm</div>
+                <div class="panel-body">
+                    @Model.TongSanPham
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-default" style="background-color: white ; color: #343a40;">
+                <div class="panel-heading" style="background-color: #343a40; color: white;">Lượt đánh giá</div>
+                <div class="panel-body">
+                    @Model.LuotDanhGia
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <h4>Chọn thời gian</h4>
+    <button class="btn btn-default" id="btnDay" onclick="changeChart('day')">Theo Ngày</button>
+    <button class="btn btn-default" id="btnMonth" onclick="changeChart('month')">Theo Tháng</button>
+    <button class="btn btn-default" id="btnYear" onclick="changeChart('year')">Theo Năm</button>
+
+    <div class="mt-4">
+        <h3>Biểu đồ doanh thu</h3>
+        <canvas id="revenueChart"></canvas>
+    </div>
+
+    <div class="mt-4">
+        <h3>Biểu đồ số hóa đơn</h3>
+        <canvas id="orderChart"></canvas>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var duLieuDoanhThu = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.DuLieuBieuDoDoanhThu));
+        var duLieuDonHang = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.DuLieuBieuDoDonHang));
+
+        var revenueChart = new Chart(document.getElementById('revenueChart'), {
+            type: 'line',
+            data: getChartData(duLieuDoanhThu, 'day', 'Doanh thu'), // Dữ liệu mặc định theo ngày
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    },
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        var orderChart = new Chart(document.getElementById('orderChart'), {
+            type: 'bar',
+            data: getChartData(duLieuDonHang, 'day', 'Số đơn hàng'), // Dữ liệu mặc định theo ngày
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    },
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Hàm cập nhật biểu đồ khi chọn chế độ (ngày/tháng/năm)
+        function changeChart(period) {
+            revenueChart.data = getChartData(duLieuDoanhThu, period, 'Doanh thu');
+            orderChart.data = getChartData(duLieuDonHang, period, 'Số đơn hàng');
+            revenueChart.update();
+            orderChart.update();
+        }
+
+        // Hàm lấy dữ liệu cho biểu đồ theo ngày, tháng, hoặc năm
+        function getChartData(data, period, label) {
+            var labels = [];
+            var values = [];
+
+            // Nhóm dữ liệu theo ngày, tháng hoặc năm
+            if (period === 'day') {
+                labels = data.map(function (item) { return item.Ngay; });
+                values = data.map(function (item) { return item.DoanhThu || item.SoDonHang; });
+            } else if (period === 'month') {
+                var groupedByMonth = groupByMonth(data);
+                labels = groupedByMonth.map(function (item) { return item.Ngay; });
+                values = groupedByMonth.map(function (item) { return item.DoanhThu || item.SoDonHang; });
+            } else if (period === 'year') {
+                var groupedByYear = groupByYear(data);
+                labels = groupedByYear.map(function (item) { return item.Ngay; });
+                values = groupedByYear.map(function (item) { return item.DoanhThu || item.SoDonHang; });
+            }
+
+            return {
+                labels: labels,
+                datasets: [{
+                    label: label,
+                    data: values,
+                    borderColor: label === 'Doanh thu' ? 'rgba(255, 99, 132, 1)' : 'rgba(54, 162, 235, 1)', // Đỏ cho Doanh thu, xanh cho Số đơn hàng
+                    backgroundColor: label === 'Doanh thu' ? 'rgba(255, 99, 132, 0.2)' : 'rgba(54, 162, 235, 0.2)', // Màu nền nhạt tương ứng
+                    fill: true
+                }]
+            };
+        }
+
+        // Nhóm dữ liệu theo tháng
+        function groupByMonth(data) {
+            var groupedData = data.reduce(function (acc, curr) {
+                var month = new Date(curr.Ngay).getMonth() + 1; // Lấy tháng
+                if (!acc[month]) acc[month] = { Ngay: month, DoanhThu: 0, SoDonHang: 0 };
+                acc[month].DoanhThu += curr.DoanhThu || 0;
+                acc[month].SoDonHang += curr.SoDonHang || 0;
+                return acc;
+            }, {});
+            return Object.values(groupedData);
+        }
+
+        // Nhóm dữ liệu theo năm
+        function groupByYear(data) {
+            var groupedData = data.reduce(function (acc, curr) {
+                var year = new Date(curr.Ngay).getFullYear(); // Lấy năm
+                if (!acc[year]) acc[year] = { Ngay: year, DoanhThu: 0, SoDonHang: 0 };
+                acc[year].DoanhThu += curr.DoanhThu || 0;
+                acc[year].SoDonHang += curr.SoDonHang || 0;
+                return acc;
+            }, {});
+            return Object.values(groupedData);
+        }
+    </script>
+}

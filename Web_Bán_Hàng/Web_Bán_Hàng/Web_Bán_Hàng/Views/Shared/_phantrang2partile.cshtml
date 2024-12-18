@@ -1,0 +1,48 @@
+﻿@model Web_Bán_Hàng.Models.PhanTrang
+
+<div class="container text-center justify-content-center align-items-center">
+    @if (Model.TongSoTrang > 0)
+    {
+        <ul class="pagination justify-content-end">
+            <!-- Nút chuyển về đầu tiên -->
+            @if (Model.TrangHienTai > 1)
+            {
+                <li class="page-item">
+                    <a class="page-link text-success" asp-action="Showfull" asp-route-pg="1">
+                        Đầu tiên
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link text-success" asp-action="Showfull" asp-route-pg="@(Model.TrangHienTai - 1)">
+                        Trước
+                    </a>
+                </li>
+            }
+            <!-- Các số trang -->
+            @for (var pge = Model.TrangDauTien; pge <= Model.TrangCuoi; pge++)
+            {
+                <li class="page-item @(pge == Model.TrangHienTai ? "active" : "")">
+                    <a class="page-link @(pge == Model.TrangHienTai ? "bg-success text-white" : "text-success")"
+                       asp-action="Showfull"
+                       asp-route-pg="@pge">
+                        @pge
+                    </a>
+                </li>
+            }
+            <!-- Nút chuyển đến cuối cùng -->
+            @if (Model.TrangHienTai < Model.TongSoTrang)
+            {
+                <li class="page-item">
+                    <a class="page-link text-success" asp-action="Showfull" asp-route-pg="@(Model.TrangHienTai + 1)">
+                        Tiếp theo
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link text-success" asp-action="Showfull" asp-route-pg="@(Model.TongSoTrang)">
+                        Cuối cùng
+                    </a>
+                </li>
+            }
+        </ul>
+    }
+</div>
