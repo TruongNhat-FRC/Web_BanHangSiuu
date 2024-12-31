@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +21,6 @@
     <link href="~/css/responsive.css" rel="stylesheet">
     <link rel="shortcut icon" href="images/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
-
 </head>
 <body>
     <header id="header">
@@ -29,9 +29,6 @@
                 <div class="col-md-3 col-sm-12">
                     <div class="navbar navbar-inverse" role="navigation">
                         <div class="navbar-header">
-                            <a asp-action="Index" asp-controller="Home">
-                                <img src="~/anhfe/FRCshop.jpeg" alt="Logo" class="img-fluid justify-content-center align-items-center" style="max-height: 100px;">
-                            </a>
                             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                                 <span class="sr-only">Toggle navigation</span>
                                 <span class="icon-bar"></span>
@@ -39,37 +36,39 @@
                                 <span class="icon-bar"></span>
                             </button>
                         </div>
-                        <!-- Menu -->
                         <div class="navbar-collapse collapse">
                             <ul class="nav navbar-nav">
-                                <li><a asp-action="Index" asp-controller="ThongKe" asp-area="Admin" class="active">Thống Kê</a></li>
-                                <li><a asp-action="Index" asp-controller="Home" asp-area="" class="active">Home</a></li>
-                                <li><a asp-action="Index" asp-controller="Product" asp-area="Admin" class="active">Sản Phẩm</a></li>
-                                <li><a asp-action="Index" asp-controller="Category" asp-area="Admin" class="active">Loại Sản Phẩm</a></li>
-                                <li><a asp-action="Index" asp-controller="Brand" asp-area="Admin" class="active">Thương Hiệu</a></li>
-                                <li><a asp-action="Index" asp-controller="DonHang" asp-area="Admin" class="active">Đơn Hàng</a></li>
-                                <li><a asp-action="Index" asp-controller="UserRole" asp-area="Admin" class="active">Quyền</a></li>
-                                <li><a asp-action="Index" asp-controller="User" asp-area="Admin" class="active">Người Dùng</a></li>
-                                <li><a asp-action="Index" asp-controller="Slider" asp-area="Admin" class="active">Quản Lý Banner</a></li>
-                                <li><a asp-action="Index" asp-controller="LienHe" asp-area="Admin" class="active">Quản Lý Thông Tin Liên Hệ</a></li>
-                                <li><a asp-action="Index" asp-controller="VanChuyen" asp-area="Admin" class="active">Vận Chuyển</a></li>
-                                <li><a asp-action="Index" asp-controller="KhuyenMai" asp-area="Admin" class="active">Mã Khuyễn Mãi</a></li>
-
-
-
+                                
+                                <li><a asp-action="Index" asp-controller="Home" asp-area=""><i class="fa fa-home"></i> Home</a></li>
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <li><a asp-action="Index" asp-controller="ThongKe" asp-area="Admin"><i class="fa fa-chart-bar"></i> Thống Kê</a></li>
+                                    <li><a asp-action="Index" asp-controller="KhuyenMai" asp-area="Admin"><i class="fa fa-gift"></i> Mã Khuyến Mãi</a></li>
+                                    <li><a asp-action="Index" asp-controller="LienHe" asp-area="Admin"><i class="fa fa-phone"></i> Liên Hệ</a></li>
+                                    <li><a asp-action="Index" asp-controller="UserRole" asp-area="Admin"><i class="fa fa-user-shield"></i> Quyền</a></li>
+                                    <li><a asp-action="Index" asp-controller="User" asp-area="Admin"><i class="fa fa-users"></i> Người Dùng</a></li>
+                                }
+                                <li><a asp-action="Index" asp-controller="Product" asp-area="Admin"><i class="fa fa-box"></i> Sản Phẩm</a></li>
+                                <li><a asp-action="Index" asp-controller="Category" asp-area="Admin"><i class="fa fa-list"></i> Loại Sản Phẩm</a></li>
+                                <li><a asp-action="Index" asp-controller="Brand" asp-area="Admin"><i class="fa fa-tag"></i> Thương Hiệu</a></li>
+                                <li><a asp-action="Index" asp-controller="DonHang" asp-area="Admin"><i class="fa fa-shopping-cart"></i> Đơn Hàng</a></li>
+                                
+                                <li><a asp-action="Index" asp-controller="Slider" asp-area="Admin"><i class="fa fa-image"></i> Quản Lý Banner</a></li>
+                                
+                                <li><a asp-action="Index" asp-controller="VanChuyen" asp-area="Admin"><i class="fa fa-truck"></i> Vận Chuyển</a></li>
+                                
                             </ul>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-9 col-sm-12 main-content">
-                    <!-- Nội dung chính của trang -->
                     @Html.Partial("NotificationPartial")
-                    @RenderBody();
+                    @RenderBody()
                 </div>
             </div>
         </div>
-    </header><!--/header-->
+    </header>
 
     <script src="~/js/jquery.js"></script>
     <script src="~/js/bootstrap.min.js"></script>
@@ -83,19 +82,22 @@
     <script src="https://esgoo.net/scripts/jquery.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+
     <script>
         $(function () {
-            var message =  '@TempData["success"]';
-            if (message != '')
-                Swal.fire(message);
+            var message = '@TempData["success"]';
+            if (message != '') Swal.fire(message);
         });
+    </script>
+    <script>
+
     </script>
     @await RenderSectionAsync("Scripts", required: false);
 </body>
 </html>
 
 <style>
-    /* Đảm bảo menu bên trái có chiều rộng cố định và vuông vắn */
+    /* Navbar bên trái với hiệu ứng gradient */
     .navbar-inverse {
         width: 250px;
         position: fixed;
@@ -103,45 +105,56 @@
         left: 0;
         height: 100%;
         z-index: 1000;
-        background-color: #222; /* Đặt màu nền cho sidebar */
+        background: linear-gradient(180deg, #2c3e50, #34495e); /* Hiệu ứng gradient */
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); /* Đổ bóng cho navbar */
+        overflow-y: auto; /* Đảm bảo cuộn được nếu có quá nhiều mục */
     }
 
-    /* Thiết lập nội dung bên phải có đủ khoảng trống */
-    .main-content {
-        margin-left: 100px; /* Điều chỉnh lại giá trị của margin-left cho phù hợp với chiều rộng của menu bên trái */
-        padding: 20px; /* Thêm khoảng cách bên trong cho nội dung */
-        background-color: none; /* Đặt màu nền cho nội dung */
-        min-height: 100vh; /* Đảm bảo nội dung luôn chiếm toàn bộ chiều cao màn hình */
-    }
-
-    /* Điều chỉnh hiển thị các liên kết trong navbar */
     .navbar-inverse .navbar-nav li {
-        margin-bottom: 10px; /* Thêm khoảng cách giữa các mục */
-        width: 100%; /* Mỗi mục sẽ chiếm toàn bộ chiều rộng */
-        text-align: left; /* Căn trái các mục */
+        margin-bottom: 10px; /* Khoảng cách giữa các mục */
+        width: 100%; /* Đảm bảo các mục chiếm đủ chiều rộng */
+        text-align: left;
     }
 
     .navbar-inverse .navbar-nav li a {
-            display: block; /* Đảm bảo các mục có chiều cao đầy đủ và nằm trên một hàng */
-            padding: 10px 15px;
-            font-size: 16px;
-            color: #fff; /* Đặt màu chữ cho liên kết */
-            text-decoration: none; /* Xóa bỏ gạch chân */
-            transition: background-color 0.3s ease, color 0.3s ease; /* Thêm hiệu ứng chuyển đổi */
-     }
+        display: block;
+        padding: 12px 20px;
+        font-size: 16px;
+        font-weight: 500; /* In đậm vừa phải */
+        color: #ecf0f1; /* Màu chữ sáng */
+        text-decoration: none;
+        border-radius: 4px; /* Các góc bo nhẹ */
+        transition: all 0.3s ease; /* Hiệu ứng chuyển đổi */
+    }
 
-     .navbar-inverse .navbar-nav li a:hover {
-                background-color: #444;
-                color: #fff;
-      }
+    .navbar-inverse .navbar-nav li a:hover {
+        background-color: #1abc9c; /* Màu nền khi hover */
+        color: #fff; /* Màu chữ khi hover */
+        transform: translateX(5px); /* Hiệu ứng di chuyển nhẹ khi hover */
+    }
 
+    .navbar-inverse .navbar-header {
+        text-align: center;
+        padding: 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Viền mờ ngăn cách */
+    }
 
-    /* Đảm bảo navbar bên trái có chiều cao đầy đủ */
-    .navbar-collapse {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
+    .navbar-inverse .navbar-header h3 {
+        color: #ecf0f1;
+        font-size: 18px;
+        font-weight: bold;
+        margin: 0;
+    }
+
+    /* Main content area */
+    .main-content {
+        margin-left: 100px;
+        padding: 25px;
+        background-color: none; /* Nhẹ nhàng và dễ nhìn */
+        width :100%;
+       
+        min-height: calc(100vh - 20px); /* Chiều cao tối thiểu, trừ khoảng cách padding */
+        height: 100%; /* Ensure it extends beyond the screen if needed*/
     }
 
     media (max-width: 767px) {
@@ -156,5 +169,3 @@
         }
     }
 </style>
-
-

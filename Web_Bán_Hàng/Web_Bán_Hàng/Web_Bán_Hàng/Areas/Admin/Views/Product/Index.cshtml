@@ -1,81 +1,176 @@
 ﻿@model IEnumerable<ProductModel>
 
 @{
-    ViewData["Title"] = "Danh sách sản phẩm";
-    PhanTrang trang = new PhanTrang();
-    int pageo = 0;
-    if (ViewBag.Paging != null)
-    {
-        trang = ViewBag.Paging;
-        pageo = trang.TrangHienTai;
-    }
-
+    ViewData["Title"] = "Danh Sách Sản Phẩm";
 }
 
-<h1 class="text-center my-4">Danh sách sản phẩm</h1>
-<a asp-action="Add" class="btn btn-sm btn-primary" asp-controller="Product">Thêm sản phẩm</a>
+<html>
+<head>
+    <title>@ViewData["Title"]</title>
+    <!-- Thêm Bootstrap 3 và Font Awesome -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+</head>
 
-<!-- Bảng sản phẩm -->
-<div class="container">
-    <table class="table " id="my_product">
-        <thead class="table-dark">
-            <tr>
-                <th scope="col">Mã sản phẩm</th>
-                <th scope="col">Tên sản phẩm</th>
-                <th scope="col">Mô tả</th>
-                <th scope="col">Giá</th>
-                <th scope="col">Đường dẫn</th>
-                <th scope="col">Hình ảnh</th>
-                <th scope="col">Loại sản phẩm</th>
-                <th scope="col">Thương hiệu</th>
-                <th scope="col">Số lượng</th>
-                <th scope="col">Hành động</th>
-            </tr>
-        </thead>
-        <tbody>
-            @if (Model != null && Model.Any())
-            {
-                foreach (var item in Model)
+<body>
+    <div class="container">
+        <h1 class="text-center my-4 display-4 " style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);">
+            <i class="fa fa-book"></i>
+            @ViewData["Title"] <i class="fa fa-book"></i>
+
+        </h1>        
+        <a asp-action="Add" class="btn btn-primary btn-sm mb-3" asp-controller="Product" style="margin-left: 15px; margin-bottom :15px; border-radius: 20px;">
+            <i class="fas fa-plus"></i> Thêm sản phẩm
+        </a>
+
+        <!-- Bảng Sản Phẩm -->
+        <table class="table table-bordered table-hover text-center" id="my_product">
+            <thead class="bg-dark text-white">
+                <tr>
+                    <th scope="col">Mã sản phẩm</th>
+                    <th scope="col">Tên sản phẩm</th>
+                    <th scope="col">Mô tả</th>
+                    <th scope="col">Giá</th>
+                    <th scope="col">Đường dẫn</th>
+                    <th scope="col">Hình ảnh</th>
+                    <th scope="col">Loại sản phẩm</th>
+                    <th scope="col">Thương hiệu</th>
+                    <th scope="col">Số lượng</th>
+                    <th scope="col">Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
                 {
-                    if (item.IsVisible) // Kiểm tra trạng thái hiển thị
+                    foreach (var item in Model)
                     {
-                        <tr>
-                            <td>@item.Id</td>
-                            <td>@item.Name</td>
-                            <td>@item.Description</td>
-                            <td>@item.Price.ToString("#,0") VND</td>
-                            <td>@item.Slug</td>
-                            <td><img src="~/image/@item.Image" width="100" /></td>
-                            <td>@item.Category.Name</td>
-                            <td>@item.Brand.Name</td>
-                            <td>@item.Quantity</td>
-                            <td style="width: 200px;">
-                                <a asp-action="Edit" class="btn btn-sm btn-success me-1" asp-controller="Product" asp-route-id="@item.Id">  <i class="fas fa-edit"></i>Edit</a>
-                                <a asp-action="Delete" class="btn btn-sm btn-danger confirmDeletion" asp-controller="Product" asp-route-id="@item.Id"> <i class="fas fa-trash"></i>Delete</a>
-                            </td>
-                        </tr>
-                                    
+                        if (item.IsVisible) // Kiểm tra trạng thái hiển thị
+                        {
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>@item.Name</td>
+                                <td>
+                                    <div class="description-wrapper">
+                                        <p class="description-short">@item.Description</p>
+                                        <button class="toggle-description btn btn-link btn-sm">Xem thêm</button>
+                                    </div>
+                                </td>
+
+                                <td>@item.Price.ToString("#,0") VND</td>
+                                <td>@item.Slug</td>
+                                <td>
+                                    <img src="~/image/@item.Image" alt="Hình ảnh sản phẩm" width="100" />
+                                </td>
+                                <td>@item.Category?.Name</td>
+                                <td>@item.Brand?.Name</td>
+                                <td>@item.Quantity</td>
+                                <td style="width: 150px;">
+                                    <div class="btn-group" role="group">
+                                        <a asp-action="Edit" class="btn btn-success btn-sm" asp-controller="Product" asp-route-id="@item.Id">
+                                            <i class="fas fa-edit"></i> Sửa
+                                        </a>
+                                        <a asp-action="Delete" class="btn btn-danger btn-sm" asp-controller="Product" asp-route-id="@item.Id" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')">
+                                            <i class="fas fa-trash"></i> Xóa
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
                     }
                 }
-            }
-            else
-            {
+                else
+                {
                     <tr>
                         <td colspan="10">Không có sản phẩm nào.</td>
                     </tr>
-            }
-        </tbody>
-    </table>
-    <!-- Partial view phân trang -->
-    <!-- Partial view phân trang -->
-    <partial name="_phantrang" model="@trang"></partial>
+                }
+            </tbody>
+        </table>
 
- 
-</div>
-<!-- Thêm Font Awesome cho biểu tượng -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-@section Scripts{
-    <script>
-        let table = new DataTable('#my_product');
-    </script>
-}
+    </div>
+
+    <style>
+        /* Tùy chỉnh DataTable */
+        #my_product {
+            font-size: 14px;
+            border-collapse: collapse;
+        }
+
+            #my_product th, #my_product td {
+                padding: 10px;
+                text-align: center;
+            }
+
+            #my_product th {
+                background-color: #343a40;
+                color: white;
+            }
+
+            /* Thêm hover cho các dòng */
+            #my_product tbody tr:hover {
+                background-color: #f1f1f1;
+            }
+
+        /* Tùy chỉnh nút */
+        .btn-group .btn {
+            margin: 3px;
+        }
+
+        .description-wrapper {
+            position: relative;
+            max-width: 200px; /* Giới hạn chiều rộng */
+        }
+
+        .description-short {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+            .description-short.expanded {
+                white-space: normal;
+                overflow: visible;
+            }
+    </style>
+
+    @section Scripts {
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                $('#my_product').DataTable({
+                    paging: true,
+                    searching: true,
+                    ordering: true,
+                    pageLength: 10,
+                    lengthMenu: [10, 25, 50, 100],
+                    language: {
+                        search: "Tìm kiếm:",
+                        lengthMenu: "Hiển thị _MENU_ bản ghi mỗi trang",
+                        info: "Hiển thị _START_ đến _END_ trong tổng số _TOTAL_ bản ghi",
+                        infoEmpty: "Không có bản ghi nào",
+                        zeroRecords: "Không tìm thấy kết quả",
+                        infoFiltered: "(được lọc từ _MAX_ bản ghi)"
+                    }
+                });
+            });
+        </script>
+        <script>
+            $(document).ready(function () {
+                $('.toggle-description').on('click', function () {
+                    var description = $(this).siblings('.description-short');
+                    if (description.hasClass('expanded')) {
+                        description.removeClass('expanded');
+                        $(this).text('Xem thêm');
+                    } else {
+                        description.addClass('expanded');
+                        $(this).text('Ẩn Bớt');
+                    }
+                });
+            });
+        </script>
+    }
+</body>
+</html>

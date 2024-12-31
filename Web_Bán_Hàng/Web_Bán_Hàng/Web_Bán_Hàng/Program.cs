@@ -48,14 +48,14 @@ builder.Services.Configure<IdentityOptions>(options =>
 builder.Services.AddAuthentication(IdentityConstants.ApplicationScheme)
     .AddCookie(options =>
     {
-        options.AccessDeniedPath = "/Account/AccessDenied"; // Trang hi?n th? khi b? t? ch?i
-        options.LoginPath = "/Account/DangNhap"; // Trang ??ng nh?p
-        options.LogoutPath = "/Account/DangXuat"; // Trang ??ng xu?t
+        options.AccessDeniedPath = "/Account/AccessDenied"; 
+        options.LoginPath = "/Account/DangNhap"; 
+        options.LogoutPath = "/Account/DangXuat"; 
     });
 
 var app = builder.Build();
 
-/*app.UseStatusCodePagesWithRedirects("/Home/Error?statuscode=404");*/
+app.UseStatusCodePagesWithRedirects("/Home/Error?statuscode=404");
 app.UseSession();
 
 

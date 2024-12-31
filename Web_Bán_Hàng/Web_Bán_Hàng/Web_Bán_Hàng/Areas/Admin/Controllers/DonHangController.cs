@@ -7,7 +7,7 @@ using Web_Bán_Hàng.Models;
 namespace Web_Bán_Hàng.Areas.Admin.Controllers
 {
 	[Area("Admin")]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,NhanVien")]
     public class DonHangController : Controller
     {
 		private readonly Datacontext _datacontext;

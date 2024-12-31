@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Web_Bán_Hàng.Database;
 using Web_Bán_Hàng.Models;
 
 namespace Web_Bán_Hàng.Areas.Admin.Controllers
@@ -55,6 +56,59 @@ namespace Web_Bán_Hàng.Areas.Admin.Controllers
             }
             return View(model);
         }
+        [HttpGet]
+        public async Task<IActionResult> Edit(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return NotFound();
+            }
+
+            // Lấy quyền theo id
+            var role = await _roleManager.FindByIdAsync(id);
+            if (role == null)
+            {
+                return NotFound();
+            }
+
+            return View(role);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(string id, IdentityRole model)
+        {
+            if (id != model.Id)
+            {
+                return BadRequest();
+            }
+
+            if (ModelState.IsValid)
+            {
+                var role = await _roleManager.FindByIdAsync(id);
+                if (role == null)
+                {
+                    return NotFound();
+                }
+
+                role.Name = model.Name;
+
+                var result = await _roleManager.UpdateAsync(role);
+                if (result.Succeeded)
+                {
+                    TempData["Success"] = "Role đã được cập nhật thành công.";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    TempData["Error"] = "Có lỗi xảy ra khi cập nhật Role.";
+                }
+            }
+
+            return View(model);
+        }
+
+
 
     }
 }

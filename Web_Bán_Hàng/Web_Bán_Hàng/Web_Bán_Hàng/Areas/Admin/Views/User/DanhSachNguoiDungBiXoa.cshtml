@@ -1,47 +1,121 @@
 ﻿@model IEnumerable<Web_Bán_Hàng.Models.AppUserModel>
+
 @{
     ViewData["Title"] = "Danh Sách Người Dùng Bị Vô Hiệu Hóa";
 }
-<div class="container mt-5">
-    <h2 class="text-center text-primary">@ViewData["Title"]</h2>
-    <table class="table table-bordered table-striped mt-4">
-        <thead class="table-dark text-center">
-            <tr>
-                <th>Mã người dùng</th>
-                <th>Tên người dùng</th>
-                <th>Email</th>
-                <th>Số điện thoại</th>
-                <th>Hành động</th>
-            </tr>
-        </thead>
-        <tbody>
-            @if (!Model.Any())
-            {
+
+<html>
+<head>
+    <title>@ViewData["Title"]</title>
+    <!-- Thêm Bootstrap 3 và Font Awesome -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center my-4">@ViewData["Title"]</h1>
+        <div class="text-right mb-3">
+            <a asp-action="Index" asp-controller="User" class="btn btn-primary">
+                <i class="fas fa-arrow-left"></i> Quay lại danh sách người dùng
+            </a>
+        </div>
+        <!-- Bảng Người Dùng Bị Vô Hiệu Hóa -->
+        <table class="table table-bordered table-hover text-center" id="disabled_user_table">
+            <thead class="bg-dark text-white">
                 <tr>
-                    <td colspan="3" class="text-center text-muted">
-                        Không có người dùng nào bị vô hiệu hóa.
-                    </td>
+                    <th scope="col">Mã người dùng</th>
+                    <th scope="col">Tên người dùng</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Số điện thoại</th>
+                    <th scope="col">Hành động</th>
                 </tr>
-            }
-            else
-            {
-                @foreach (var user in Model)
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
                 {
-                    <tr class="text-center">
-                        <td>@user.Id</td>
-                        <td>@user.UserName</td>
-                        <td>@user.Email</td>
-                        <td>@user.PhoneNumber</td>
-                        <td>
-                            <form asp-action="PhucHoiNguoiDung" asp-route-id="@user.Id" method="post" class="d-inline">
-                                <button type="submit" class="btn btn-success btn-sm">
-                                    <i class="fas fa-undo"></i> Phục hồi
-                                </button>
-                            </form>
+                    @foreach (var user in Model)
+                    {
+                        <tr>
+                            <td>@user.Id</td>
+                            <td>@user.UserName</td>
+                            <td>@user.Email</td>
+                            <td>@user.PhoneNumber</td>
+                            <td>
+                                <form asp-action="PhucHoiNguoiDung" asp-route-id="@user.Id" method="post" class="d-inline">
+                                    <button type="submit" class="btn btn-success btn-sm">
+                                        <i class="fas fa-undo"></i> Phục hồi
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="5" class="text-center text-muted">
+                            Không có người dùng nào bị vô hiệu hóa.
                         </td>
                     </tr>
                 }
-            }
-        </tbody>
-    </table>
-</div>
+            </tbody>
+        </table>
+    </div>
+
+    <style>
+        /* Tùy chỉnh DataTable */
+        #disabled_user_table {
+            font-size: 14px;
+            border-collapse: collapse;
+        }
+
+        #disabled_user_table th, #disabled_user_table td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        #disabled_user_table th {
+            background-color: #343a40;
+            color: white;
+        }
+
+        /* Thêm hover cho các dòng */
+        #disabled_user_table tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Tùy chỉnh nút */
+        .btn-group .btn {
+            margin: 3px;
+        }
+    </style>
+
+    <!-- Thêm DataTables -->
+    @section Scripts {
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                $('#disabled_user_table').DataTable({
+                    paging: true, // Kích hoạt phân trang
+                    searching: true, // Kích hoạt tìm kiếm
+                    ordering: true, // Kích hoạt sắp xếp
+                    pageLength: 10, // Số dòng mỗi trang
+                    lengthMenu: [10, 25, 50, 100], // Chọn số dòng mỗi trang
+                    language: {
+                        search: "Tìm kiếm:",
+                        lengthMenu: "Hiển thị _MENU_ bản ghi mỗi trang",
+                        info: "Hiển thị _START_ đến _END_ trong tổng số _TOTAL_ bản ghi",
+                        infoEmpty: "Không có bản ghi nào",
+                        zeroRecords: "Không tìm thấy kết quả",
+                        infoFiltered: "(được lọc từ _MAX_ bản ghi)"
+                    }
+                });
+            });
+        </script>
+    }
+</body>
+</html>

@@ -2,6 +2,11 @@
 @{
     ViewData["Title"] = "Thêm Mã Khuyễn Mãi";
 }
+<link href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+
+
 <h4>Thêm Mã Khuyến Mãi</h4>
 <div>
     <form asp-action="Add" asp-controller="KhuyenMai" enctype="multipart/form-data">
@@ -75,8 +80,9 @@
                     <th scope="col">Số lượng</th>
                     <th scope="col">Trạng Thái</th>
                     <th scope="col">Giá</th>
-                    <th scope="col">Khả Dụng</th>
                     <th scope="col">Hành động</th>
+                    <th scope="col">Khả Dụng</th>
+                    
                 </tr>
             </thead>
             <tbody>
@@ -101,7 +107,7 @@
                                     <a asp-action="Edit" class="btn btn-sm btn-success me-1" asp-controller="KhuyenMai" asp-route-id="@item.Id">
                                         <i class="fas fa-edit"></i> Sửa
                                     </a>
-                                    <a asp-action="Delete" class="btn btn-sm btn-danger confirmDeletion" asp-controller="KhuyenMai" asp-route-id="@item.Id">
+                                    <a asp-action="Delete" class="btn btn-sm btn-danger " onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')"  asp-controller="KhuyenMai" asp-route-id="@item.Id">
                                         <i class="fas fa-trash"></i> Xóa
                                     </a>
                                 </td>

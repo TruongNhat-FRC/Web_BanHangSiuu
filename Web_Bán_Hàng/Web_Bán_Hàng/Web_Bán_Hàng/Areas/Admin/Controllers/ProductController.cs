@@ -10,7 +10,7 @@ namespace Web_Bán_Hàng.Areas.Admin.Controllers
 {
 
 	[Area("Admin")]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,NhanVien")]
 
     public class ProductController : Controller
 	{
@@ -23,27 +23,17 @@ namespace Web_Bán_Hàng.Areas.Admin.Controllers
 			_webHostEnvironment = webhostenvironment;
 
 		}
-        public async Task<IActionResult> Index(int pg = 1)
+        public async Task<IActionResult> Index()
         {
-            const int pageSize = 10; // Số lượng sản phẩm mỗi trang
-            var productsQuery = _datacontext.Products.OrderByDescending(p => p.Id)
-                                                     .Include(p => p.Category)
-                                                     .Include(p => p.Brand);
-
-            var totalProducts = await productsQuery.CountAsync(); // Tổng số sản phẩm
-
-            // Tính toán phân trang
-            var paging = new PhanTrang(totalProducts, pg, pageSize);
-            var skip = (pg - 1) * pageSize;
-
-            // Lấy danh sách sản phẩm cho trang hiện tại
-            var products = await productsQuery.Skip(skip).Take(pageSize).ToListAsync();
-
-            // Truyền thông tin phân trang và danh sách sản phẩm vào View
-            ViewBag.Paging = paging;
+            var products = await _datacontext.Products
+                                             .OrderByDescending(p => p.Id)
+                                             .Include(p => p.Category)
+                                             .Include(p => p.Brand)
+                                             .ToListAsync();
 
             return View(products);
         }
+
 
 
         public IActionResult Add()

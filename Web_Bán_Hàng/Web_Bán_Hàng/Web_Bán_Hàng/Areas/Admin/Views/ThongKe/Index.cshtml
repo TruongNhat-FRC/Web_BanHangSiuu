@@ -4,7 +4,9 @@
     ViewData["Title"] = "Thống Kê ";
 }
 
-<h2>@ViewData["Title"]</h2>
+<h2 class="text-center my-4">
+    <i class="fa fa-chart-bar text-info"></i> @ViewData["Title"]
+</h2>
 
 <div class="container">
     <div class="row">
@@ -58,6 +60,50 @@
         </div>
 
     </div>
+    <h3 style="color : red;">Top 10 sản phẩm bán chạy</h3>
+    <div class="product-scroll-container" style="max-height: 400px; overflow-y: auto; border: 2px solid #007bff; border-radius: 10px; background-color: #f8f9fa; padding: 10px;">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Hình ảnh</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Số lượng bán</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.BanChay != null && Model.BanChay.Any())
+                {
+                    int index = 1;
+                    foreach (var product in Model.BanChay)
+                    {
+                        <tr>
+                            <td>@index</td>
+                            <td>
+                                <img src="~/image/@product.Image" alt="@product.Name" style="width: 50px; height: 50px;" />
+                            </td>
+                            <td>@product.Name</td>
+                            <td>@product.PurchaseCount</td>
+                        </tr>
+                        index++;
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="4" class="text-center">Không có dữ liệu sản phẩm bán chạy.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+
+  
+
 
     <h4>Chọn thời gian</h4>
     <button class="btn btn-default" id="btnDay" onclick="changeChart('day')">Theo Ngày</button>
@@ -68,12 +114,53 @@
         <h3>Biểu đồ doanh thu</h3>
         <canvas id="revenueChart"></canvas>
     </div>
+    <h2> Doanh thu </h2>
+    <div class="table-scrollable" style="max-height: 400px; overflow-y: auto;">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Ngày</th>
+                    <th>Doanh Thu</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.DuLieuBieuDoDoanhThu)
+                {
+                    <tr>
+                        <td>@item.Ngay</td>
+                        <td>@item.DoanhThu.ToString("#,0") VNĐ</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 
     <div class="mt-4">
         <h3>Biểu đồ số hóa đơn</h3>
         <canvas id="orderChart"></canvas>
     </div>
+    <h2> Hóa đơn</h2>
+    <div class="table-scrollable" style="max-height: 400px; overflow-y: auto;">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Ngày</th>
+                    <th>Số Hóa Đơn</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.DuLieuBieuDoDonHang)
+                {
+                    <tr>
+                        <td>@item.Ngay</td>
+                        <td>@item.SoDonHang.ToString()</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
 @section Scripts
 {
@@ -122,12 +209,10 @@
             orderChart.update();
         }
 
-        // Hàm lấy dữ liệu cho biểu đồ theo ngày, tháng, hoặc năm
         function getChartData(data, period, label) {
             var labels = [];
             var values = [];
 
-            // Nhóm dữ liệu theo ngày, tháng hoặc năm
             if (period === 'day') {
                 labels = data.map(function (item) { return item.Ngay; });
                 values = data.map(function (item) { return item.DoanhThu || item.SoDonHang; });
@@ -146,17 +231,16 @@
                 datasets: [{
                     label: label,
                     data: values,
-                    borderColor: label === 'Doanh thu' ? 'rgba(255, 99, 132, 1)' : 'rgba(54, 162, 235, 1)', // Đỏ cho Doanh thu, xanh cho Số đơn hàng
-                    backgroundColor: label === 'Doanh thu' ? 'rgba(255, 99, 132, 0.2)' : 'rgba(54, 162, 235, 0.2)', // Màu nền nhạt tương ứng
+                    borderColor: label === 'Doanh thu' ? 'rgba(255, 99, 132, 1)' : 'rgba(54, 162, 235, 1)', 
+                    backgroundColor: label === 'Doanh thu' ? 'rgba(255, 99, 132, 0.2)' : 'rgba(54, 162, 235, 0.2)', 
                     fill: true
                 }]
             };
         }
 
-        // Nhóm dữ liệu theo tháng
         function groupByMonth(data) {
             var groupedData = data.reduce(function (acc, curr) {
-                var month = new Date(curr.Ngay).getMonth() + 1; // Lấy tháng
+                var month = new Date(curr.Ngay).getMonth() + 1; 
                 if (!acc[month]) acc[month] = { Ngay: month, DoanhThu: 0, SoDonHang: 0 };
                 acc[month].DoanhThu += curr.DoanhThu || 0;
                 acc[month].SoDonHang += curr.SoDonHang || 0;
@@ -165,10 +249,9 @@
             return Object.values(groupedData);
         }
 
-        // Nhóm dữ liệu theo năm
         function groupByYear(data) {
             var groupedData = data.reduce(function (acc, curr) {
-                var year = new Date(curr.Ngay).getFullYear(); // Lấy năm
+                var year = new Date(curr.Ngay).getFullYear(); 
                 if (!acc[year]) acc[year] = { Ngay: year, DoanhThu: 0, SoDonHang: 0 };
                 acc[year].DoanhThu += curr.DoanhThu || 0;
                 acc[year].SoDonHang += curr.SoDonHang || 0;

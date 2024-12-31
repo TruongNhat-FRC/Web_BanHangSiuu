@@ -4,7 +4,7 @@
 }
 <h1 class="text-center my-4">Lịch Sử Mua Hàng Của Bạn</h1>
 <!-- Bảng Đơn Hàng -->
-<div class="container">
+<div class="container" style="margin-bottom : 200px">
     <table class="table table-bordered table-hover text-center" id="my_donhang">
         <thead class="table-dark">
             <tr>
@@ -29,15 +29,15 @@
                         <td>@item.MaDonHang</td>
                         <td>@item.MaNguoiDung</td>
                         <td>@item.NgayDat</td>
-                        <td>@item.TongTienCuoi.ToString("#,0")VND</td>
+                        <td>@item.TongTienCuoi.ToString("#,0") VND</td>
                         <td>@item.PhanTramGiaGia.ToString("#,0")%</td>
-                        <td>@item.TienSaiKhiGiam.ToString("#,0")VND</td>
+                        <td>@item.TienSaiKhiGiam.ToString("#,0") VND</td>
                         <td>
-                            @if (@item.TrangThai == 0)
+                            @if (item.TrangThai == 0)
                             {
                                 <span class="text text-primary">Đang Xử Lý</span>
                             }
-                            else if(item.TrangThai == 1)
+                            else if (item.TrangThai == 1)
                             {
                                 <span class="text text-success">Đã Xử Lý</span>
                             }
@@ -48,38 +48,54 @@
                         </td>
                         <td style="width: 250px;">
                             <div class="btn-group" role="group">
-                                <a asp-action="Details" class="btn btn-sm btn-success me-1" asp-controller="Account"  asp-route-madonhang="@item.MaDonHang">
+                                <a asp-action="Details" class="btn btn-sm btn-success me-1" asp-controller="Account" asp-route-madonhang="@item.MaDonHang">
                                     <i class="fas fa-eye"></i> Chi Tiết
                                 </a>
-                                @if(item.TrangThai != 3 && item.TrangThai != 1)
+                                @if (item.TrangThai != 3 && item.TrangThai != 1)
                                 {
-                                    <a asp-action="HuyDonHang" class="btn btn-sm btn-danger me-1" asp-controller="Account" asp-route-madonhang="@item.MaDonHang">
-                                        <i class="fas fa-eye"></i> Hủy Đơn
+                                    <a onclick="return confirm('Bạn có chắc chắn muốn hủy đơn này?')" asp-action="HuyDonHang" class="btn btn-sm btn-danger me-1" asp-controller="Account" asp-route-madonhang="@item.MaDonHang">
+                                        <i class="fas fa-trash-alt"></i> Hủy Đơn
                                     </a>
                                 }
-
                             </div>
                         </td>
-
-
                     </tr>
                 }
             }
             else
             {
                 <tr>
-                    <td colspan="7">Không có đơn hàng nào.</td>
+                    <td colspan="9">Không có đơn hàng nào.</td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
 
-</html>
 @section Scripts {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
     <script>
-        let table = new DataTable('#my_donhang');
+        $(document).ready(function () {
+            $('#my_donhang').DataTable({
+                paging: true, // Kích hoạt phân trang
+                searching: true, // Kích hoạt tìm kiếm
+                ordering: true, // Kích hoạt sắp xếp
+                pageLength: 10, // Số dòng mỗi trang
+                lengthMenu: [10, 25, 50, 100], // Chọn số dòng mỗi trang
+                language: {
+                    search: "Tìm kiếm:",
+                    lengthMenu: "Hiển thị _MENU_ bản ghi mỗi trang",
+                    info: "Hiển thị _START_ đến _END_ trong tổng số _TOTAL_ bản ghi",
+                    infoEmpty: "Không có bản ghi nào",
+                    zeroRecords: "Không tìm thấy kết quả",
+                    infoFiltered: "(được lọc từ _MAX_ bản ghi)"
+                }
+            });
+        });
     </script>
 }
 <!-- Thêm Font Awesome cho biểu tượng -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">

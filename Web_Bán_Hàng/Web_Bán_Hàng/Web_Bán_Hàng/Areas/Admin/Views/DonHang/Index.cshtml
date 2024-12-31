@@ -3,84 +3,139 @@
     ViewData["Title"] = "Danh Sách Đơn Hàng";
 }
 <html>
-<h1 class="text-center my-4">Danh Sách Đơn Hàng</h1>
-<!-- Bảng Đơn Hàng -->
-<div class="container">
-    <table class="table table-bordered table-hover text-center" id="my_donhang">
-        <thead class="table-dark">
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Mã Đơn Hàng</th>
-                <th scope="col">Mã Người Dùng</th>
-                <th scope="col">Ngày Đặt</th>
-                <th scope="col">Tổng Tiền</th>
-                <th scope="col">Giảm Giá</th>
-                <th scope="col">Tổng Tiền Sau Khi Giảm</th>
-                <th scope="col">Trạng Thái</th>
-                <th scope="col">Hành Động</th>
-            </tr>
-        </thead>
-        <tbody>
-            @if (Model != null && Model.Any())
-            {
-                @foreach (var item in Model)
+<head>
+    <title>@ViewData["Title"]</title>
+    <!-- Thêm Bootstrap 3 và Font Awesome -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center my-4">@ViewData["Title"]</h1>
+
+        <!-- Bảng Đơn Hàng -->
+        <table class="table table-bordered table-hover text-center" id="my_donhang">
+            <thead class="bg-dark text-white">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Mã Đơn Hàng</th>
+                    <th scope="col">Mã Người Dùng</th>
+                    <th scope="col">Ngày Đặt</th>
+                    <th scope="col">Tổng Tiền</th>
+                    <th scope="col">Giảm Giá</th>
+                    <th scope="col">Tổng Tiền Sau Khi Giảm</th>
+                    <th scope="col">Trạng Thái</th>
+                    <th scope="col">Hành Động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.ID</td>
+                            <td>@item.MaDonHang</td>
+                            <td>@item.MaNguoiDung</td>
+                            <td>@item.NgayDat</td>
+                            <td>@item.TongTienCuoi.ToString("#,0") VND</td>
+                            <td>@item.PhanTramGiaGia.ToString("#,0") %</td>
+                            <td>@item.TienSaiKhiGiam.ToString("#,0") VND</td>
+                            <td>
+                                @if (@item.TrangThai == 0)
+                                {
+                                    <span class="label label-primary">Đơn Hàng Mới</span>
+                                }
+                                else if (item.TrangThai == 1)
+                                {
+                                    <span class="label label-success">Đã Xử Lý</span>
+                                }
+                                else
+                                {
+                                    <span class="label label-danger">Đã Bị Hủy</span>
+                                }
+                            </td>
+                            <td style="width: 250px;">
+                                <!-- Đặt chiều rộng cho thẻ td -->
+                                <div class="btn-group" role="group">
+                                    <a asp-action="Details" class="btn btn-success btn-sm" asp-controller="DonHang" asp-route-madonhang="@item.MaDonHang">
+                                        <i class="fas fa-eye"></i> Chi Tiết
+                                    </a>
+                                    <a asp-action="Delete" asp-area="Admin" class="btn btn-danger btn-sm" asp-controller="DonHang" asp-route-madonhang="@item.MaDonHang" onclick="return confirm('Bạn có chắc chắn muốn xóa đơn hàng này?')">
+                                        <i class="fas fa-trash"></i> Xóa
+                                    </a>
+                                    <a asp-action="Edit" asp-area="Admin" class="btn btn-warning btn-sm" asp-controller="DonHang" asp-route-madonhang="@item.MaDonHang">
+                                        <i class="fas fa-edit"></i> Sửa
+                                    </a>
+                                </div>
+                            </td>
+
+                        </tr>
+                    }
+                }
+                else
                 {
                     <tr>
-                        <td>@item.ID</td>
-                        <td>@item.MaDonHang</td>
-                        <td>@item.MaNguoiDung</td>
-                        <td>@item.NgayDat</td>
-                        <td>@item.TongTienCuoi.ToString("#,0")VND</td>
-                        <td>@item.PhanTramGiaGia.ToString("#,0")%</td>
-                        <td>@item.TienSaiKhiGiam.ToString("#,0")VND</td>
-                        <td>
-                            @if (@item.TrangThai == 0)
-                            {
-                                <span class="text text-primary">Đơn Hàng Mới</span>
-                            }
-                            else if(item.TrangThai == 1)
-                            {
-                                <span class="text text-success">Đã Xử Lý</span>
-                            }
-                            else{
-                                    <span class="text text-danger">Đã Bị Hủy</span>
-                            }
-                        </td>
-                        <td style="width: 250px;">
-                            <div class="btn-group" role="group">
-                                <a asp-action="Details" class="btn btn-sm btn-success me-1" asp-controller="DonHang" asp-route-madonhang="@item.MaDonHang">
-                                    <i class="fas fa-eye"></i> Chi Tiết
-                                </a>
-                                <a asp-action="Delete" asp-area="Admin" class="btn btn-sm btn-danger me-1 confirmDeletion" asp-controller="DonHang" asp-route-madonhang="@item.MaDonHang">
-                                    <i class="fas fa-trash"></i> Xóa
-                                </a>
-                                
-                                <a asp-action="Edit" asp-area="Admin" class="btn btn-sm btn-warning confirmDeletion" asp-controller="DonHang" asp-route-madonhang="@item.MaDonHang">
-                                    <i class="fas fa-edit"></i> Sửa
-                                </a>
-                               
-                            </div>
-                        </td>
-
-                       
+                        <td colspan="9">Không có đơn hàng nào.</td>
                     </tr>
                 }
-            }
-            else
-            {
-                <tr>
-                    <td colspan="7">Không có đơn hàng nào.</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
+            </tbody>
+        </table>
+    </div>
 
+    <style>
+        /* Tùy chỉnh DataTable */
+        #my_donhang {
+            font-size: 14px;
+            border-collapse: collapse;
+        }
+
+            #my_donhang th, #my_donhang td {
+                padding: 10px;
+                text-align: center;
+            }
+
+            #my_donhang th {
+                background-color: #343a40;
+                color: white;
+            }
+
+            /* Thêm hover cho các dòng */
+            #my_donhang tbody tr:hover {
+                background-color: #f1f1f1;
+            }
+
+        /* Tùy chỉnh nút */
+        .btn-group .btn {
+            margin: 3px;
+        }
+    </style>
+
+    @section Scripts {
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                $('#my_donhang').DataTable({
+                    paging: true, // Kích hoạt phân trang
+                    searching: true, // Kích hoạt tìm kiếm
+                    ordering: true, // Kích hoạt sắp xếp
+                    pageLength: 10, // Số dòng mỗi trang
+                    lengthMenu: [10, 25, 50, 100], // Chọn số dòng mỗi trang
+                    language: {
+                        search: "Tìm kiếm:",
+                        lengthMenu: "Hiển thị _MENU_ bản ghi mỗi trang",
+                        info: "Hiển thị _START_ đến _END_ trong tổng số _TOTAL_ bản ghi",
+                        infoEmpty: "Không có bản ghi nào",
+                        zeroRecords: "Không tìm thấy kết quả",
+                        infoFiltered: "(được lọc từ _MAX_ bản ghi)"
+                    }
+                });
+            });
+        </script>
+    }
+</body>
 </html>
-@section Scripts {
-    <script>
-        let table = new DataTable('#my_donhang');
-    </script>
-}
-<!-- Thêm Font Awesome cho biểu tượng -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">

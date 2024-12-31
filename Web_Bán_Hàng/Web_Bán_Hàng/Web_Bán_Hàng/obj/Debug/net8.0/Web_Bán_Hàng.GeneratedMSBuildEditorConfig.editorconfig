@@ -66,6 +66,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRG9uSGFuZ1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Đồ Án Cuối Kỳ Web/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Areas/Admin/Views/KhuyenMai/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcS2h1eWVuTWFpXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Đồ Án Cuối Kỳ Web/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Areas/Admin/Views/KhuyenMai/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcS2h1eWVuTWFpXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -124,6 +128,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Đồ Án Cuối Kỳ Web/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Areas/Admin/Views/UserRole/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlclJvbGVcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Đồ Án Cuối Kỳ Web/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Areas/Admin/Views/UserRole/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlclJvbGVcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Đồ Án Cuối Kỳ Web/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Areas/Admin/Views/UserRole/Index.cshtml]
@@ -296,6 +304,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Đồ Án Cuối Kỳ Web/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Views/Shared/NotificationPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXE5vdGlmaWNhdGlvblBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Đồ Án Cuối Kỳ Web/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Views/Shared/phantrangtimkiem.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXHBoYW50cmFuZ3RpbWtpZW0uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Đồ Án Cuối Kỳ Web/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Web_Bán_Hàng/Views/Shared/SlidePartial.cshtml]

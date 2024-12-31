@@ -1,92 +1,117 @@
 ﻿@model List<Web_Bán_Hàng.Models.CartHistoryModel>
 
 <style>
-    .action-buttons {
-        display: flex;
-        gap: 10px;
-        align-items: center;
-        text-align: center;
+    /* Tùy chỉnh DataTable */
+    #cartHistoryTable {
+        font-size: 14px;
+        border-collapse: collapse;
     }
 
-        .action-buttons form {
-            margin: 0;
+        #cartHistoryTable th, #cartHistoryTable td {
+            padding: 10px;
+            text-align: center;
         }
 
-        .action-buttons button {
-            min-width: 100px; /* Chiều rộng tối thiểu của các nút */
+        #cartHistoryTable th {
+            background-color: #343a40;
+            color: white;
         }
+
+        /* Thêm hover cho các dòng */
+        #cartHistoryTable tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+    /* Tùy chỉnh nút */
+    .btn-group .btn {
+        margin: 3px;
+    }
 </style>
-<h2>Lịch sử giỏ hàng</h2>
-<div>
 
-@if (Model != null && Model.Any())
-{
-    <table border="1" style="width: 100%; border-collapse: collapse;">
-        <thead>
-            <tr>
-                <th>Hình ảnh</th>
-                <th>Tên sản phẩm</th>
-                <th>Số lượng</th>
-                <th>Giá</th>
-                <th>Tổng</th>
-                <th>Ngày thêm</th>
-                <th>Trạng thái thanh toán</th>
-                <th>Hành động</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
+<h2>Sản Phẩm Chưa Được Thanh Toán</h2>
+<div style="margin-bottom : 200px">
+    @if (Model != null && Model.Any())
+    {
+        <table id="cartHistoryTable" class="display">
+            <thead>
                 <tr>
-                    <!-- Hiển thị hình ảnh sản phẩm -->
-                    <td>
-                        <img src="~/image/@item.Image" alt="@item.ProductName" style="width: 50px;" />
-                    </td>
-
-                    <!-- Hiển thị tên sản phẩm -->
-                    <td>@item.ProductName</td>
-
-                    <!-- Hiển thị số lượng sản phẩm -->
-                    <td>@item.Quantity</td>
-
-                    <!-- Hiển thị giá sản phẩm -->
-                    <td>@item.Price.ToString("C")</td>
-
-                    <!-- Hiển thị tổng tiền -->
-                    <td>@item.Total.ToString("C")</td>
-
-                    <!-- Hiển thị ngày thêm vào giỏ hàng -->
-                    <td>@item.AddedDate.ToString("dd/MM/yyyy")</td>
-
-                    <!-- Hiển thị trạng thái thanh toán -->
-                    <td>@(item.IsCheckedOut ? "Đã thanh toán" : "Chưa thanh toán")</td>
-
-                    <!-- Chỉ cho phép thêm lại vào giỏ hàng nếu chưa thanh toán -->
-                    <td>
-                        @if (!item.IsCheckedOut)
-                        {
-                            <div class="action-buttons">
-                                <form asp-action="AddAndRemoveFromHistory" asp-controller="Account" method="post">
-                                    <input type="hidden" name="id" value="@item.ProductId" />
-                                    <input type="hidden" name="quantity" value="@item.Quantity" />
-                                    <button type="submit" class="btn btn-success">Thêm lại </button>
-                                </form>
-                                <form asp-action="XoaSanPhamTuLichSuGioHang" asp-route-productId="@item.ProductId" method="post">
-                                    <button type="submit" class="btn btn-danger">Xóa</button>
-                                </form>
-                            </div>
-                        }
-                    </td>
+                    <th>Hình ảnh</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Số lượng</th>
+                    <th>Giá</th>
+                    <th>Tổng</th>
+                    <th>Ngày thêm</th>
+                    <th>Trạng thái thanh toán</th>
+                    <th>Hành động</th>
                 </tr>
-            }
-        </tbody>
-    </table>
-}
-else
-{
-    <p>Không có sản phẩm nào chưa được thanh toán.</p>
-}
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td >
+                            <img style="width : 100px; height : 100px;" src="~/image/@item.Image" alt="@item.ProductName" />
+                        </td>
+                        <td>@item.ProductName</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.Price.ToString("#,0")VNĐ</td>
+                        <td>@item.Total.ToString("#,0")VNĐ</td>
+                        <td>@item.AddedDate.ToString("dd/MM/yyyy")</td>
+                        <td>@(item.IsCheckedOut ? "Đã thanh toán" : "Chưa thanh toán")</td>
+                        <td style="width: 150px;">
+                            @if (!item.IsCheckedOut)
+                            {
+                                <div class="action-buttons">
+                                    <form asp-action="AddAndRemoveFromHistory" asp-controller="Account" method="post" style="display:inline;">
+                                        <input type="hidden" name="id" value="@item.ProductId" />
+                                        <input type="hidden" name="quantity" value="@item.Quantity" />
+                                        <button type="submit" class="btn btn-success">Thêm lại</button>
+                                    </form>
+                                    <form onclick="return confirm('Bạn có chắc chắn muốn xóa?')" asp-action="XoaSanPhamTuLichSuGioHang" asp-route-productId="@item.ProductId" method="post" style="display:inline;">
+                                        <button type="submit" class="btn btn-danger">Xóa</button>
+                                    </form>
+                                </div>
+                            }
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>Không có sản phẩm nào chưa được thanh toán.</p>
+    }
 </div>
-<!-- CSS tùy chỉnh -->
+
+<!-- Thêm DataTables và các script cần thiết -->
+@section Scripts {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+
+    <link href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+
+    <script>
+        $(document).ready(function () {
+            $('#cartHistoryTable').DataTable({
+                paging: true, // Kích hoạt phân trang
+                searching: true, // Kích hoạt tìm kiếm
+                ordering: true, // Kích hoạt sắp xếp
+                pageLength: 10, // Số dòng mỗi trang
+                lengthMenu: [10, 25, 50, 100], // Chọn số dòng mỗi trang
+                language: {
+                    search: "Tìm kiếm:",
+                    lengthMenu: "Hiển thị _MENU_ bản ghi mỗi trang",
+                    info: "Hiển thị _START_ đến _END_ trong tổng số _TOTAL_ bản ghi",
+                    infoEmpty: "Không có bản ghi nào",
+                    zeroRecords: "Không tìm thấy kết quả",
+                    infoFiltered: "(được lọc từ _MAX_ bản ghi)"
+                }
+            });
+        });
+    </script>
+}
 
 

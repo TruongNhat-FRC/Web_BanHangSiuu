@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ktpUXhqVTbeydDZIWeAGKsiNrjvTc41GAP2yriYeOj4=",
+  "Hash": "FAsjfmyvU7OJPEJurPDIyCkgoTi+zfyP1xsBqK8+juY=",
   "Source": "Web_Bán_Hàng",
   "BasePath": "_content/Web_Bán_Hàng",
   "Mode": "Default",
@@ -53,6 +53,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\Web_Bán_Hàng.bundle.scp.css"
+    },
+    {
+      "Identity": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\anhfe\\a-bookstore-logo-with-the-text-frc-store_JS0ryOxJT0WEnF-zJDr6Dw_N_4rOpaSRnmeoVpFk6EY6w.jpeg",
+      "SourceId": "Web_Bán_Hàng",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\",
+      "BasePath": "_content/Web_Bán_Hàng",
+      "RelativePath": "anhfe/a-bookstore-logo-with-the-text-frc-store_JS0ryOxJT0WEnF-zJDr6Dw_N_4rOpaSRnmeoVpFk6EY6w.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\anhfe\\a-bookstore-logo-with-the-text-frc-store_JS0ryOxJT0WEnF-zJDr6Dw_N_4rOpaSRnmeoVpFk6EY6w.jpeg"
     },
     {
       "Identity": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\anhfe\\baner.jpg",
@@ -435,6 +454,25 @@
       "OriginalItemSpec": "wwwroot\\image\\294e406e-6a5e-423e-9d0c-328f754690c2_cover052.png"
     },
     {
+      "Identity": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\image\\2ae18bfc-e947-4af2-adef-53c5a9180d4e_sachthamkhao.jpg",
+      "SourceId": "Web_Bán_Hàng",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\",
+      "BasePath": "_content/Web_Bán_Hàng",
+      "RelativePath": "image/2ae18bfc-e947-4af2-adef-53c5a9180d4e_sachthamkhao.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image\\2ae18bfc-e947-4af2-adef-53c5a9180d4e_sachthamkhao.jpg"
+    },
+    {
       "Identity": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\image\\2bb26983-0401-4805-9566-b2d707ae4dd9_truyenngungon.jpg",
       "SourceId": "Web_Bán_Hàng",
       "SourceType": "Discovered",
@@ -471,6 +509,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\image\\2e7c2dfb-093d-4be0-b1ec-f2a87fd3fcb3_cover053png.png"
+    },
+    {
+      "Identity": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\image\\3cf2acf2-27c8-434c-b4e4-fa90664d820d_butviettiengtrung.jpg",
+      "SourceId": "Web_Bán_Hàng",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\",
+      "BasePath": "_content/Web_Bán_Hàng",
+      "RelativePath": "image/3cf2acf2-27c8-434c-b4e4-fa90664d820d_butviettiengtrung.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image\\3cf2acf2-27c8-434c-b4e4-fa90664d820d_butviettiengtrung.jpg"
     },
     {
       "Identity": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\image\\404.jpg",
@@ -528,6 +585,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\image\\549c0e0e-9f14-4069-baca-d518283d17d0_giaotrinhhannguquyen6.jpg"
+    },
+    {
+      "Identity": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\image\\64899f25-c557-4576-bb26-4e4d986a255c_1dam.jpg",
+      "SourceId": "Web_Bán_Hàng",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\",
+      "BasePath": "_content/Web_Bán_Hàng",
+      "RelativePath": "image/64899f25-c557-4576-bb26-4e4d986a255c_1dam.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image\\64899f25-c557-4576-bb26-4e4d986a255c_1dam.jpg"
     },
     {
       "Identity": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\image\\83670eb2-6ed7-465b-a6a9-25eea669ae99_cover051.png",
@@ -682,6 +758,25 @@
       "OriginalItemSpec": "wwwroot\\image\\a81fc3fe-cca6-4577-a5fb-51777ccc49d8_cover051.png"
     },
     {
+      "Identity": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\image\\a9873fb4-19f5-44ed-93f6-5eb8248224ee_947 xanh-800x800.jpg",
+      "SourceId": "Web_Bán_Hàng",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\",
+      "BasePath": "_content/Web_Bán_Hàng",
+      "RelativePath": "image/a9873fb4-19f5-44ed-93f6-5eb8248224ee_947 xanh-800x800.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image\\a9873fb4-19f5-44ed-93f6-5eb8248224ee_947 xanh-800x800.jpg"
+    },
+    {
       "Identity": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\image\\ba064c6d-ebcd-41fc-ae48-433e44aaf61a_cover053png.png",
       "SourceId": "Web_Bán_Hàng",
       "SourceType": "Discovered",
@@ -756,6 +851,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\image\\d2cf9c62-9f4c-4c80-929e-3a45babcd337_cover050.png"
+    },
+    {
+      "Identity": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\image\\da4ffe1b-ebd1-4241-abd1-7cd34c9dcf0f_f795fa6f3f2e8dd5897594e29566846e.jpg",
+      "SourceId": "Web_Bán_Hàng",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\",
+      "BasePath": "_content/Web_Bán_Hàng",
+      "RelativePath": "image/da4ffe1b-ebd1-4241-abd1-7cd34c9dcf0f_f795fa6f3f2e8dd5897594e29566846e.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image\\da4ffe1b-ebd1-4241-abd1-7cd34c9dcf0f_f795fa6f3f2e8dd5897594e29566846e.jpg"
     },
     {
       "Identity": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\image\\da623afa-897e-4765-b2b1-02f11e82798c_cover054.png",
@@ -2202,12 +2316,12 @@
       "OriginalItemSpec": "wwwroot\\logo\\8dcab87c-1b9c-495d-8bc1-9d42f91c28c7_FRCshop.jpeg"
     },
     {
-      "Identity": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\slide\\1c523142-5a46-4729-b0bc-a5d4d96b0d04_akusshuki.jpg",
+      "Identity": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\slide\\8e2bbc57-31ce-4635-b798-520fe7c3ebc7_a-colorful-banner-with-the-text-frc-book_KY3jzIzCR6a1JCHYTJJLCw_Cci-Ws5zSEuo8hAOTeemVQ.jpeg",
       "SourceId": "Web_Bán_Hàng",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\",
       "BasePath": "_content/Web_Bán_Hàng",
-      "RelativePath": "slide/1c523142-5a46-4729-b0bc-a5d4d96b0d04_akusshuki.jpg",
+      "RelativePath": "slide/8e2bbc57-31ce-4635-b798-520fe7c3ebc7_a-colorful-banner-with-the-text-frc-book_KY3jzIzCR6a1JCHYTJJLCw_Cci-Ws5zSEuo8hAOTeemVQ.jpeg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -2218,15 +2332,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\slide\\1c523142-5a46-4729-b0bc-a5d4d96b0d04_akusshuki.jpg"
+      "OriginalItemSpec": "wwwroot\\slide\\8e2bbc57-31ce-4635-b798-520fe7c3ebc7_a-colorful-banner-with-the-text-frc-book_KY3jzIzCR6a1JCHYTJJLCw_Cci-Ws5zSEuo8hAOTeemVQ.jpeg"
     },
     {
-      "Identity": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\slide\\4e453a9a-d7a9-4d38-89e9-acd4088c76de_baner222jpg.jpg",
+      "Identity": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\slide\\932ca75d-a0a4-4f87-afc9-d9cbc9efcc30_a-colorful-736-x-414-banner-for-a-frc-fi_GvwEJJtURli94rqTOtceMg_Cci-Ws5zSEuo8hAOTeemVQ.jpeg",
       "SourceId": "Web_Bán_Hàng",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\",
       "BasePath": "_content/Web_Bán_Hàng",
-      "RelativePath": "slide/4e453a9a-d7a9-4d38-89e9-acd4088c76de_baner222jpg.jpg",
+      "RelativePath": "slide/932ca75d-a0a4-4f87-afc9-d9cbc9efcc30_a-colorful-736-x-414-banner-for-a-frc-fi_GvwEJJtURli94rqTOtceMg_Cci-Ws5zSEuo8hAOTeemVQ.jpeg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -2237,26 +2351,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\slide\\4e453a9a-d7a9-4d38-89e9-acd4088c76de_baner222jpg.jpg"
-    },
-    {
-      "Identity": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\slide\\521120aa-79ef-4cfa-9194-4d5da3aaa5fa_back.jpg",
-      "SourceId": "Web_Bán_Hàng",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\",
-      "BasePath": "_content/Web_Bán_Hàng",
-      "RelativePath": "slide/521120aa-79ef-4cfa-9194-4d5da3aaa5fa_back.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\slide\\521120aa-79ef-4cfa-9194-4d5da3aaa5fa_back.jpg"
+      "OriginalItemSpec": "wwwroot\\slide\\932ca75d-a0a4-4f87-afc9-d9cbc9efcc30_a-colorful-736-x-414-banner-for-a-frc-fi_GvwEJJtURli94rqTOtceMg_Cci-Ws5zSEuo8hAOTeemVQ.jpeg"
     },
     {
       "Identity": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\slide\\b5436117-983d-443d-a7b7-20578c000bb5_banner.jpg",
@@ -2276,44 +2371,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\slide\\b5436117-983d-443d-a7b7-20578c000bb5_banner.jpg"
-    },
-    {
-      "Identity": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\slide\\e565d7b2-09d5-4e52-94a2-086da6e2c2d9_ekhuyenmai.jpg",
-      "SourceId": "Web_Bán_Hàng",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\",
-      "BasePath": "_content/Web_Bán_Hàng",
-      "RelativePath": "slide/e565d7b2-09d5-4e52-94a2-086da6e2c2d9_ekhuyenmai.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\slide\\e565d7b2-09d5-4e52-94a2-086da6e2c2d9_ekhuyenmai.jpg"
-    },
-    {
-      "Identity": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\slide\\e9f4660e-8825-413f-80ba-404f7b25661f_duck.jpg",
-      "SourceId": "Web_Bán_Hàng",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\",
-      "BasePath": "_content/Web_Bán_Hàng",
-      "RelativePath": "slide/e9f4660e-8825-413f-80ba-404f7b25661f_duck.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\slide\\e9f4660e-8825-413f-80ba-404f7b25661f_duck.jpg"
     }
   ]
 }

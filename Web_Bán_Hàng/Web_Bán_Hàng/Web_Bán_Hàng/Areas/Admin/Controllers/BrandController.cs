@@ -8,7 +8,7 @@ namespace Web_Bán_Hàng.Areas.Admin.Controllers
 {
 	[Area("Admin")]
     
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,NhanVien")]
     public class BrandController : Controller
 	{
 		private readonly Datacontext _datacontext;
@@ -18,26 +18,15 @@ namespace Web_Bán_Hàng.Areas.Admin.Controllers
 			_datacontext = context;
 		}
 
-        public async Task<IActionResult> Index(int pg = 1)
+        public async Task<IActionResult> Index()
         {
-            const int pageSize = 10; // Số lượng thương hiệu mỗi trang
+            // Lấy toàn bộ danh sách thương hiệu từ cơ sở dữ liệu
+            var brands = await _datacontext.Brands.OrderByDescending(p => p.Id).ToListAsync();
 
-            // Lấy danh sách các thương hiệu và tổng số lượng
-            var brandsQuery = _datacontext.Brands.OrderByDescending(p => p.Id);
-            var totalBrands = await brandsQuery.CountAsync();
-
-			// Tính toán phân trang
-			var paging = new PhanTrang(totalBrands, pg, pageSize);
-            var skip = (pg - 1) * pageSize;
-
-            // Lấy danh sách thương hiệu cho trang hiện tại
-            var brands = await brandsQuery.Skip(skip).Take(pageSize).ToListAsync();
-
-            // Truyền thông tin phân trang và danh sách thương hiệu vào View
-            ViewBag.Trang = paging;
-
+            // Truyền danh sách thương hiệu vào View
             return View(brands);
         }
+
 
         public IActionResult Add()
         {
@@ -111,44 +100,48 @@ namespace Web_Bán_Hàng.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public async Task<IActionResult> Edit(int id,BrandModel brand)
-        {
+		public async Task<IActionResult> Edit(int id, BrandModel brand)
+		{
+			if (ModelState.IsValid)
+			{
+				// Kiểm tra và gán Slug nếu chưa có giá trị
+				if (string.IsNullOrEmpty(brand.Slug))
+				{
+					brand.Slug = brand.Name.Replace(" ", "_").ToLower();
+				}
 
-            if (ModelState.IsValid)
-            {
-                // Kiểm tra và gán Slug nếu chưa có giá trị
-                if (string.IsNullOrEmpty(brand.Slug))
-                {
-                    brand.Slug = brand.Name.Replace(" ", "_").ToLower();
-                }
-                var slug = await _datacontext.Brands.FirstOrDefaultAsync(p => p.Slug == brand.Slug);
-                if (slug != null)
-                {
-                    ModelState.AddModelError("", "Thương Hiệu đã tồn tại");
-                    return View(brand);
-                }
+				// Kiểm tra nếu Slug đã tồn tại và không phải là của chính thương hiệu hiện tại
+				var existingSlug = await _datacontext.Brands
+					.FirstOrDefaultAsync(p => p.Slug == brand.Slug && p.Id != brand.Id);
 
-                _datacontext.Update(brand);
-                await _datacontext.SaveChangesAsync();
-                TempData["success"] = "Cập nhật thành công";
-                return RedirectToAction("Index", "Brand");
-            }
-            else
-            {
-                TempData["error"] = "Vui lòng kiểm tra lại dữ liệu ";
-                List<string> errors = new List<string>();
-                foreach (var value in ModelState.Values)
-                {
-                    foreach (var error in value.Errors)
-                    {
-                        errors.Add(error.ErrorMessage);
-                    }
-                }
-                string errorMessage = string.Join("\n", errors);
-                return BadRequest(errorMessage);
-            }
-            return View(brand);
+				if (existingSlug != null)
+				{
+					ModelState.AddModelError("", "Thương Hiệu đã tồn tại");
+					return View(brand);
+				}
 
-        }
-    }
+				// Cập nhật thông tin thương hiệu
+				_datacontext.Update(brand);
+				await _datacontext.SaveChangesAsync();
+
+				TempData["success"] = "Cập nhật thành công";
+				return RedirectToAction("Index", "Brand");
+			}
+			else
+			{
+				TempData["error"] = "Vui lòng kiểm tra lại dữ liệu ";
+				List<string> errors = new List<string>();
+				foreach (var value in ModelState.Values)
+				{
+					foreach (var error in value.Errors)
+					{
+						errors.Add(error.ErrorMessage);
+					}
+				}
+				string errorMessage = string.Join("\n", errors);
+				return BadRequest(errorMessage);
+			}
+		}
+
+	}
 }

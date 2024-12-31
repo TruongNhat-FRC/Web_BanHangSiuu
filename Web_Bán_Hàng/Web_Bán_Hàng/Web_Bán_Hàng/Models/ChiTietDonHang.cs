@@ -11,7 +11,7 @@ namespace Web_Bán_Hàng.Models
 
         [Required]
         [ForeignKey("DonHang")]
-        public string MaDonHang { get; set; }  // Khóa ngoại, liên kết với MaDonHang của bảng DonHangs
+        public string MaDonHang { get; set; }  
 
         public string MaNguoiDung { get; set; }
         public string MaSanPham { get; set; }
@@ -19,10 +19,8 @@ namespace Web_Bán_Hàng.Models
         public decimal ThanhTien { get; set; }
         public decimal Gia1mon { get; set; }
 
-        // Liên kết với DonHangModel
         public virtual DonHangModel DonHang { get; set; }
 
-        // Liên kết với ProductModel
         public virtual ProductModel Product { get; set; }
     }
 

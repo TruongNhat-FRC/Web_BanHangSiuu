@@ -2,36 +2,43 @@
 
 @{
 	Layout = "_Layout";
+	PhanTrang trang = new PhanTrang();
+	int pageo = 0;
+	if (ViewBag.Trang != null)
+	{
+		trang = ViewBag.Trang;
+		pageo = trang.TrangHienTai;
+	}
 }
 <style>
 	.features_items .col-sm-4 {
-		margin-bottom: 30px; /* Khoảng cách giữa các sản phẩm */
+		margin-bottom: 30px; 
 	}
 
 	.product-image-wrapper {
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
-		height: 100%; /* Đồng bộ chiều cao khối chứa */
-		border: 1px solid #ddd; /* Viền nhẹ */
-		box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng */
-		transition: all 0.3s ease; /* Hiệu ứng hover mượt */
+		height: 100%; 
+		border: 1px solid #ddd; 
+		box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+		transition: all 0.3s ease; 
 	}
 
 		.product-image-wrapper:hover {
-			transform: translateY(-5px); /* Hiệu ứng nổi khi hover */
+			transform: translateY(-5px); 
 		}
 
 	.productinfo {
-		flex: 1; /* Chiếm khoảng không gian lớn */
+		flex: 1; 
 		text-align: center;
 		padding: 15px;
 	}
 
 		.productinfo img {
 			width: 100%;
-			height: 250px; /* Đặt chiều cao cố định cho hình ảnh */
-			object-fit: cover; /* Đảm bảo ảnh không bị méo */
+			height: 250px; 
+			object-fit: cover; 
 		}
 
 		.productinfo h2 {
@@ -42,9 +49,8 @@
 		}
 
 		.productinfo p {
-			white-space: nowrap; /* Giới hạn nội dung 1 dòng */
+			white-space: nowrap; 
 			overflow: hidden;
-			text-overflow: ellipsis; /* Dấu "..." khi nội dung dài */
 			margin-bottom: 5px;
 		}
 
@@ -54,9 +60,9 @@
 	}
 
 	.choose {
-		margin-top: auto; /* Đẩy phần này xuống đáy */
+		margin-top: auto; 
 		padding: 10px;
-		background: #f9f9f9; /* Phần nền nhẹ cho vùng lựa chọn */
+		background: #f9f9f9; 
 		text-align: center;
 	}
 
@@ -67,7 +73,7 @@
 		}
 
 			.choose a:hover {
-				color: #80C943; /* Màu khi hover */
+				color: #80C943; 
 			}
 
 </style>
@@ -78,9 +84,10 @@
 </div>
 
 <div class="col-sm-9 padding-right">
+	@Html.Partial("_FilterPartial");
+
 	<div class="features_items">
-    <!--features_items-->
-    <h2 class="title text-center">@ViewBag.Name</h2>
+		<h2 class="title text-center" style="margin-top:20px;" >@ViewBag.Name</h2>
 
     @if (Model == null || !Model.Any(item => item.IsVisible))
     {
@@ -125,7 +132,8 @@
 									<ul class="nav nav-pills nav-justified">
 										<li>
 											<a class="btn btn-outline-danger add-btn-yeuthich" data-product_id="@item.Id">
-												<i class="fa fa-plus-square"></i> Thêm vào yêu thích
+												<i class="fa fa-heart"></i>
+												Thêm vào yêu thích
 											</a>
 										</li>
 									</ul>
@@ -138,11 +146,20 @@
     }
 </div><!--features_items-->
 
-
-	
-
-	
-
-
-
 </div>
+<partial class="justify-content-center align-items-center" name="_phantrang" model="@trang"></partial>
+
+@section Scripts {
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('#sort_by').on('change', function () {
+				var url = $(this).val();
+				if (url) {
+					window.location = url;
+					return false;
+				}
+			});
+		});
+	</script>
+
+}

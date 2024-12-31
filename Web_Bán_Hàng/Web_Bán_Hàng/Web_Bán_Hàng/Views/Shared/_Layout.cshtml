@@ -26,7 +26,80 @@
 	<link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-d74+7+qlU7G1p1Au53yK+XHdgpOpfQ8ktqP9VQDuAZwhm4v2F2j6Lq8bR1woGTKa" crossorigin="anonymous"></script>
 	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v21.0"></script>
-	
+	<style>
+		.nav > li > a:hover,
+		.nav > li > a:focus {
+			background-color: #f8f9fa;
+			color: #000;
+		}
+
+		.dropdown-menu {
+			transition: all 0.3s ease-in-out;
+			transform: translateY(10px);
+			opacity: 0;
+			display: block;
+			visibility: hidden;
+		}
+
+		.dropdown.open .dropdown-menu {
+			transform: translateY(0);
+			opacity: 1;
+			visibility: visible;
+		}
+		/* Căn chỉnh tổng thể */
+		.search-container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin: 20px auto;
+			max-width: 600px;
+			padding: 10px;
+		}
+
+		/* Input */
+		.search-input {
+			flex-grow: 1;
+			border: 2px solid #ddd;
+			border-right: none;
+			border-radius: 30px 0 0 30px;
+			padding: 10px 15px;
+			font-size: 16px;
+			transition: all 0.3s ease;
+			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+		}
+
+		/* Button */
+		.btn-search {
+			border: none;
+			background-color: #f39c12;
+			color: white;
+			border-radius: 0 30px 30px 0;
+			padding: 10px 20px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
+			transition: background-color 0.3s ease;
+		}
+
+			/* Icon trong button */
+			.btn-search i {
+				font-size: 25px;
+			}
+
+		/* Hiệu ứng hover */
+		.search-input:focus {
+			border-color: #007bff;
+			box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+			outline: none;
+		}
+
+		.btn-search:hover {
+			background-color: #e67e22;
+		}
+
+
+	</style>
 
 
 </head>
@@ -40,19 +113,24 @@
 					<div class="col-sm-6">
 						<div class="contactinfo">
 							<ul class="nav nav-pills">
-								<li><a href="#"><i class="fa fa-phone"></i> 132</a></li>
-								<li><a href="#"><i class="fa fa-envelope"></i> info@domain.com</a></li>
+								<li><a href="#"><i class="fa fa-phone"></i> 0377875295</a></li>
+								<li><a href="#"><i class="fa fa-envelope"></i> truong.pn.64cntt@ntu.edu.vn</a></li>
 							</ul>
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<div class="social-icons pull-right">
 							<ul class="nav navbar-nav">
-								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-								<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-								<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-								<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+								<li>
+									<a href="https://www.facebook.com/tr.nguyen.543">
+										<i class="fa fa-facebook"></i>
+									</a></li>
+								<li>
+									<a href="https://www.instagram.com/nhatruong28124/">
+										<i class="fa fa-instagram"></i>
+									</a>
+								</li>
+								
 							</ul>
 						</div>
 					</div>
@@ -66,64 +144,46 @@
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="logo text-center text-sm-left">
-							<!-- Đảm bảo kích thước phù hợp và căn giữa trên màn hình nhỏ -->
 							<a asp-action="Index" asp-controller="Home">
-								<img src="~/anhfe/FRCshop.jpeg" alt="Logo" class="img-fluid" style="max-height: 100px;">
+								<img src="~/anhfe/a-bookstore-logo-with-the-text-frc-store_JS0ryOxJT0WEnF-zJDr6Dw_N_4rOpaSRnmeoVpFk6EY6w.jpeg" alt="Logo" class="img-fluid" style="max-height: 100px;">
 							</a>
 						</div>
 					</div>
 
 					<div class="col-sm-8">
-						<div class="shop-menu pull-right" style="padding-top: 25px; padding-bottom: 10px;" >
+						<div class="shop-menu pull-right" style="padding-top: 25px; padding-bottom: 10px;">
 							<ul class="nav navbar-nav">
 								@if (User.Identity?.IsAuthenticated ?? false)
 								{
-									
 									<li class="dropdown">
-										<a style="cursor : pointer" class="fs-5 dropdown-toggle" data-toggle="dropdown">
-											<i class="fa fa-shopping-cart"></i>Mua Sắm
-											<span class="caret"></span>
-
+										<a style="cursor: pointer" class="fs-5 dropdown-toggle" data-toggle="dropdown">
+											<i class="fa fa-shopping-cart"></i> Mua Sắm <span class="caret"></span>
 										</a>
 										<ul class="dropdown-menu">
 											<li><a asp-action="Index" asp-controller="Cart" class="fs-5"><i class="fa fa-cart-arrow-down"></i> Đặt Hàng</a></li>
-											<li><a asp-action="LichSuGioHang" asp-controller="Account" class="fs-5"><i class="fa fa-shopping-basket"></i>Sản Phảm Chưa Được Thanh Toán</a></li>
-											<li><a asp-action="ListYeuThich" asp-controller="Home" class="fs-5"><i class="fa fa-heart"></i> Yêu Thích </a></li>
+											<li><a asp-action="LichSuGioHang" asp-controller="Account" class="fs-5"><i class="fa fa-shopping-basket"></i> Sản Phẩm Chưa Được Thanh Toán</a></li>
+											<li><a asp-action="ListYeuThich" asp-controller="Home" class="fs-5"><i class="fa fa-heart"></i> Yêu Thích</a></li>
 										</ul>
 									</li>
-									<li class ="dropdown">
-										<a style="cursor : pointer" class="fs-5 dropdown-toggle" data-toggle="dropdown">
-											<i class="fa fa-user"></i>Tài Khoản
-											<span class="caret"></span>
-											
+									<li class="dropdown">
+										<a style="cursor: pointer" class="fs-5 dropdown-toggle" data-toggle="dropdown">
+											<i class="fa fa-user"></i> Tài Khoản <span class="caret"></span>
 										</a>
 										<ul class="dropdown-menu">
 											<li><a asp-action="LichSuMuaHang" asp-controller="Account"><i class="fa fa-history"></i> Lịch Sử Đơn Hàng</a></li>
 											<li><a asp-action="CapNhatThongTinCaNhan" asp-controller="Account"><i class="fa fa-user-circle"></i> Thông Tin Tài Khoản</a></li>
-
-											<li><a href="#">Page 1-3</a></li>
 										</ul>
 									</li>
 									<li class="dropdown">
-										<a style="cursor : pointer" class="fs-5 dropdown-toggle" data-toggle="dropdown">
-											<i class="fa fa-tachometer-alt"></i>
-												Hoạt Động
-											<span class="caret"></span>
-
+										<a style="cursor: pointer" class="fs-5 dropdown-toggle" data-toggle="dropdown">
+											<i class="fa fa-tachometer-alt"></i> Hoạt Động <span class="caret"></span>
 										</a>
 										<ul class="dropdown-menu">
 											<li><a asp-action="DangXuat" asp-controller="Account" class="fs-5"><i class="fa fa-lock"></i> Đăng Xuất</a></li>
-											
 										</ul>
 									</li>
-									
-
-
-									
 									<li><a class="fs-5"><i class="fa fa-user"></i> Chào, @User.Identity.Name</a></li>
-@* 									<li><a href="#" class="fs-5"><i class="fa fa-user"></i> Account</a></li>
- *@
-									@if (User.IsInRole("Admin"))
+									@if (User.IsInRole("Admin") || User.IsInRole("NhanVien"))
 									{
 										<li><a asp-action="Index" asp-controller="Product" asp-area="Admin" class="fs-5"><i class="fa fa-cogs"></i> Quản Lý</a></li>
 									}
@@ -135,6 +195,7 @@
 							</ul>
 						</div>
 					</div>
+
 				</div>
 			</div>
 
@@ -156,18 +217,7 @@
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
 								<li><a asp-action="Index" asp-controller="Home" class="active">Home</a></li>
-								<li class="dropdown">
-									<a href="#">Shop<i class="fa fa-angle-down"></i></a>
-									<ul role="menu" class="sub-menu">									
-									</ul>
-								</li>
-								<li class="dropdown">
-									<a href="#">Blog<i class="fa fa-angle-down"></i></a>
-									<ul role="menu" class="sub-menu">
-										<li><a href="blog.html">Blog List</a></li>
-										<li><a href="blog-single.html">Blog Single</a></li>
-									</ul>
-								</li>
+								
 								
 @* 								<li><a asp-action="ListSoSanh" asp-controller="Home"  class="fs-5"><i class="fa fa-star"></i> So Sánh</a></li>
  *@
@@ -175,12 +225,18 @@
 							</ul>
 						</div>
 					</div>
-					<form asp-controller="Product" asp-action="TimKiem" method="post">
-						<div class="search_box pull-right">
-							<input type="text" placeholder="Search" name="searchkey" value="@ViewBag.Keyword" />
-							<button class="btn btn-warning" type="submit">Search</button>
-						</div>
+					<form asp-controller="Product" asp-action="TimKiem" method="post" class="search-container">
+						<input type="text"
+							   class="search-input"
+							   placeholder="Tìm kiếm sản phẩm..."
+							   name="searchkey"
+							   value="@ViewBag.Keyword" />
+						<button class="btn-search" type="submit">
+							<i class="fa fa-search"></i>
+						</button>
 					</form>
+
+
 
 
 				</div>
@@ -204,77 +260,13 @@
 	<footer id="footer">
 		@Html.Partial("FooterPartial")
 
-		@* <div class="footer-widget">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-2">
-						<div class="single-widget">
-							<h2>Service</h2>
-							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">Online Help</a></li>
-								<li><a href="#">Contact Us</a></li>
-								<li><a href="#">Order Status</a></li>
-								<li><a href="#">Change Location</a></li>
-								<li><a href="#">FAQ’s</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-sm-2">
-						<div class="single-widget">
-							<h2>Quock Shop</h2>
-							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">T-Shirt</a></li>
-								<li><a href="#">Mens</a></li>
-								<li><a href="#">Womens</a></li>
-								<li><a href="#">Gift Cards</a></li>
-								<li><a href="#">Shoes</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-sm-2">
-						<div class="single-widget">
-							<h2>Policies</h2>
-							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">Terms of Use</a></li>
-								<li><a href="#">Privecy Policy</a></li>
-								<li><a href="#">Refund Policy</a></li>
-								<li><a href="#">Billing System</a></li>
-								<li><a href="#">Ticket System</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-sm-2">
-						<div class="single-widget">
-							<h2>About Shopper</h2>
-							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">Company Information</a></li>
-								<li><a href="#">Careers</a></li>
-								<li><a href="#">Store Location</a></li>
-								<li><a href="#">Affillate Program</a></li>
-								<li><a href="#">Copyright</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-sm-3 col-sm-offset-1">
-						<div class="single-widget">
-							<h2>About Shopper</h2>
-							<form action="#" class="searchform">
-								<input type="text" placeholder="Your email address" />
-								<button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
-								<p>Get the most recent updates from <br />our site and be updated your self...</p>
-							</form>
-						</div>
-					</div>
-
-				</div>
-			</div>
-		</div> *@
+		
 
 		<div class="footer-bottom">
 			<div class="container">
 				<div class="row">
-					<p class="pull-left">Copyright © 2013 E-SHOPPER Inc. All rights reserved.</p>
-					<p class="pull-right">Designed by <span><a target="_blank" href="http://www.themeum.com">Themeum</a></span></p>
+					<p class="pull-left">PHẠM NHẬT TRƯỜNG-64132785</p>
+					<p class="pull-right">THIẾT KẾ BỞI NHẬT TRƯỜNG CUTE</p>
 				</div>
 			</div>
 		</div>
@@ -296,7 +288,11 @@
 			if (message != '')
 				Swal.fire(message);
 		});
+
+		
+
 	</script>
+
 	@await RenderSectionAsync("Scripts", required: false);
 
 </body>

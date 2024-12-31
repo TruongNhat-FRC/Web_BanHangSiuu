@@ -7,7 +7,7 @@ using Web_Bán_Hàng.Models;
 namespace Web_Bán_Hàng.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,NhanVien")]
     public class VanChuyenController : Controller
     {
         private readonly Datacontext _datacontext;
@@ -19,9 +19,9 @@ namespace Web_Bán_Hàng.Areas.Admin.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var listdiachi = await _datacontext.VanChuyens.ToListAsync();  // Lấy tất cả dữ liệu
-            ViewBag.List = listdiachi;  // Lưu danh sách vào ViewData
-            return View();  // Trả về view
+            var listdiachi = await _datacontext.VanChuyens.ToListAsync();  
+            ViewBag.List = listdiachi;  
+            return View(); 
         }
         [HttpPost]
         public async Task<IActionResult> Add(VanChuyenModel vanChuyen, string phuong, string quan, string tinh, decimal gia)
@@ -98,9 +98,9 @@ namespace Web_Bán_Hàng.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(int id, VanChuyenModel updatedVanChuyen)
         {
+            //Kiêm tra id đc gửi có trùng vs id của view form không
             if (id != updatedVanChuyen.Id)
             {
-                // Nếu ID không khớp, trả về thông báo lỗi
                 TempData["error"] = "ID không khớp.";
                 return RedirectToAction("Index");
             }

@@ -3,19 +3,26 @@
 	<div class="col-sm-3">
 		<div class="companyinfo">
 			<p><img src="~/logo/@Model.Logo" width="150px" height="100px" /></p>
-			<p>@Html.Raw(Model.Mota)</p>
+			
+		</div>
+		<div>
+			<p><b>@Html.Raw(Model.Mota)</b></p>
 		</div>
 	</div>
-	<div class="col-sm-5">
+	<div class="col-sm-5" style=" margin-top:60px;">
 		<div>
 			<p >@Html.Raw(Model.BanDo)</p>
 		</div>
 	</div>
 	<div class="col-sm-4">
-		<div class="ma" style="margin-top: 20px;">
+		<div class="ma" style="margin-top: 60px;">
 			<p><b>Tên Nhà Sách :</b> @Model.Name</p>
 			<p><b>Email Liên Hệ :</b> @Model.Email</p>
 			<p><b>Số Điện Thoại Đường Dây Nóng :</b> @Model.SDT</p>
+		</div>
+		<div class="address">
+			
+			<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D100079937081563&tabs=message&width=500&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=false&appId" width="500" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
 		</div>
 	</div>
 

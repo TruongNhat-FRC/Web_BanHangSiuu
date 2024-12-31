@@ -1,25 +1,22 @@
 ﻿@model IEnumerable<SliderModel>
 @{
 
-    ViewData["Title"] = "Danh sách Slider";
+    ViewData["Title"] = "Danh Sách Banner";
 
-    // PhanTrang trang = new PhanTrang();
-    // int pageo = 0;
-    // if (ViewBag.Trang != null)
-    // {
-    //     trang = ViewBag.Trang;
-    //     pageo = trang.TrangHienTai;
-    // }
+    
 
 }
 
 
 
-<h1 class="text-center my-4">Danh sách slider</h1>
-<a asp-action="Add" class="btn btn-sm btn-primary" asp-controller="Slider">Thêm slide </a>
-<!-- Bảng sản phẩm -->
+<h1 class="text-center my-4">Danh Sách Banner</h1>
+<a asp-action="Add" class="btn btn-sm btn-primary" asp-controller="Slider" style="margin-left: 15px; margin-bottom :15px; border-radius: 20px;">
+    <i class="fas fa-plus-circle"></i> Thêm slide
+</a>
+
+
 <div class="container">
-    <table class="table table-bordered table-hover text-center">
+    <table class="table table-bordered table-hover text-center" id="slide">
         <thead class="table-dark">
             <tr>
                 <th scope="col">Mã slider</th>
@@ -53,7 +50,7 @@
                         </td>
                         <td style="width: 150px;">
                             <a asp-action="Edit" class="btn btn-sm btn-success me-1" asp-controller="Slider" asp-route-id="@item.Id">  <i class="fas fa-edit"></i>Edit</a>
-                            <a asp-action="Delete" class="btn btn-sm btn-danger confirmDeletion" asp-controller="Slider" asp-route-id="@item.Id"> <i class="fas fa-trash"></i>Delete</a>
+                            <a onclick="return confirm('Bạn có chắc chắn muốn xóa Banner này?')" asp-action="Delete" class="btn btn-sm btn-danger" asp-controller="Slider" asp-route-id="@item.Id"> <i class="fas fa-trash"></i>Delete</a>
                         </td>
 
                     </tr>
@@ -68,6 +65,5 @@
         </tbody>
     </table>
 </div>
-@*  <partial name="_phantrang" model="@trang"></partial>
- *@<!-- Thêm Font Awesome cho biểu tượng -->
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">

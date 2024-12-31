@@ -2,8 +2,83 @@
 
 @{
 	ViewData["Title"] = ViewBag.Keyword;
-	Layout = "_Layout";
+	PhanTrang trang = new PhanTrang();
+	int pageo = 0;
+	if (ViewBag.Trang != null)
+	{
+		trang = ViewBag.Trang;
+		pageo = trang.TrangHienTai;
+	}
 }
+<style>
+	.features_items .col-sm-4 {
+		margin-bottom: 30px;
+	}
+
+	.product-image-wrapper {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		height: 100%;
+		border: 2px solid #ddd;
+		box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+		/ transition: all 0.3s ease;
+	}
+
+		.product-image-wrapper:hover {
+			transform: translateY(-5px);
+		}
+
+	.productinfo {
+		flex: 1;
+		text-align: center;
+		padding: 15px;
+	}
+
+		.productinfo img {
+			width: 100%;
+			height: 250px;
+			object-fit: cover;
+			border-radius: 8px;
+		}
+
+		.productinfo h2 {
+			font-size: 18px;
+			font-weight: bold;
+			color: #80C943;
+			margin-bottom: 10px;
+		}
+
+		.productinfo p {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			margin-bottom: 5px;
+		}
+
+	.add-to-cart {
+		margin-top: 10px;
+		font-size: 14px;
+	}
+
+	.choose {
+		margin-top: auto;
+		padding: 10px;
+		background: #f9f9f9;
+		text-align: center;
+	}
+
+		.choose a {
+			font-size: 13px;
+			color: #333;
+			transition: color 0.3s ease;
+		}
+
+			.choose a:hover {
+				color: #80C943;
+			}
+
+</style>
 
 
 <div class="col-sm-3">
@@ -15,49 +90,67 @@
 		<!--features_items-->
 		<h2 class="title text-center">@ViewBag.Keyword</h2>
 
-		@foreach (var item in Model)
+		@if (Model == null || !Model.Any())
 		{
-			if (item.IsVisible)
+			<div class="alert alert-warning text-center">
+				Không có sản phẩm phù hợp với từ khóa tìm kiếm.
+			</div>
+		}
+		else
+		{
+			@foreach (var item in Model)
 			{
-				<div class="col-sm-4">
-					<div class="product-image-wrapper">
-						<div class="single-products">
-							<a asp-action="Detail" asp-controller="Product" asp-route-Id="@item.Id">
-								<div class="productinfo text-center">
-									<img src="~/image/@item.Image" alt="" />
-									<h2>@item.Price.ToString("#,0")VNĐ</h2>
-									<p>@item.Name</p>
-									<p>Loại Sản Phẩm: @item.Category.Name</p>
-									<p>Thương Hiệu: @item.Brand.Name</p>
-									@if(item.Quantity > 0)
-									{
-										<a class="btn btn-default add-to-cart" asp-action="Add" asp-controller="Cart" asp-route-id="@item.Id">
-											<i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng
-										</a>
-									}
-									else
-									{
-										<a class="btn btn-danger add-to-cart ">
-											<i class="fa fa-box-open" style="color: grey;"></i> Hết Hàng
-										</a>
-									}
-								</div>
-							</a>
-						</div>
-						<div class="choose">
-							<ul class="nav nav-pills nav-justified">
-								<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-								<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-							</ul>
+				if (item.IsVisible)
+				{
+					<div class="col-sm-4">
+						<div class="product-image-wrapper">
+							<div class="single-products">
+								<a asp-action="Detail" asp-controller="Product" asp-route-Id="@item.Id">
+									<div class="productinfo text-center">
+										<img src="~/image/@item.Image" alt="" />
+										<h2>@item.Price.ToString("#,0")VNĐ</h2>
+										<p>@item.Name</p>
+										<p>Loại Sản Phẩm: @item.Category.Name</p>
+										<p>Thương Hiệu: @item.Brand.Name</p>
+										@if (item.Quantity > 0)
+										{
+											<a class="btn btn-default add-to-cart" asp-action="Add" asp-controller="Cart" asp-route-id="@item.Id">
+												<i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng
+											</a>
+										}
+										else
+										{
+											<a class="btn btn-danger add-to-cart ">
+												<i class="fa fa-box-open" style="color: grey;"></i> Hết Hàng
+											</a>
+										}
+									</div>
+								</a>
+							</div>
+							<div class="choose mt-3">
+								@if (User.Identity?.IsAuthenticated ?? false)
+								{
+									<ul class="nav nav-pills nav-justified">
+										<li>
+											<a class="btn btn-outline-danger add-btn-yeuthich" data-product_id="@item.Id">
+												<i class="fa fa-heart"></i>
+												Thêm vào yêu thích
+											</a>
+										</li>
+									</ul>
+								}
+							</div>
 						</div>
 					</div>
-				</div>
+				}
 			}
 		}
-
 	</div><!--features_items-->
-
-
+	@* Hiển thị phân trang nếu có sản phẩm *@
+	@if (Model != null && Model.Any())
+	{
+		<partial name="phantrangtimkiem" model="@trang"></partial>
+	}
 
 
 	<div class="recommended_items">
@@ -65,7 +158,7 @@
 
 		@{
 			var sanPhamHot = ViewBag.SanPhamHot as IEnumerable<Web_Bán_Hàng.Models.ProductModel>;
-			int itemsPerSlide = 4; // Mỗi slide chứa tối đa 4 sản phẩm
+			int itemsPerSlide = 4;
 		}
 
 		@if (sanPhamHot != null && sanPhamHot.Any())
@@ -97,7 +190,6 @@
 					}
 				</div>
 
-				<!-- Điều khiển carousel -->
 				<a class="left recommended-item-control" href="#hot-product-carousel" data-slide="prev">
 					<i class="fa fa-angle-left"></i>
 				</a>

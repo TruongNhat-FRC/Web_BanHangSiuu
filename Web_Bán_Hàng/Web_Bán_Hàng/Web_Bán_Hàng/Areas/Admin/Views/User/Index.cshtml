@@ -1,59 +1,142 @@
 ﻿@model IEnumerable<Web_Bán_Hàng.Models.AppUserModel>
 
 @{
-    ViewData["Title"] = "Danh sách người dùng";
+    ViewData["Title"] = "Danh Sách Người Dùng";
 }
 
-<h2>@ViewData["Title"]</h2>
+<html>
+<head>
+    <title>@ViewData["Title"]</title>
+    <!-- Thêm Bootstrap 3 và Font Awesome -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+</head>
 
-<div class="container">
-    <table class="table table-bordered table-hover text-center">
-        <thead class="table-dark">
-            <tr>
-                <th style="width: 20%; text-align: center;">UserName</th>
-                <th style="width: 25%; text-align: center;">Email</th>
-                <th style="width: 20%; text-align: center;">Họ và Tên</th> <!-- Cột Họ và Tên -->
-                <th style="width: 25%; text-align: center;">Quyền</th>
-                <th style="width: 10%; text-align: center;">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var user in Model)
-            {
+<body>
+    <div class="container">
+        <h1 class="text-center my-4">@ViewData["Title"]</h1>
+        <div class="text-right mb-3">
+            <a asp-action="DanhSachNguoiDungBiXoa" asp-controller="User" class="btn btn-secondary">
+                <i class="fas fa-user-slash"></i> Danh sách người dùng bị vô hiệu hóa
+            </a>
+        </div>
+        <!-- Bảng Người Dùng -->
+        <table class="table table-bordered table-hover text-center" id="user_table">
+            <thead class="bg-dark text-white">
                 <tr>
-                    <td>@user.UserName</td>
-                    <td>@user.Email</td>
-                    <td>@user.FullName</td> <!-- Hiển thị họ và tên -->
-                    <td>
-                        @if (user.Roles != null && user.Roles.Any())
-                        {
-                            <ul style="padding-left: 0; list-style-type: none;">
-                                <!-- Xóa bullet points -->
-                                @foreach (var role in user.Roles)
-                                {
-                                    <li style="display: inline-block; margin-right: 5px;">@role</li> <!-- Hiển thị theo dòng -->
-                                }
-                            </ul>
-                        }
-                        else
-                        {
-                            <span class="text-muted">Không có quyền</span>
-                        }
-                    </td>
-                    <td>
-                        <div style="display: flex; gap: 5px; justify-content: space-around;">
-                            <a asp-action="Edit" asp-route-id="@user.Id" class="btn btn-info"><i class="fas fa-eye"></i> Quyền</a>
-                            <a asp-action="EditInfo" asp-route-id="@user.Id" class="btn btn-secondary">Chỉnh sửa thông tin</a>
-                            <a asp-action="DeleteUser" asp-route-id="@user.Id" class="btn btn-danger"> <i class="fas fa-trash"></i>Xóa</a>
-                        </div>
-                    </td>
+                    <th scope="col">UserName</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Họ và Tên</th>
+                    <th scope="col">Quyền</th>
+                    <th scope="col">Hành Động</th>
                 </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    @foreach (var user in Model)
+                    {
+                        <tr>
+                            <td>@user.UserName</td>
+                            <td>@user.Email</td>
+                            <td>@user.FullName</td>
+                            <td>
+                                @if (user.Roles != null && user.Roles.Any())
+                                {
+                                    <ul style="padding-left: 0; list-style-type: none; margin: 0;">
+                                        @foreach (var role in user.Roles)
+                                        {
+                                            <li style="display: inline-block; margin-right: 5px;">
+                                                <span class="label label-info">@role</span>
+                                            </li>
+                                        }
+                                    </ul>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">Không có quyền</span>
+                                }
+                            </td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a asp-action="Edit" asp-route-id="@user.Id" class="btn btn-info btn-sm">
+                                        <i class="fas fa-user-cog"></i> Quyền
+                                    </a>
+                                    <a asp-action="EditInfo" asp-route-id="@user.Id" class="btn btn-warning btn-sm">
+                                        <i class="fas fa-edit"></i> Chỉnh sửa
+                                    </a>
+                                    <a asp-action="DeleteUser" asp-route-id="@user.Id" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa người dùng này?')">
+                                        <i class="fas fa-trash"></i> Xóa
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="5">Không có người dùng nào.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+
+    <style>
+        /* Tùy chỉnh DataTable */
+        #user_table {
+            font-size: 14px;
+            border-collapse: collapse;
+        }
+
+            #user_table th, #user_table td {
+                padding: 10px;
+                text-align: center;
             }
-        </tbody>
-    </table>
-</div>
 
-<a asp-action="DanhSachNguoiDungBiXoa" class="btn btn-danger">Danh sách người dùng bị vô hiệu hóa -></a>
+            #user_table th {
+                background-color: #343a40;
+                color: white;
+            }
 
-<!-- Thêm Font Awesome cho biểu tượng -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+            /* Thêm hover cho các dòng */
+            #user_table tbody tr:hover {
+                background-color: #f1f1f1;
+            }
+
+        /* Tùy chỉnh nút */
+        .btn-group .btn {
+            margin: 3px;
+        }
+    </style>
+
+    <!-- Thêm DataTables -->
+    @section Scripts {
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                $('#user_table').DataTable({
+                    paging: true, // Kích hoạt phân trang
+                    searching: true, // Kích hoạt tìm kiếm
+                    ordering: true, // Kích hoạt sắp xếp
+                    pageLength: 10, // Số dòng mỗi trang
+                    lengthMenu: [10, 25, 50, 100], // Chọn số dòng mỗi trang
+                    language: {
+                        search: "Tìm kiếm:",
+                        lengthMenu: "Hiển thị _MENU_ bản ghi mỗi trang",
+                        info: "Hiển thị _START_ đến _END_ trong tổng số _TOTAL_ bản ghi",
+                        infoEmpty: "Không có bản ghi nào",
+                        zeroRecords: "Không tìm thấy kết quả",
+                        infoFiltered: "(được lọc từ _MAX_ bản ghi)"
+                    }
+                });
+            });
+        </script>
+    }
+</body>
+</html>

@@ -52,7 +52,6 @@ namespace Web_Bán_Hàng.Controllers
 
 		public async Task<IActionResult> Add(string id)
 		{
-			// Kiểm tra nếu người dùng chưa đăng nhập
 			if (!User.Identity.IsAuthenticated)
 			{
 				TempData["error"] = "Bạn cần đăng nhập để bắt đầu mua sắm.";
@@ -231,13 +230,14 @@ namespace Web_Bán_Hàng.Controllers
         [HttpPost]
         public async Task<IActionResult> GetCoupon(string coupon_value)
         {
-            // Tìm coupon hợp lệ trong bảng KhuyenMais
+            var currentTime = DateTime.UtcNow;
+
             var validCoupon = await _datacontext.KhuyenMais
-                .FirstOrDefaultAsync(x => x.Name == coupon_value && x.SoLuong > 0 && x.trangthai == 1); // Kiểm tra trạng thái coupon (trangthai == 1 là còn hiệu lực)
+                .FirstOrDefaultAsync(x => x.Name == coupon_value && x.SoLuong > 0 && x.trangthai == 1 && x.NgayBatDau <= currentTime
+                                && x.NgayKetThuc >= currentTime); 
 
             if (validCoupon != null)
             {
-                // Nếu coupon hợp lệ, lấy giá trị Gia
                 decimal couponGia = validCoupon.Gia;
 
                 // Thiết lập cookie với giá trị giảm giá

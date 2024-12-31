@@ -10,7 +10,6 @@
         public int TrangCuoi {  get; set; }
         public PhanTrang()
         {
-
         }
         public PhanTrang(int tongsomuc, int trang, int kichthuoctrang)
         {
@@ -30,7 +29,6 @@
                 {
                     trangbatdau = trangketthuc - 9;
                 }
-
             }
             TongSoMuc = tongsomuc;
             TrangHienTai = tranghientai;
@@ -38,14 +36,7 @@
             TongSoTrang = tongsotrang;
             TrangDauTien = trangbatdau;
             TrangCuoi = trangketthuc;
-
-
-
-
-
-
         }
-
     }
 }
 

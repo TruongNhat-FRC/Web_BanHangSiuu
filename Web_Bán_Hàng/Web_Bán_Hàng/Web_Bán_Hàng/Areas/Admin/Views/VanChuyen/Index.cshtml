@@ -6,7 +6,7 @@
     .css_select_div{ text-align: center;}
     .css_select{ display: inline-table; width: 25%; padding: 5px; margin: 5px 2%; border: solid 1px #686868; border-radius: 5px;}
 </style>
-<h4>Thêm Danh Địa Chỉ</h4>
+<h4>Thêm Địa Chỉ Vận Chuyển</h4>
 <div>
     <form asp-action="Add" enctype="multipart/form-data">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -68,13 +68,13 @@
                     foreach (var item in ViewBag.List)
                     {
                         <tr>
-                            <td>@item.Id</td> <!-- Kiểm tra lại iID trong model -->
-                            <td>@item.thanhpho</td> <!-- Thay thế với thuộc tính Thành Phố -->
-                            <td>@item.Quan</td> <!-- Thay thế với thuộc tính Quận Huyện -->
+                            <td>@item.Id</td> 
+                            <td>@item.thanhpho</td> 
+                            <td>@item.Quan</td> 
                             <td>@item.Phuong_xa</td> <!-- Thay thế với thuộc tính Xã Phường -->
                             <td>@item.Gia.ToString("#,0") VND</td> <!-- Đảm bảo Gia là kiểu decimal -->
                             <td>
-                                <a asp-action="Delete" class="btn btn-sm btn-danger confirmDeletion" asp-controller="VanChuyen" asp-route-id="@item.Id">
+                                <a onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')" asp-action="Delete" class="btn btn-sm btn-danger " asp-controller="VanChuyen" asp-route-id="@item.Id">
                                     <i class="fas fa-trash"></i> Delete
                                 </a>
                                 <a asp-action="Edit" class="btn btn-sm btn-success me-1" asp-controller="VanChuyen" asp-route-id="@item.Id">  <i class="fas fa-edit"></i>Edit</a>
@@ -93,6 +93,8 @@
     </div>
 
 </div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");

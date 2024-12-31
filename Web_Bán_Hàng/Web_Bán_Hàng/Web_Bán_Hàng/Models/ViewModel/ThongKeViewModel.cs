@@ -1,4 +1,6 @@
-﻿namespace Web_Ban_Hang.Models
+﻿using Web_Bán_Hàng.Models;
+
+namespace Web_Ban_Hang.Models
 {
     public class ThongKeViewModel
     {
@@ -6,12 +8,12 @@
         public int TongDonHang { get; set; }
         public int TongSanPhamBanRa { get; set; }
         public string SanPhamBanChayNhat { get; set; }
-        public int TongSanPham { get; set; } // Tổng số sản phẩm của shop
-        public int LuotDanhGia { get; set; } // Lượt đánh giá
+        public int TongSanPham { get; set; } 
+        public int LuotDanhGia { get; set; } 
 
-        // Du lieu cho bieu do
         public List<DuLieuBieuDoDoanhThu> DuLieuBieuDoDoanhThu { get; set; }
         public List<DuLieuBieuDoDonHang> DuLieuBieuDoDonHang { get; set; }
+        public List<ProductModel> BanChay { get; set; }
     }
 
     public class DuLieuBieuDoDoanhThu

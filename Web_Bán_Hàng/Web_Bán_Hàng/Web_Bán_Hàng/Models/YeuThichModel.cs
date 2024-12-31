@@ -9,10 +9,10 @@ namespace Web_Bán_Hàng.Models
 		[Key]
 		public int Id { get; set; }
 
-		public string ProductId { get; set; } // Khóa ngoại
+		public string ProductId { get; set; }
 		public string UserId { get; set; }
 
-		[ForeignKey("ProductId")] // Chỉ định khóa ngoại
+		[ForeignKey("ProductId")] 
 		public ProductModel Product { get; set; }
 	}
 }

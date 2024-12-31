@@ -19,43 +19,9 @@ namespace Web_Bán_Hàng.Controllers
 		{
 			return View();
 		}
-		/*public async Task<IActionResult> Detail(string Id = "")
-		{
-			if (Id == null) return RedirectToAction("Index");
-
-			var productbyId = _datacontext.Products.Include(p=>p.DanhGias).Where(p => p.Id == Id).FirstOrDefault();
-			var namesp = productbyId.Name.ToString();
-			ViewBag.Name = namesp;
-
-
-
-			if (productbyId == null) return RedirectToAction("Index");
-
-			// Lấy sản phẩm liên quan và kiểm tra điều kiện IsVisible
-			var sanphamlienquan = await _datacontext.Products
-				.Where(p => p.CategoryId == productbyId.CategoryId
-							&& p.Id != productbyId.Id
-							&& p.IsVisible == true) // Kiểm tra IsVisible
-				.Take(10)
-				.ToListAsync();
-
-			ViewBag.SanPhamLienquan = sanphamlienquan;
-			var view = new ProductDanhGiaModel
-			{
-				ProductDetail = productbyId,
-				DanhGias = productbyId.DanhGias,
-
-
-			};
-			
-			
-			
-
-			return View(view);
-		}*/
+		
 		public async Task<IActionResult> Detail(string Id = "")
 		{
-			// Nếu không có Id sản phẩm, chuyển hướng về trang danh sách sản phẩm
 			if (string.IsNullOrEmpty(Id)) return RedirectToAction("Index");
 
 			// Lấy sản phẩm theo Id
@@ -63,33 +29,28 @@ namespace Web_Bán_Hàng.Controllers
 				.Include(p => p.DanhGias) // Lấy các đánh giá liên quan
 				.FirstOrDefaultAsync(p => p.Id == Id);
 
-			// Nếu sản phẩm không tồn tại, chuyển hướng về trang danh sách sản phẩm
 			if (productbyId == null) return RedirectToAction("Index");
 
-			// Lấy tên sản phẩm để hiển thị trên View
 			ViewBag.Name = productbyId.Name;
 
-			// Sắp xếp danh sách đánh giá theo thời gian mới nhất trước
 			var danhGiasSorted = productbyId.DanhGias
-				.OrderByDescending(dg => dg.CreatedAt) // Sắp xếp theo thời gian mới nhất
+				.OrderByDescending(dg => dg.CreatedAt) 
 				.ToList(); // Lấy tất cả đánh giá
 
-			// ViewModel cho sản phẩm và đánh giá
+			
 			var viewModel = new ProductDanhGiaModel
 			{
 				ProductDetail = productbyId,
 				DanhGias = danhGiasSorted
 			};
 
-			// Lấy sản phẩm liên quan
 			var sanphamlienquan = await _datacontext.Products
 				.Where(p => p.CategoryId == productbyId.CategoryId
 							&& p.Id != productbyId.Id
-							&& p.IsVisible) // Kiểm tra điều kiện IsVisible
+							&& p.IsVisible) 
 				.Take(10)
 				.ToListAsync();
 
-			// Truyền danh sách sản phẩm liên quan vào ViewBag
 			ViewBag.SanPhamLienquan = sanphamlienquan;
 
 			return View(viewModel);
@@ -97,21 +58,45 @@ namespace Web_Bán_Hàng.Controllers
 
 
 		[HttpPost]
-		public async Task<IActionResult> TimKiem(string searchkey)
-		{
-			var products = await _datacontext.Products.Where(p => p.Name.Contains(searchkey) || p.Description.Contains(searchkey)).ToListAsync();
-			var sanPhamHot = _datacontext.Products
-										  .Where(p => p.IsVisible)
-										  .OrderByDescending(p => p.PurchaseCount)
-										  .Take(10)
-										  .ToList();
+        [HttpGet]
+        public async Task<IActionResult> TimKiem(string searchkey, int pg = 1)
+        {
+            if (string.IsNullOrWhiteSpace(searchkey))
+            {
+                return RedirectToAction("Index"); // Quay về trang chính nếu không có từ khóa
+            }
+
+            var products = await _datacontext.Products
+                                             .Where(p => p.Name.Contains(searchkey) || p.Description.Contains(searchkey))
+                                             .ToListAsync();
+
+            var sanPhamHot = _datacontext.Products
+                                          .Where(p => p.IsVisible)
+                                          .OrderByDescending(p => p.PurchaseCount)
+                                          .Take(10)
+                                          .ToList();
+
+            ViewBag.SanPhamHot = sanPhamHot;
+            ViewBag.Keyword = searchkey;
+
+            const int KichThuoc = 6; // Số sản phẩm mỗi trang
+            if (pg < 1)
+            {
+                pg = 1;
+            }
+
+            int count = products.Count();
+            var trang = new PhanTrang(count, pg, KichThuoc);
+            int buocnhay = (pg - 1) * KichThuoc;
+            var data = products.Skip(buocnhay).Take(trang.KichThuocTrang).ToList();
+
+            ViewBag.Trang = trang;
+
+            return View(data);
+        }
 
 
-			ViewBag.SanPhamHot = sanPhamHot;
-			ViewBag.Keyword = searchkey;
-			return View(products);
-		}
-		[HttpPost]
+        [HttpPost]
 		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> DanhGia(DanhGia danhGia)
 		{

@@ -17,9 +17,6 @@ namespace Web_Bán_Hàng.Models
         public string Description { get; set; }
 		[Range(0, int.MaxValue, ErrorMessage = "Lượt mua phải là một số không âm.")]
 		public int PurchaseCount { get; set; } = 0;
-
-
-
 		[Required]
         [Range(0, double.MaxValue, ErrorMessage = "Yêu cầu giá sản phẩm phải là một số dương.")]
         public decimal Price { get; set; }
@@ -35,7 +32,7 @@ namespace Web_Bán_Hàng.Models
         public int Quantity { get; set; } = 0; 
         [Required]
         public bool IsVisible { get; set; } = true;
-		public List<DanhGia> DanhGias { get; set; } // Sửa để chứa danh sách đánh giá
+		public List<DanhGia> DanhGias { get; set; } 
 
 	}
 }
