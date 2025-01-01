@@ -1,9 +1,9 @@
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
-using Web_B�n_H�ng.Areas.Repository;
-using Web_B�n_H�ng.Database;
-using Web_B�n_H�ng.Models;
+using Web_Bán_Hàng.Areas.Repository;
+using Web_Bán_Hàng.Database;
+using Web_Bán_Hàng.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -96,8 +96,15 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 
-//Seedng Data
-var context = app.Services.CreateScope().ServiceProvider.GetRequiredService<Datacontext>();
-SeedData.SeedingData(context);
+// Đảm bảo rằng dữ liệu seed được chèn vào cơ sở dữ liệu
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<Datacontext>();
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<AppUserModel>>();
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+    // Gọi phương thức seeding dữ liệu
+    SeedData.SeedingData(context, userManager, roleManager);
+}
 
 app.Run();

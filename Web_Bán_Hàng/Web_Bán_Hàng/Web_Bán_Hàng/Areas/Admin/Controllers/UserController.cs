@@ -8,18 +8,18 @@ using Web_Bán_Hàng.Models;
 
 namespace Web_Bán_Hàng.Areas.Admin.Controllers
 {
-	[Area("Admin")]
+    [Area("Admin")]
     [Authorize(Roles = "Admin")]
     public class UserController : Controller
-	{
-		private readonly UserManager<AppUserModel> _userManager;
-		private readonly RoleManager<IdentityRole> _roleManager;
+    {
+        private readonly UserManager<AppUserModel> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-		public UserController(UserManager<AppUserModel> userManager, RoleManager<IdentityRole> roleManager)
-		{
-			_userManager = userManager;
-			_roleManager = roleManager;
-		}
+        public UserController(UserManager<AppUserModel> userManager, RoleManager<IdentityRole> roleManager)
+        {
+            _userManager = userManager;
+            _roleManager = roleManager;
+        }
 
         // Hiển thị danh sách người dùng
         /*public IActionResult Index()
@@ -47,51 +47,51 @@ namespace Web_Bán_Hàng.Areas.Admin.Controllers
 
         // Hiển thị trang chỉnh sửa quyền
         [HttpGet]
-		public async Task<IActionResult> Edit(string id)
-		{
-			var user = await _userManager.FindByIdAsync(id);
-			if (user == null) return NotFound();
+        public async Task<IActionResult> Edit(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null) return NotFound();
 
-			var roles = _roleManager.Roles.ToList();
-			var userRoles = await _userManager.GetRolesAsync(user);
+            var roles = _roleManager.Roles.ToList();
+            var userRoles = await _userManager.GetRolesAsync(user);
 
-			var model = new EditUserRolesViewModel
-			{
-				UserId = user.Id,
-				UserName = user.UserName,
-				AvailableRoles = roles.Select(role => new RoleViewModel
-				{
-					RoleId = role.Id,
-					RoleName = role.Name,
-					IsSelected = userRoles.Contains(role.Name)
-				}).ToList()
-			};
+            var model = new EditUserRolesViewModel
+            {
+                UserId = user.Id,
+                UserName = user.UserName,
+                AvailableRoles = roles.Select(role => new RoleViewModel
+                {
+                    RoleId = role.Id,
+                    RoleName = role.Name,
+                    IsSelected = userRoles.Contains(role.Name)
+                }).ToList()
+            };
 
-			return View(model);
-		}
+            return View(model);
+        }
 
-		// Cập nhật quyền cho người dùng
-		[HttpPost]
-		public async Task<IActionResult> Edit(EditUserRolesViewModel model)
-		{
-			var user = await _userManager.FindByIdAsync(model.UserId);
-			if (user == null) return NotFound();
+        // Cập nhật quyền cho người dùng
+        [HttpPost]
+        public async Task<IActionResult> Edit(EditUserRolesViewModel model)
+        {
+            var user = await _userManager.FindByIdAsync(model.UserId);
+            if (user == null) return NotFound();
 
-			var currentRoles = await _userManager.GetRolesAsync(user);
-			var selectedRoles = model.AvailableRoles
-									  .Where(role => role.IsSelected)
-									  .Select(role => role.RoleName)
-									  .ToList();
+            var currentRoles = await _userManager.GetRolesAsync(user);
+            var selectedRoles = model.AvailableRoles
+                                      .Where(role => role.IsSelected)
+                                      .Select(role => role.RoleName)
+                                      .ToList();
 
-			var rolesToAdd = selectedRoles.Except(currentRoles);
-			var rolesToRemove = currentRoles.Except(selectedRoles);
+            var rolesToAdd = selectedRoles.Except(currentRoles);
+            var rolesToRemove = currentRoles.Except(selectedRoles);
 
-			await _userManager.AddToRolesAsync(user, rolesToAdd);
-			await _userManager.RemoveFromRolesAsync(user, rolesToRemove);
+            await _userManager.AddToRolesAsync(user, rolesToAdd);
+            await _userManager.RemoveFromRolesAsync(user, rolesToRemove);
 
-			TempData["Success"] = "Cập nhật quyền thành công.";
-			return RedirectToAction("Index");
-		}
+            TempData["Success"] = "Cập nhật quyền thành công.";
+            return RedirectToAction("Index");
+        }
         [HttpGet]
         public async Task<IActionResult> EditInfo(string id)
         {

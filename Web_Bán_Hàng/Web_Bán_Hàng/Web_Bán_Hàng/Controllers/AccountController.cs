@@ -372,7 +372,7 @@ namespace Web_Bán_Hàng.Controllers
 
 
 
-		///Bonus
+		
 		public async Task<IActionResult> Add(string id)
         {
             // Kiểm tra nếu người dùng chưa đăng nhập

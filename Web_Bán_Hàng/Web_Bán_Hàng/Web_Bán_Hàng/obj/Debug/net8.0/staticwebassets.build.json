@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "FAsjfmyvU7OJPEJurPDIyCkgoTi+zfyP1xsBqK8+juY=",
+  "Hash": "jYFeJHK10D8W0NBu0bvZMNDdhuE7BsUW/0eZMZmRM2k=",
   "Source": "Web_Bán_Hàng",
   "BasePath": "_content/Web_Bán_Hàng",
   "Mode": "Default",
@@ -511,6 +511,25 @@
       "OriginalItemSpec": "wwwroot\\image\\2e7c2dfb-093d-4be0-b1ec-f2a87fd3fcb3_cover053png.png"
     },
     {
+      "Identity": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\image\\38c274c4-9855-46ca-99d5-8a1ea140919f_cover054.png",
+      "SourceId": "Web_Bán_Hàng",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\",
+      "BasePath": "_content/Web_Bán_Hàng",
+      "RelativePath": "image/38c274c4-9855-46ca-99d5-8a1ea140919f_cover054.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image\\38c274c4-9855-46ca-99d5-8a1ea140919f_cover054.png"
+    },
+    {
       "Identity": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\image\\3cf2acf2-27c8-434c-b4e4-fa90664d820d_butviettiengtrung.jpg",
       "SourceId": "Web_Bán_Hàng",
       "SourceType": "Discovered",
@@ -528,6 +547,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\image\\3cf2acf2-27c8-434c-b4e4-fa90664d820d_butviettiengtrung.jpg"
+    },
+    {
+      "Identity": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\image\\3e0d0741-dd3d-4478-893c-da7901c0dd44_vungdattrenbautroi.jpg",
+      "SourceId": "Web_Bán_Hàng",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\",
+      "BasePath": "_content/Web_Bán_Hàng",
+      "RelativePath": "image/3e0d0741-dd3d-4478-893c-da7901c0dd44_vungdattrenbautroi.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image\\3e0d0741-dd3d-4478-893c-da7901c0dd44_vungdattrenbautroi.jpg"
     },
     {
       "Identity": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\image\\404.jpg",
@@ -2297,12 +2335,12 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
-      "Identity": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\logo\\8dcab87c-1b9c-495d-8bc1-9d42f91c28c7_FRCshop.jpeg",
+      "Identity": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\logo\\412feed4-f1a3-4f43-bd01-0dd63b1ccf64_a-bookstore-logo-with-the-text-frc-store_JS0ryOxJT0WEnF-zJDr6Dw_N_4rOpaSRnmeoVpFk6EY6w.jpeg",
       "SourceId": "Web_Bán_Hàng",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\",
       "BasePath": "_content/Web_Bán_Hàng",
-      "RelativePath": "logo/8dcab87c-1b9c-495d-8bc1-9d42f91c28c7_FRCshop.jpeg",
+      "RelativePath": "logo/412feed4-f1a3-4f43-bd01-0dd63b1ccf64_a-bookstore-logo-with-the-text-frc-store_JS0ryOxJT0WEnF-zJDr6Dw_N_4rOpaSRnmeoVpFk6EY6w.jpeg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -2313,7 +2351,26 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\logo\\8dcab87c-1b9c-495d-8bc1-9d42f91c28c7_FRCshop.jpeg"
+      "OriginalItemSpec": "wwwroot\\logo\\412feed4-f1a3-4f43-bd01-0dd63b1ccf64_a-bookstore-logo-with-the-text-frc-store_JS0ryOxJT0WEnF-zJDr6Dw_N_4rOpaSRnmeoVpFk6EY6w.jpeg"
+    },
+    {
+      "Identity": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\slide\\66820890-e7e1-4d9a-bc94-0c4d7f31dc38_Banner-Lịch-2025-890x396.jpg",
+      "SourceId": "Web_Bán_Hàng",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\",
+      "BasePath": "_content/Web_Bán_Hàng",
+      "RelativePath": "slide/66820890-e7e1-4d9a-bc94-0c4d7f31dc38_Banner-Lịch-2025-890x396.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\slide\\66820890-e7e1-4d9a-bc94-0c4d7f31dc38_Banner-Lịch-2025-890x396.jpg"
     },
     {
       "Identity": "D:\\Đồ Án Cuối Kỳ Web\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\Web_Bán_Hàng\\wwwroot\\slide\\8e2bbc57-31ce-4635-b798-520fe7c3ebc7_a-colorful-banner-with-the-text-frc-book_KY3jzIzCR6a1JCHYTJJLCw_Cci-Ws5zSEuo8hAOTeemVQ.jpeg",

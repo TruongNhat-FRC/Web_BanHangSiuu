@@ -27,10 +27,9 @@ namespace Web_Bán_Hàng.Controllers
         public async Task<IActionResult> ThanhToan()
         {
             var usermail = User.FindFirstValue(ClaimTypes.Email);
-            var fullName = User.FindFirstValue(ClaimTypes.Name); // Lấy tên đầy đủ từ Claim
+            var fullName = User.FindFirstValue(ClaimTypes.Name);
             var user = await _datacontext.Users.FirstOrDefaultAsync(u => u.Email == usermail);
-            var fullName1 = user?.FullName ?? "Người dùng"; // Lấy tên đầy đủ từ cơ sở dữ liệu, nếu không có thì hiển thị "Người dùng"
-
+            var fullName1 = user?.FullName ?? "Người dùng";
 
             if (usermail == null)
             {
@@ -58,11 +57,11 @@ namespace Web_Bán_Hàng.Controllers
                 orderItem.MaDonHang = madonhang;
                 orderItem.PhiShip = Phishiphtml;
                 orderItem.MaNguoiDung = usermail;
-                orderItem.TrangThai = 0; // Trạng thái là "chưa xuwo lý , dang xu lý "
+                orderItem.TrangThai = 0;
                 orderItem.NgayDat = DateTime.Now;
                 orderItem.PhanTramGiaGia = PhanTramhtml;
 
-                // Tính tổng tiền cho đơn hàng
+
                 List<CartItemModel> cartItem = HttpContext.Session.GetJson<List<CartItemModel>>("Cart") ?? new List<CartItemModel>();
                 decimal totalAmount = 0;
                 var orderDetailsHtml = "<h3>Chi tiết đơn hàng của bạn</h3><table border='1'><tr><th>Sản phẩm</th><th>Số lượng</th><th>Đơn giá</th><th>Thành tiền</th></tr>";
@@ -76,55 +75,54 @@ namespace Web_Bán_Hàng.Controllers
                     chitietdonhang.MaSanPham = item.ProductId;
                     chitietdonhang.ThanhTien = chitietdonhang.Gia1mon * chitietdonhang.Soluong;
 
-                    totalAmount += chitietdonhang.ThanhTien; // Cộng dồn tổng tiền
+                    totalAmount += chitietdonhang.ThanhTien;
 
-                    _datacontext.Add(chitietdonhang); // Thêm chi tiết đơn hàng
+                    _datacontext.Add(chitietdonhang);
 
-                    // Cập nhật số lượng sản phẩm sau khi thanh toán
+
                     var product = await _datacontext.Products.FindAsync(item.ProductId);
                     if (product != null)
                     {
-                        product.Quantity -= item.Quantity; // Giảm số lượng sản phẩm đi
-                        product.PurchaseCount += item.Quantity; // Tăng lượt mua sản phẩm
-                        _datacontext.Update(product); // Cập nhật sản phẩm
+                        product.Quantity -= item.Quantity;
+                        product.PurchaseCount += item.Quantity;
+                        _datacontext.Update(product);
                     }
                     orderDetailsHtml += $"<tr><td>{item.ProductName}</td><td>{item.Quantity}</td><td>{item.Price.ToString("#,0")} VND</td><td>{(item.Price * item.Quantity).ToString("#,0")} VND</td></tr>";
                 }
 
-                // Cập nhật tổng tiền cho đơn hàng
                 orderItem.TongTienCuoi = totalAmount;
-                // Tính toán tổng tiền sau khi giảm giá
-                if (PhanTramhtml > 0 && PhanTramhtml <= 100) // Đảm bảo phần trăm giảm giá hợp lệ
+
+                if (PhanTramhtml > 0 && PhanTramhtml <= 100)
                 {
-                    decimal discountAmount = (totalAmount * PhanTramhtml) / 100; // Số tiền giảm giá
-                    orderItem.TienSaiKhiGiam = totalAmount - discountAmount; // Tổng tiền sau khi giảm
+                    decimal discountAmount = (totalAmount * PhanTramhtml) / 100;
+                    orderItem.TienSaiKhiGiam = totalAmount - discountAmount;
                 }
                 else
                 {
-                    orderItem.TienSaiKhiGiam = totalAmount; // Không giảm giá
+                    orderItem.TienSaiKhiGiam = totalAmount;
                 }
-                // Lưu đơn hàng và chi tiết đơn hàng
+
                 _datacontext.Add(orderItem);
-                await _datacontext.SaveChangesAsync(); // Lưu tất cả thay đổi
+                await _datacontext.SaveChangesAsync();
                 orderDetailsHtml += $"</table><br><strong>Tổng tiền: {totalAmount.ToString("#,0")} VND</strong><br>Giảm giá : {PhanTramhtml.ToString("#,0")} % <br><strong> Số tiền sau khi giảm giá: {orderItem.TienSaiKhiGiam.ToString("#,0")} VND</strong> <br><strong>Nếu có gì sai sót bạn có thể liên hệ theo số đường dây nóng sau để được hỗ trợ sớm nhất : 0377875295 <strong>";
 
-                // Xóa giỏ hàng sau khi thanh toán
+
                 HttpContext.Session.Remove("Cart");
                 Response.Cookies.Delete("Phiship");
                 Response.Cookies.Delete("CouponGia");
-                //Send mail order when success
+
                 var receiver = usermail;
                 var subject = "Trạng thái đặt hàng hàng .";
                 var message = $"Xin chào {fullName1}, <br>Đơn hàng của bạn đã được tạo thành công. Cảm ơn bạn đã mua sắm tại chúng tôi.<br>{orderDetailsHtml}";
                 try
                 {
-                    // Gửi email
+
                     await _emailSender.SendEmailAsync(receiver, subject, message);
                     TempData["success"] = "Đã tạo đơn hàng thành công, vui lòng kiểm tra email để biết thêm chi tiết.";
                 }
                 catch (Exception ex)
                 {
-                    // Log lỗi nếu có
+
                     TempData["error"] = "Có lỗi xảy ra khi gửi email: " + ex.Message;
                 }
                 return RedirectToAction("Index", "Cart");

@@ -32,29 +32,29 @@ namespace Web_Bán_Hàng.Controllers
 				}
 				else if (sort_by == "price_decrease")
 				{
-                    productByBrand = productByBrand.OrderByDescending(p => p.Price);
+					productByBrand = productByBrand.OrderByDescending(p => p.Price);
 				}
 				else if (sort_by == "price_newest")
 				{
-                    productByBrand = productByBrand.OrderByDescending(p => p.Id);
+					productByBrand = productByBrand.OrderByDescending(p => p.Id);
 				}
 				else if (sort_by == "price_oldest")
 				{
-                    productByBrand = productByBrand.OrderBy(p => p.Id);
+					productByBrand = productByBrand.OrderBy(p => p.Id);
 				}
-                else if (sort_by == "count_oldest")
-                {
-                    productByBrand = productByBrand.OrderByDescending(p => p.PurchaseCount);
-                }
-                else
+				else if (sort_by == "count_oldest")
 				{
-                    productByBrand = productByBrand.OrderByDescending(p => p.Id);
+					productByBrand = productByBrand.OrderByDescending(p => p.PurchaseCount);
+				}
+				else
+				{
+					productByBrand = productByBrand.OrderByDescending(p => p.Id);
 				}
 			}
 
 			int count = await productByBrand.CountAsync();
 
-			const int KichThuoc = 6; 
+			const int KichThuoc = 6;
 			if (pg < 1)
 			{
 				pg = 1;
